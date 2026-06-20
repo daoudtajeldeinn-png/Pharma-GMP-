@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PharmaPro Academy | تدريب GMP/ISO المتخصص</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0A1628;
+      --navy2:   #0F2040;
+      --navy3:   #1E3A5F;
+      --teal:    #00D4AA;
+      --teal2:   #00B892;
+      --gold:    #C9A84C;
+      --gold2:   #E8C96A;
+      --light:   #F0F4FF;
+      --muted:   #8BA3C4;
+      --white:   #FFFFFF;
+      --card-bg: #0D1F38;
+      --border:  rgba(0,212,170,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--navy);
+      color: var(--light);
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 36px; height: 36px;
+      position: relative;
+    }
+
+    /* Flask icon via CSS */
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 12px; height: 14px;
+      background: var(--teal);
+      border-radius: 2px 2px 0 0;
+    }
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      top: 12px; left: 50%;
+      transform: translateX(-50%);
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-top: 22px solid var(--teal);
+      opacity: 0.85;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text span:first-child {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .logo-text span:last-child {
+      font-size: 0.65rem;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--teal); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: var(--navy) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+      font-size: 0.85rem !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 100px 5% 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,212,170,0.08);
+      border: 1px solid rgba(0,212,170,0.3);
+      color: var(--teal);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--teal);
+    }
+    .hero h1 .gold { color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--navy);
+      padding: 14px 30px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(0,212,170,0.3);
+    }
+    .btn-primary:hover {
+      background: var(--teal2);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(0,212,170,0.4);
+    }
+
+    .btn-outline {
+      border: 1.5px solid rgba(0,212,170,0.4);
+      color: var(--teal);
+      padding: 13px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover {
+      background: rgba(0,212,170,0.08);
+      border-color: var(--teal);
+    }
+
+    /* Hero Stats */
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* ── HERO VISUAL (right side) ── */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .molecule-card {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    }
+
+    .cert-preview {
+      background: linear-gradient(135deg, var(--navy3), #0A1E38);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cert-preview::before {
+      content: 'CERTIFICATE';
+      position: absolute;
+      top: 12px; left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .cert-lines {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+    .cert-line {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(201,168,76,0.2);
+    }
+    .cert-line.w80 { width: 80%; }
+    .cert-line.w60 { width: 60%; }
+    .cert-line.w70 { width: 70%; }
+    .cert-seal {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold) 0deg, transparent 0deg);
+      border: 2px solid var(--gold);
+      margin: 12px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .module-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .module-tag {
+      background: rgba(0,212,170,0.06);
+      border: 1px solid rgba(0,212,170,0.2);
+      color: var(--teal);
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+    .module-tag.gold-tag {
+      background: rgba(201,168,76,0.06);
+      border-color: rgba(201,168,76,0.3);
+      color: var(--gold);
+    }
+
+    /* Floating badges */
+    .float-badge {
+      position: absolute;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      white-space: nowrap;
+    }
+    .float-badge.top-left {
+      top: -16px;
+      left: -20px;
+      color: var(--teal);
+    }
+    .float-badge.bottom-right {
+      bottom: -16px;
+      right: -20px;
+      color: var(--gold);
+    }
+    .badge-icon { font-size: 1rem; }
+
+    /* ── TRUSTED BY ── */
+    .trusted {
+      position: relative; z-index: 1;
+      padding: 40px 5%;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .trusted p {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .trusted-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .trusted-item {
+      color: rgba(139,163,196,0.5);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 90px 5%;
+    }
+
+    .section-eyebrow {
+      font-size: 0.72rem;
+      color: var(--teal);
+      letter-spacing: 0.15em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-title em { font-style: normal; color: var(--teal); }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ── WHY ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: rgba(0,212,170,0.08);
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .why-text h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .why-text p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .compliance-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .compliance-box h4 {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .compliance-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .compliance-tag {
+      background: rgba(10,22,40,0.8);
+      border: 1px solid rgba(0,212,170,0.25);
+      color: var(--light);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .compliance-tag.highlight {
+      border-color: rgba(201,168,76,0.4);
+      color: var(--gold);
+    }
+
+    /* ── COURSES ── */
+    .courses-bg {
+      background: linear-gradient(180deg, transparent, rgba(30,58,95,0.15), transparent);
+    }
+
+    .courses-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .course-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      border-color: rgba(0,212,170,0.35);
+    }
+    .course-card.featured {
+      border-color: rgba(201,168,76,0.4);
+      position: relative;
+    }
+
+    .course-card-top {
+      padding: 24px 24px 16px;
+      position: relative;
+    }
+
+    .featured-ribbon {
+      position: absolute;
+      top: 0; left: 0;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 5px 14px;
+      border-radius: 0 0 8px 0;
+    }
+
+    .course-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+    }
+    .icon-teal { background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.25); }
+    .icon-gold { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); }
+    .icon-blue { background: rgba(100,149,237,0.1); border: 1px solid rgba(100,149,237,0.25); }
+
+    .course-level {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+    .course-level.gold-level { color: var(--gold); }
+
+    .course-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .course-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .course-card-bottom {
+      padding: 16px 24px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .course-meta {
+      display: flex;
+      gap: 14px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .course-price {
+      text-align: left;
+    }
+    .price-amount {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--teal);
+    }
+    .price-amount.gold-price { color: var(--gold); }
+    .price-period {
+      font-size: 0.68rem;
+      color: var(--muted);
+      display: block;
+    }
+
+    /* ── AUDIENCE ── */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .audience-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .audience-card:hover { border-color: rgba(0,212,170,0.3); }
+
+    .audience-icon {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .audience-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .audience-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* ── CURRICULUM ── */
+    .curriculum {
+      background: rgba(10,22,40,0.5);
+    }
+
+    .curriculum-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .module-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .module-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+    .module-item:hover { border-color: rgba(0,212,170,0.3); }
+
+    .module-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--teal);
+      background: rgba(0,212,170,0.08);
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .module-info h5 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .module-info span {
+      font-size: 0.73rem;
+      color: var(--muted);
+    }
+
+    .module-duration {
+      margin-right: auto;
+      font-size: 0.72rem;
+      color: var(--teal);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+    }
+
+    .testimonial-card q {
+      font-size: 0.88rem;
+      color: var(--light);
+      line-height: 1.8;
+      font-style: italic;
+      font-weight: 400;
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .author-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--navy3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .author-info span {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .author-info small {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* ── FACEBOOK CTA ── */
+    .fb-cta {
+      background: linear-gradient(135deg, #1a1f3a, #0d1628);
+      border: 1px solid rgba(66,103,178,0.3);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .fb-icon {
+      width: 64px; height: 64px;
+      background: #1877F2;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .fb-content {}
+    .fb-content h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .fb-content p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .btn-facebook {
+      background: #1877F2;
+      color: #fff;
+      padding: 13px 26px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .btn-facebook:hover { background: #1566d4; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(0,212,170,0.06) 0%, transparent 70%);
+    }
+
+    .final-cta h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .final-cta h2 em { font-style: normal; color: var(--teal); }
+
+    .final-cta p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .guarantee {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 40px 5% 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-about p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-top: 14px;
+      font-weight: 400;
+    }
+
+    .footer-col h5 {
+      font-size: 0.78rem;
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul li a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 400;
+    }
+    .footer-col ul li a:hover { color: var(--teal); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .footer-bottom span { color: var(--teal); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 968px) {
+      nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 90px; }
+      .hero-visual { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .curriculum-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .fb-cta { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 540px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; gap: 1rem; }
+      .hero-actions { flex-direction: column; }
+    }
+
+    /* Scroll animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC TRAINING</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="#courses">الكورسات</a></li>
+      <li><a href="#curriculum">المنهج</a></li>
+      <li><a href="#audience">لمن؟</a></li>
+      <li><a href="#testimonials">آراء المتدربين</a></li>
+      <li><a href="#enroll" class="nav-cta">سجّل الآن</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content fade-up">
+      <div class="hero-badge">🧪 المنصة التدريبية الأولى للصناعة الصيدلانية</div>
+
+      <h1>
+        إتقان <em>GMP</em> و<em>ISO</em><br />
+        من داخل<br />
+        <span class="gold">المصنع الصيدلاني</span>
+      </h1>
+
+      <p class="hero-sub">
+        محاضرات متخصصة مصممة للكيميائيين ومهندسي الكيمياء ومختصي ضبط الجودة الصيدلانية — تجمع بين الإطار التنظيمي الدولي والتطبيق العملي الميداني في بيئات التصنيع الحقيقية.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#courses" class="btn-primary">
+          استعرض الكورسات ←
+        </a>
+        <a href="#curriculum" class="btn-outline">
+          ▶ نظرة على المنهج
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">+200</div>
+          <div class="stat-label">متدرب محترف</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">12</div>
+          <div class="stat-label">كورس متخصص</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">ISO<br/>GMP</div>
+          <div class="stat-label">معتمد دولياً</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual fade-up">
+      <div class="float-badge top-left">
+        <span class="badge-icon">✅</span>
+        شهادة معتمدة
+      </div>
+      <div class="molecule-card">
+        <div class="cert-preview">
+          <div class="cert-lines">
+            <div class="cert-line w80"></div>
+            <div class="cert-line w60"></div>
+            <div class="cert-line w70"></div>
+          </div>
+          <div class="cert-seal">🏅</div>
+        </div>
+        <div class="module-tags">
+          <span class="module-tag">GMP ICH Q10</span>
+          <span class="module-tag">ISO 9001:2015</span>
+          <span class="module-tag gold-tag">ICH Q7</span>
+          <span class="module-tag">FDA 21 CFR</span>
+          <span class="module-tag">EU GMP Annex</span>
+          <span class="module-tag gold-tag">WHO GMP</span>
+          <span class="module-tag">CAPA</span>
+          <span class="module-tag">Validation</span>
+        </div>
+      </div>
+      <div class="float-badge bottom-right">
+        <span class="badge-icon">⭐</span>
+        4.9 / 5 تقييم المتدربين
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED BY -->
+  <div class="trusted fade-up">
+    <p>متخصصون من مؤسسات رائدة</p>
+    <div class="trusted-logos">
+      <div class="trusted-item">🏭 مصانع صيدلانية</div>
+      <div class="trusted-item">🔬 مختبرات QC</div>
+      <div class="trusted-item">📋 هيئات تنظيمية</div>
+      <div class="trusted-item">🏥 شركات دواء متعددة الجنسيات</div>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <section id="why">
+    <div class="why-grid">
+      <div class="fade-up">
+        <div class="section-eyebrow">لماذا PharmaPro Academy</div>
+        <h2 class="section-title">تدريب يُبنى على<br /><em>الواقع الصناعي</em></h2>
+        <p class="section-sub">
+          لا نُعلّم من الكتب فقط. كل محاضرة مستمدة من تجارب تدقيق حقيقية، إجراءات SOPs فعلية، وبيئات تصنيع معتمدة من FDA وEMA وWHO.
+        </p>
+
+        <div class="why-list" style="margin-top:2.5rem">
+          <div class="why-item">
+            <div class="why-icon">🎯</div>
+            <div class="why-text">
+              <h4>تطبيق فوري في بيئة العمل</h4>
+              <p>كل وحدة مصممة لتُترجَم مباشرة إلى إجراءات عملية قابلة للتنفيذ في مصنعك أو مختبرك.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">📜</div>
+            <div class="why-text">
+              <h4>شهادات ذات قيمة مهنية حقيقية</h4>
+              <p>شهادات إتمام موثقة تعكس مستوى متقدماً من الكفاءة في أُطر GMP وISO الدولية.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🔄</div>
+            <div class="why-text">
+              <h4>محتوى محدَّث مع كل إصدار تنظيمي</h4>
+              <p>نتابع تحديثات ICH وWHO وFDA ونضمن أن يكون تدريبك متوافقاً مع أحدث المتطلبات.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🌍</div>
+            <div class="why-text">
+              <h4>مرجعية المنطقة المناخية IVb</h4>
+              <p>مناسب لمصانع دول المناطق الحارة والرطبة — متطلبات الاستقرار، التعبئة، والتخزين.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <div class="compliance-box">
+          <h4>الأُطر التنظيمية المشمولة</h4>
+          <div class="compliance-tags">
+            <span class="compliance-tag highlight">ICH Q7 · Q8 · Q9 · Q10</span>
+            <span class="compliance-tag">WHO GMP TRS 1044</span>
+            <span class="compliance-tag">EU GMP Part I & II</span>
+            <span class="compliance-tag highlight">FDA 21 CFR 211</span>
+            <span class="compliance-tag">ISO 9001:2015</span>
+            <span class="compliance-tag">ISO/IEC 17025</span>
+            <span class="compliance-tag highlight">Annex 1 · 11 · 15</span>
+            <span class="compliance-tag">USP · BP · Ph. Eur.</span>
+            <span class="compliance-tag">CAPA · Deviation Mgmt</span>
+            <span class="compliance-tag highlight">Process Validation</span>
+            <span class="compliance-tag">Cleaning Validation</span>
+            <span class="compliance-tag">Analytical Validation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section id="courses" class="courses-bg">
+    <div class="courses-header fade-up">
+      <div>
+        <div class="section-eyebrow">الكورسات المتاحة</div>
+        <h2 class="section-title">اختر مسارك <em>التخصصي</em></h2>
+      </div>
+      <a href="#enroll" class="btn-outline">عرض جميع الكورسات ←</a>
+    </div>
+
+    <div class="courses-grid">
+
+      <div class="course-card fade-up">
+        <div class="course-card-top">
+          <div class="course-icon icon-teal">🏭</div>
+          <div class="course-level">الأساسيات · مستوى I</div>
+          <h3>أساسيات GMP في التصنيع الصيدلاني</h3>
+          <p>المبادئ الجوهرية لممارسات التصنيع الجيد — من بيئة المصنع إلى وثائق الدفعات (BMR/BPR)، ضبط التغيير، ومتطلبات التوثيق.</p>
+        </div>
+        <div class="course-card-bottom">
+          <div class="course-meta">
+            <span class="meta-item">⏱ 8 ساعات</span>
+            <span class="meta-item">📁 6 وحدات</span>
+          </div>
+          <div class="course-price">
+            <span class="price-amount">$49</span>
+            <span class="price-period">دفعة واحدة</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card featured fade-up">
+        <div class="featured-ribbon">🏆 الأكثر طلباً</div>
+        <div class="course-card-top" style="padding-top:36px">
+          <div class="course-icon icon-gold">🔬</div>
+          <div class="course-level gold-level">متقدم · مستوى III</div>
+          <h3>التحقق والتثبيت: Validation & Qualification الشاملة</h3>
+          <p>IQ · OQ · PQ، تحقق العمليات، تحقق التنظيف، تحقق الطرق التحليلية وفق ICH Q2(R2) وGAMP 5 — مع تمارين عملية وحالات دراسية حقيقية.</p>
+        </div>
+        <div class="course-card-bottom">
+          <div class="course-meta">
+            <span class="meta-item">⏱ 16 ساعة</span>
+            <span class="meta-item">📁 12 وحدة</span>
+          </div>
+          <div class="course-price">
+            <span class="price-amount gold-price">$129</span>
+            <span class="price-period">دفعة واحدة</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card fade-up">
+        <div class="course-card-top">
+          <div class="course-icon icon-blue">📋</div>
+          <div class="course-level">متوسط · مستوى II</div>
+          <h3>نظام ضبط الجودة ISO 9001 في الصناعة الدوائية</h3>
+          <p>بناء QMS متكامل: السياسات، الإجراءات، التدقيق الداخلي، مراجعة الإدارة، CAPA، وإدارة الموردين وفق ISO 9001:2015.</p>
+        </div>
+        <div class="course-card-bottom">
+          <div class="course-meta">
+            <span class="meta-item">⏱ 12 ساعة</span>
+            <span class="meta-item">📁 9 وحدات</span>
+          </div>
+          <div class="course-price">
+            <span class="price-amount">$79</span>
+            <span class="price-period">دفعة واحدة</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card fade-up">
+        <div class="course-card-top">
+          <div class="course-icon icon-teal">⚠️</div>
+          <div class="course-level">متوسط · مستوى II</div>
+          <h3>إدارة الانحرافات والـ CAPA الفعّالة</h3>
+          <p>منهجية تحديد الانحراف، تحليل السبب الجذري (Root Cause Analysis)، خطط العمل التصحيحية والوقائية، والتكامل مع نظام ICH Q10.</p>
+        </div>
+        <div class="course-card-bottom">
+          <div class="course-meta">
+            <span class="meta-item">⏱ 6 ساعات</span>
+            <span class="meta-item">📁 5 وحدات</span>
+          </div>
+          <div class="course-price">
+            <span class="price-amount">$59</span>
+            <span class="price-period">دفعة واحدة</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card fade-up">
+        <div class="course-card-top">
+          <div class="course-icon icon-gold">🧫</div>
+          <div class="course-level gold-level">متقدم · مستوى III</div>
+          <h3>مختبر ضبط الجودة QC وISO/IEC 17025</h3>
+          <p>إدارة المختبر، اعتماد الطرق التحليلية، OOT / OOS، إدارة المواد المرجعية، ومتطلبات الاعتماد وفق ISO/IEC 17025:2017.</p>
+        </div>
+        <div class="course-card-bottom">
+          <div class="course-meta">
+            <span class="meta-item">⏱ 10 ساعات</span>
+            <span class="meta-item">📁 8 وحدات</span>
+          </div>
+          <div class="course-price">
+            <span class="price-amount gold-price">$99</span>
+            <span class="price-period">دفعة واحدة</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-card fade-up">
+        <div class="course-card-top">
+          <div class="course-icon icon-blue">💊</div>
+          <div class="course-level">أساسيات · مستوى I</div>
+          <h3>الأشكال الصيدلانية والـ IPQC: من المواصفة إلى الإفراج</h3>
+          <p>مراقبة الجودة أثناء العملية (IPQC) لأشكال الأقراص، الكبسولات، والسوائل — مواصفات المنتج، خطة أخذ العينات، ووثائق CoA.</p>
+        </div>
+        <div class="course-card-bottom">
+          <div class="course-meta">
+            <span class="meta-item">⏱ 8 ساعات</span>
+            <span class="meta-item">📁 7 وحدات</span>
+          </div>
+          <div class="course-price">
+            <span class="price-amount">$55</span>
+            <span class="price-period">دفعة واحدة</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section id="audience">
+    <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto">
+      <div class="section-eyebrow">الفئة المستهدفة</div>
+      <h2 class="section-title">هذه الكورسات <em>صُمِّمت</em> لك</h2>
+      <p class="section-sub" style="margin:0 auto">
+        سواء كنت في بداية مسيرتك أو محترفاً يبحث عن الارتقاء، هذا التدريب يخاطبك بلغة مهنتك.
+      </p>
+    </div>
+
+    <div class="audience-grid fade-up">
+      <div class="audience-card">
+        <span class="audience-icon">⚗️</span>
+        <h4>الكيميائيون</h4>
+        <p>خريجو الكيمياء والصيدلة العاملون في مختبرات QC أو إنتاج — ارفع كفاءتك التحليلية وافهم السياق التنظيمي الكامل لعملك.</p>
+      </div>
+      <div class="audience-card">
+        <span class="audience-icon">⚙️</span>
+        <h4>المهندسون الكيميائيون</h4>
+        <p>مهندسو الإنتاج والعمليات — تعمق في التحقق من العمليات، شروط GMP للمعدات، والتوثيق الهندسي الصيدلاني.</p>
+      </div>
+      <div class="audience-card">
+        <span class="audience-icon">💊</span>
+        <h4>صيادلة ضبط الجودة</h4>
+        <p>الصيادلة في أدوار QA / QC / RA — طوّر فهمك لأُطر الجودة وكن مرجعاً في فريقك لكل ما يتعلق بالامتثال التنظيمي.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRICULUM -->
+  <section id="curriculum" class="curriculum">
+    <div class="fade-up">
+      <div class="section-eyebrow">المنهج التفصيلي</div>
+      <h2 class="section-title">ما الذي ستتعلمه <em>بالضبط</em></h2>
+    </div>
+
+    <div class="curriculum-grid fade-up">
+      <div class="module-block">
+        <div class="module-item">
+          <div class="module-num">01</div>
+          <div class="module-info">
+            <h5>بيئة التصنيع وتصميم المرافق</h5>
+            <span>Facility Design · Clean Rooms · HVAC GMP</span>
+          </div>
+          <span class="module-duration">90 د</span>
+        </div>
+        <div class="module-item">
+          <div class="module-num">02</div>
+          <div class="module-info">
+            <h5>نظام التوثيق الصيدلاني</h5>
+            <span>BMR · BPR · SOP · Protocol · Report</span>
+          </div>
+          <span class="module-duration">2 ساعة</span>
+        </div>
+        <div class="module-item">
+          <div class="module-num">03</div>
+          <div class="module-info">
+            <h5>المواد الخام والموردون</h5>
+            <span>Supplier Qualification · CoA · Sampling</span>
+          </div>
+          <span class="module-duration">75 د</span>
+        </div>
+        <div class="module-item">
+          <div class="module-num">04</div>
+          <div class="module-info">
+            <h5>التحقق من العمليات</h5>
+            <span>Process Validation Stages I, II, III</span>
+          </div>
+          <span class="module-duration">2.5 ساعة</span>
+        </div>
+        <div class="module-item">
+          <div class="module-num">05</div>
+          <div class="module-info">
+            <h5>التدقيق الداخلي وإدارة CAPA</h5>
+            <span>Audit Planning · RCA · Action Closure</span>
+          </div>
+          <span class="module-duration">2 ساعة</span>
+        </div>
+      </div>
+
+      <div class="module-block">
+        <div class="module-item">
+          <div class="module-num">06</div>
+          <div class="module-info">
+            <h5>اختبارات الاستقرار والمنطقة المناخية</h5>
+            <span>ICH Q1 · Zone IVb · Packaging Studies</span>
+          </div>
+          <span class="module-duration">90 د</span>
+        </div>
+        <div class="module-item">
+          <div class="module-num">07</div>
+          <div class="module-info">
+            <h5>تحقق الطرق التحليلية</h5>
+            <span>ICH Q2(R2) · Specificity · Linearity · Robustness</span>
+          </div>
+          <span class="module-duration">2 ساعة</span>
+        </div>
+        <div class="module-item">
+          <div class="module-num">08</div>
+          <div class="module-info">
+            <h5>OOS & OOT: الاستقصاء والقرار</h5>
+            <span>Phase I/II Investigation · FDA Guidance</span>
+          </div>
+          <span class="module-duration">75 د</span>
+        </div>
+        <div class="module-item">
+          <div class="module-num">09</div>
+          <div class="module-info">
+            <h5>Annex 1 المُعدَّل: المنتجات المعقمة</h5>
+            <span>Contamination Control Strategy · Sterility Assurance</span>
+          </div>
+          <span class="module-duration">2 ساعة</span>
+        </div>
+        <div class="module-item">
+          <div class="module-num">10</div>
+          <div class="module-info">
+            <h5>إدارة المخاطر وفق ICH Q9</h5>
+            <span>FMEA · HACCP · Risk Acceptability</span>
+          </div>
+          <span class="module-duration">90 د</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="fade-up" style="text-align:center; max-width:540px; margin:0 auto">
+      <div class="section-eyebrow">آراء المتدربين</div>
+      <h2 class="section-title">ماذا يقول <em>المحترفون</em></h2>
+    </div>
+
+    <div class="testimonials-grid fade-up">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <q>أخيراً تدريب يفهم الفرق بين GMP النظري وما يحدث فعلاً داخل المصنع. استطعت تطبيق منهجية OOS في أسبوع واحد بعد إتمام الكورس.</q>
+        <div class="testimonial-author">
+          <div class="author-avatar">م.أ</div>
+          <div class="author-info">
+            <span>م. أحمد عبدالله</span>
+            <small>مهندس كيميائي — مصنع أدوية، الخرطوم</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <q>كورس التحقق من الطرق التحليلية وفق ICH Q2(R2) كان بالضبط ما أحتاجه. المحتوى دقيق، مرتب، ومدعوم بأمثلة حقيقية من بيئات QC.</q>
+        <div class="testimonial-author">
+          <div class="author-avatar">د.س</div>
+          <div class="author-info">
+            <span>د. سارة محمود</span>
+            <small>صيدلانية QC — شركة دواء متعددة الجنسيات</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <q>منذ إتمام كورس ISO 9001 وبناء QMS، أصبح فريقنا يمتلك مرجعاً واضحاً لكل إجراء. التدريب غيّر طريقة عمل قسم الجودة بالكامل.</q>
+        <div class="testimonial-author">
+          <div class="author-avatar">خ.إ</div>
+          <div class="author-info">
+            <span>خالد إبراهيم</span>
+            <small>مختص QA — مجمع صناعي دوائي</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACEBOOK CTA -->
+  <section style="padding: 0 5% 80px">
+    <div class="fb-cta fade-up">
+      <div class="fb-icon">f</div>
+      <div class="fb-content">
+        <h3>انضم إلى مجتمعنا على فيسبوك</h3>
+        <p>صفحة متخصصة للكيميائيين والمهندسين الكيميائيين ومختصي ضبط الجودة — آخر المستجدات التنظيمية، نقاشات مهنية، وإعلانات الكورسات الجديدة.</p>
+      </div>
+      <a href="https://www.facebook.com" target="_blank" class="btn-facebook">
+        📘 تابعنا على فيسبوك
+      </a>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="enroll" class="final-cta">
+    <div class="fade-up">
+      <h2>ابدأ مسيرتك نحو<br /><em>الاحتراف التنظيمي</em> اليوم</h2>
+      <p>انضم إلى مئات المختصين الذين طوّروا كفاءتهم مع PharmaPro Academy</p>
+
+      <div class="cta-actions">
+        <a href="#courses" class="btn-primary" style="font-size:1rem; padding:16px 36px;">
+          استعرض جميع الكورسات ←
+        </a>
+        <a href="#" class="btn-outline" style="font-size:1rem; padding:15px 28px;">
+          📧 تواصل معنا
+        </a>
+      </div>
+
+      <p class="guarantee">
+        🔒 &nbsp;ضمان استرداد كامل خلال 7 أيام · وصول مدى الحياة للمحتوى · شهادة إتمام موثقة
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="logo" style="text-decoration:none; display:flex; gap:10px; align-items:center">
+          <div class="logo-icon"></div>
+          <div class="logo-text">
+            <span style="font-family:Inter,sans-serif;font-weight:700;color:#fff">PharmaPro Academy</span>
+            <span style="font-size:0.65rem;color:var(--teal);letter-spacing:0.08em;font-weight:600">GMP · ISO · QC TRAINING</span>
+          </div>
+        </div>
+        <p>منصة تدريبية متخصصة للصناعة الصيدلانية — نُمكّن الكيميائيين والمهندسين ومختصي الجودة من إتقان الأُطر التنظيمية الدولية وتطبيقها ميدانياً.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>الكورسات</h5>
+        <ul>
+          <li><a href="#">أساسيات GMP</a></li>
+          <li><a href="#">التحقق والتثبيت</a></li>
+          <li><a href="#">ISO 9001 الدوائي</a></li>
+          <li><a href="#">إدارة CAPA</a></li>
+          <li><a href="#">مختبر QC</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>الأُطر التنظيمية</h5>
+        <ul>
+          <li><a href="#">ICH Guidelines</a></li>
+          <li><a href="#">EU GMP Annex</a></li>
+          <li><a href="#">WHO GMP</a></li>
+          <li><a href="#">FDA 21 CFR</a></li>
+          <li><a href="#">ISO Standards</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>التواصل</h5>
+        <ul>
+          <li><a href="#">📘 فيسبوك</a></li>
+          <li><a href="#">📧 راسلنا</a></li>
+          <li><a href="#">📋 برنامج الكورسات</a></li>
+          <li><a href="#">❓ الأسئلة الشائعة</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 PharmaPro Academy · جميع الحقوق محفوظة</p>
+      <p>مع <span>♥</span> للصناعة الصيدلانية الاحترافية</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
+
