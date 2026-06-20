@@ -1,5 +1,4 @@
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --navy:    #0A1628;
@@ -244,7 +243,9 @@
       padding-top: 2rem;
       border-top: 1px solid var(--border);
     }
-    .stat-item {}
+    .stat-item {
+      flex-shrink: 0;
+    }
     .stat-num {
       font-family: 'Inter', sans-serif;
       font-size: 1.8rem;
@@ -611,6 +612,63 @@
       font-weight: 400;
     }
 
+    .course-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .feature-badge {
+      background: rgba(0,212,170,0.08);
+      border: 1px solid rgba(0,212,170,0.2);
+      color: var(--teal);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .course-instructor {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(0,212,170,0.1);
+    }
+
+    .instructor-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--navy3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .instructor-info {
+      flex: 1;
+    }
+
+    .instructor-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .instructor-title {
+      font-size: 0.65rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
     .course-card-bottom {
       padding: 16px 24px 20px;
       border-top: 1px solid var(--border);
@@ -621,30 +679,36 @@
 
     .course-meta {
       display: flex;
-      gap: 14px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .meta-item {
       display: flex;
       align-items: center;
-      gap: 5px;
-      font-size: 0.75rem;
+      gap: 4px;
+      font-size: 0.7rem;
       color: var(--muted);
+      font-weight: 500;
     }
 
     .course-price {
       text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
     .price-amount {
       font-family: 'Inter', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--teal);
+      line-height: 1;
     }
     .price-amount.gold-price { color: var(--gold); }
     .price-period {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       color: var(--muted);
-      display: block;
+      margin-top: 2px;
     }
 
     /* ── AUDIENCE ── */
@@ -829,7 +893,10 @@
       flex-shrink: 0;
     }
 
-    .fb-content {}
+    .fb-content {
+      flex: 1;
+      min-width: 200px;
+    }
     .fb-content h3 {
       font-size: 1.3rem;
       font-weight: 700;
@@ -982,4 +1049,3 @@
       opacity: 1;
       transform: none;
     }
-  </style>
