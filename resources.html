@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المصادر الرسمية | PharmaPro Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .resources-hero {
+      background: linear-gradient(135deg, var(--navy3), var(--navy));
+      padding: 100px 5% 60px;
+      text-align: center;
+    }
+    .resources-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .resources-hero p {
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    .resources-section {
+      padding: 60px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .resource-category {
+      margin-bottom: 4rem;
+    }
+    .category-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .category-icon {
+      font-size: 2rem;
+    }
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+    .resource-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s;
+    }
+    .resource-card:hover {
+      border-color: rgba(0,212,170,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .resource-badge {
+      display: inline-block;
+      background: rgba(0,212,170,0.1);
+      color: var(--teal);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .resource-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .resource-description {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .resource-link:hover {
+      text-decoration: underline;
+    }
+    .download-section {
+      background: rgba(0,212,170,0.05);
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 3rem;
+    }
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .download-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .download-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(0,212,170,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .download-info {
+      flex: 1;
+    }
+    .download-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .download-type {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .download-btn {
+      background: var(--teal);
+      color: var(--navy);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC TRAINING</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html#courses">الكورسات</a></li>
+      <li><a href="pharma-landing.html#enroll" class="nav-cta">سجّل الآن</a></li>
+    </ul>
+  </nav>
+
+  <div class="resources-hero">
+    <h1>المصادر الرسمية والمراجع المعتمدة</h1>
+    <p>مجموعة شاملة من المصادر الرسمية من الهيئات التنظيمية العالمية مثل FDA، WHO، ICH، ISO، EMA وغيرها لتعزيز فهمك لممارسات التصنيع الجيد ومعايير الجودة الدولية</p>
+  </div>
+
+  <div class="resources-section">
+    <!-- FDA Resources -->
+    <div class="resource-category">
+      <h2 class="category-title"><span class="category-icon">🏛️</span> FDA - إدارة الغذاء والدواء الأمريكية</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-badge">GMP</span>
+          <div class="resource-title">21 CFR Part 210/211</div>
+          <div class="resource-description">القواعد النهائية لممارسات التصنيع الجيد للأدوية - المرجع الأساسي لـ GMP في الولايات المتحدة</div>
+          <a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfcfr/CFRSearch.cfm?CFRPart=210" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Guidance</span>
+          <div class="resource-title">FDA Guidance for Industry</div>
+          <div class="resource-description">دليل إرشادي شامل من FDA لممارسات التصنيع الجيد والتحكم في الجودة</div>
+          <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Validation</span>
+          <div class="resource-title">Process Validation Guidance</div>
+          <div class="resource-description">دليل FDA لتحقق العمليات - إرشادات شاملة لـ IQ/OQ/PQ</div>
+          <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents?search=process+validation" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO Resources -->
+    <div class="resource-category">
+      <h2 class="category-title"><span class="category-icon">🌍</span> WHO - منظمة الصحة العالمية</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-badge">GMP</span>
+          <div class="resource-title">WHO GMP Guidelines</div>
+          <div class="resource-description">إرشادات منظمة الصحة العالمية لممارسات التصنيع الجيد - المعيار العالمي</div>
+          <a href="https://www.who.int/medicines/areas/quality_safety/quality_assurance/gmp/en/" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Quality</span>
+          <div class="resource-title">WHO Quality Assurance</div>
+          <div class="resource-description">نظام ضمان الجودة الشامل من منظمة الصحة العالمية</div>
+          <a href="https://www.who.int/medicines/areas/quality_safety/quality_assurance/en/" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Prequalification</span>
+          <div class="resource-title">WHO Prequalification</div>
+          <div class="resource-description">برنامج التأهيل المسبق لمنظمة الصحة العالمية للأدوية</div>
+          <a href="https://www.who.int/prequalification/" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ICH Resources -->
+    <div class="resource-category">
+      <h2 class="category-title"><span class="category-icon">📋</span> ICH - المجلس الدولي للتنسيق</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-badge">Q7</span>
+          <div class="resource-title">ICH Q7 - GMP for APIs</div>
+          <div class="resource-description">ممارسات التصنيع الجيد للمواد الفعالة الصيدلانية</div>
+          <a href="https://www.ich.org/page/quality-guidelines" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Q9</span>
+          <div class="resource-title">ICH Q9 - Quality Risk Management</div>
+          <div class="resource-description">إدارة مخاطر الجودة - إطار شامل لإدارة المخاطر</div>
+          <a href="https://www.ich.org/page/quality-guidelines" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Q10</span>
+          <div class="resource-title">ICH Q10 - Pharmaceutical Quality System</div>
+          <div class="resource-description">نظام الجودة الصيدلاني - دورة حياة المنتج</div>
+          <a href="https://www.ich.org/page/quality-guidelines" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Q2</span>
+          <div class="resource-title">ICH Q2(R2) - Analytical Validation</div>
+          <div class="resource-description">اعتماد الطرق التحليلية - معايير الاعتماد</div>
+          <a href="https://www.ich.org/page/quality-guidelines" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ISO Resources -->
+    <div class="resource-category">
+      <h2 class="category-title"><span class="category-icon">📊</span> ISO - المنظمة الدولية للتقييس</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-badge">ISO 9001</span>
+          <div class="resource-title">ISO 9001:2015</div>
+          <div class="resource-description">نظام إدارة الجودة - المعيار الدولي الأكثر اعتماداً</div>
+          <a href="https://www.iso.org/standard/64620.html" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">ISO 17025</span>
+          <div class="resource-title">ISO/IEC 17025:2017</div>
+          <div class="resource-description">متطلبات كفاءة مختبرات الاختبار والمعايرة</div>
+          <a href="https://www.iso.org/standard/66812.html" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">ISO 13485</span>
+          <div class="resource-title">ISO 13485:2016</div>
+          <div class="resource-description">نظام إدارة الجودة للأجهزة الطبية</div>
+          <a href="https://www.iso.org/standard/59752.html" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMA Resources -->
+    <div class="resource-category">
+      <h2 class="category-title"><span class="category-icon">🇪🇺</span> EMA - الوكالة الأوروبية للأدوية</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-badge">GMP</span>
+          <div class="resource-title">EU GMP Guidelines</div>
+          <div class="resource-description">إرشادات GMP الأوروبية - الجزء 1 والجزء 2</div>
+          <a href="https://www.ema.europa.eu/en/human-regulatory/research-development/compliance/good-manufacturing-practice" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Guidelines</span>
+          <div class="resource-title">EMA Scientific Guidelines</div>
+          <div class="resource-description">المبادئ العلمية الشاملة من EMA</div>
+          <a href="https://www.ema.europa.eu/en/human-regulatory/research-development/scientific-guidelines-overview" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Downloadable Resources -->
+    <div class="download-section">
+      <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 1rem;">📥 المواد القابلة للتحميل</h2>
+      <p style="color: var(--muted); line-height: 1.6;">قوالب، نماذج، وأدوات عملية جاهزة للاستخدام الفوري</p>
+      
+      <div class="download-grid">
+        <div class="download-item">
+          <div class="download-icon">📄</div>
+          <div class="download-info">
+            <div class="download-title">قالب BMR/BPR</div>
+            <div class="download-type">Word Document</div>
+          </div>
+          <a href="#" class="download-btn">تحميل</a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">📊</div>
+          <div class="download-info">
+            <div class="download-title">نموذج CAPA</div>
+            <div class="download-type">Excel Template</div>
+          </div>
+          <a href="#" class="download-btn">تحميل</a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">📋</div>
+          <div class="download-info">
+            <div class="download-title">قالب التدقيق الداخلي</div>
+            <div class="download-type">PDF Template</div>
+          </div>
+          <a href="#" class="download-btn">تحميل</a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">📈</div>
+          <div class="download-info">
+            <div class="download-title">نموذج IQ/OQ/PQ</div>
+            <div class="download-type">Excel Template</div>
+          </div>
+          <a href="#" class="download-btn">تحميل</a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">📝</div>
+          <div class="download-info">
+            <div class="download-title">قالب سياسة الجودة</div>
+            <div class="download-type">Word Document</div>
+          </div>
+          <a href="#" class="download-btn">تحميل</a>
+        </div>
+        <div class="download-item">
+          <div class="download-icon">🔍</div>
+          <div class="download-info">
+            <div class="download-title">نموذج OOT/OOS</div>
+            <div class="download-type">Excel Template</div>
+          </div>
+          <a href="#" class="download-btn">تحميل</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Resources -->
+    <div class="resource-category" style="margin-top: 4rem;">
+      <h2 class="category-title"><span class="category-icon">🎥</span> موارد الفيديو التعليمية</h2>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <span class="resource-badge">Training</span>
+          <div class="resource-title">FDA Webinars</div>
+          <div class="resource-description">سلسلة الندوات الإلكترونية التدريبية من FDA</div>
+          <a href="https://www.fda.gov/drugs/development-approval-process-drugs/training-and-continuing-education" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Training</span>
+          <div class="resource-title">WHO Training Videos</div>
+          <div class="resource-description">فيديوهات تدريبية من منظمة الصحة العالمية</div>
+          <a href="https://www.who.int/medicines/areas/quality_safety/quality_assurance/training/en/" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+        <div class="resource-card">
+          <span class="resource-badge">Training</span>
+          <div class="resource-title">EMA Training</div>
+          <div class="resource-description">موارد التدريب من الوكالة الأوروبية للأدوية</div>
+          <a href="https://www.ema.europa.eu/en/human-regulatory/research-development/training" target="_blank" class="resource-link">زيارة المصدر ←</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
