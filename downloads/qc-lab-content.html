@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محتوى كورس مختبر QC - PharmaPro Academy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cairo', Arial, sans-serif;
+      background: #0a0e1a;
+      color: #ffffff;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 40px;
+      background: linear-gradient(135deg, #1a2332, #c9a84c);
+      border-radius: 16px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      color: #c9a84c;
+      margin-bottom: 10px;
+    }
+    .header p {
+      font-size: 1.2rem;
+      color: #a0aec0;
+    }
+    .section {
+      background: #1a2332;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid #2d3748;
+    }
+    .section h2 {
+      color: #c9a84c;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #c9a84c;
+      padding-bottom: 10px;
+    }
+    .section h3 {
+      color: #00d4aa;
+      font-size: 1.4rem;
+      margin: 20px 0 15px;
+    }
+    .section p {
+      margin-bottom: 15px;
+      color: #e2e8f0;
+    }
+    .section ul {
+      margin: 15px 0;
+      padding-right: 30px;
+    }
+    .section li {
+      margin-bottom: 10px;
+      color: #cbd5e0;
+    }
+    .template-box {
+      background: #c9a84c;
+      border: 1px solid #ffd700;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .template-box h4 {
+      color: #0a0e1a;
+      margin-bottom: 15px;
+    }
+    .exercise-box {
+      background: #2d3748;
+      border-left: 4px solid #6495ed;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .quiz-item {
+      background: #1a2332;
+      border: 1px solid #4a5568;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+    .quiz-question {
+      font-weight: bold;
+      color: #c9a84c;
+      margin-bottom: 10px;
+    }
+    .quiz-answer {
+      color: #a0aec0;
+      margin-top: 10px;
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #c9a84c;
+      color: #0a0e1a;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .print-btn:hover {
+      background: #ffd700;
+    }
+    @media print {
+      .print-btn {
+        display: none;
+      }
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+      .container {
+        max-width: 100%;
+      }
+      .section {
+        background: #ffffff;
+        border: 1px solid #000000;
+        page-break-inside: avoid;
+      }
+      .header {
+        background: #f0f0f0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">📄 طباعة / تحميل PDF</button>
+  
+  <div class="container">
+    <div class="header">
+      <h1>مختبر QC و ISO/IEC 17025</h1>
+      <p>PharmaPro Academy - محتوى تعليمي شامل</p>
+    </div>
+
+    <div class="section">
+      <h2>1. مقدمة في مختبر QC</h2>
+      <p>مختبر مراقبة الجودة (QC) هو المسؤول عن اختبار المواد الخام والمنتجات النهائية لضمان الجودة.</p>
+      
+      <h3>أهمية مختبر QC:</h3>
+      <ul>
+        <li>ضمان جودة المواد الخام</li>
+        <li>مراقبة جودة المنتج أثناء التصنيع</li>
+        <li>اختبار المنتجات النهائية</li>
+        <li>دعم اتخاذ القرارات</li>
+        <li>الامتثال للوائح التنظيمية</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>2. إدارة المختبر</h2>
+      <p>إدارة المختبر الفعالة ضرورية لضمان النتائج الدقيقة والمتسقة.</p>
+      
+      <h3>عناصر إدارة المختبر:</h3>
+      <ul>
+        <li>تنظيم المختبر</li>
+        <li>إدارة الموظفين</li>
+        <li>تدريب الموظفين</li>
+        <li>الصيانة الوقائية</li>
+        <li>إدارة المخزون</li>
+        <li>السلامة في المختبر</li>
+        <li>التوثيق</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. اعتماد الطرق التحليلية</h2>
+      <p>اعتماد الطرق التحليلية يضمن أن الطرق المستخدمة مناسبة للغرض المقصود.</p>
+      
+      <h3>معايير الاعتماد (ICH Q2(R2)):</h3>
+      <ul>
+        <li><strong>الدقة:</strong> مدى قرب النتائج من القيمة الحقيقية</li>
+        <li><strong>الدقة:</strong> مدى تكرار النتائج</li>
+        <li><strong>الخطية:</strong> مدى خطية العلاقة بين التركيز والاستجابة</li>
+        <li><strong>الحد:</strong> أدنى تركيز يمكن قياسه</li>
+        <li><strong>النطاق:</strong> النطاق بين الحد الأعلى والأدنى</li>
+        <li><strong>القوة:</strong> القدرة على اكتشاف التغييرات</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>4. OOT / OOS</h2>
+      <p>OOT (Out of Trend) و OOS (Out of Specification) هما نتائج غير متوقعة.</p>
+      
+      <h3>تعريف OOT:</h3>
+      <ul>
+        <li>النتيجة خارج النمط المتوقع</li>
+        <li>ليست بالضرورة خارج المواصفات</li>
+        <li>تتطلب التحقيق</li>
+      </ul>
+      
+      <h3>تعريف OOS:</h3>
+      <ul>
+        <li>النتيجة خارج المواصفات المحددة</li>
+        <li>تتطلب التحقيق الفوري</li>
+        <li>قد تؤثر على جودة المنتج</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>5. قالب OOT/OOS</h2>
+      <div class="template-box">
+        <h4>مثال على قالب OOT/OOS:</h4>
+        <ul>
+          <li><strong>تحديد النتيجة:</strong></li>
+          <li>رقم العينة: ______________</li>
+          <li>الاختبار: ______________</li>
+          <li>النتيجة: ______________</li>
+          <li>المواصفة: ______________</li>
+          <li>النوع (OOT/OOS): ______________</li>
+          <li><strong>التحقيق:</strong></li>
+          <li>السبب المحتمل: ______________</li>
+          <li>إعادة الاختبار: ______________</li>
+          <li>النتيجة النهائية: ______________</li>
+          <li><strong>الإجراء:</strong></li>
+          <li>الإجراء المتخذ: ______________</li>
+          <li>المسؤول: ______________</li>
+          <li>التاريخ: ______________</li>
+          <li>التوقيع: ______________</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>6. إدارة المواد المرجعية</h2>
+      <p>المواد المرجعية ضرورية لضمان دقة النتائج.</p>
+      
+      <h3>أنواع المواد المرجعية:</h3>
+      <ul>
+        <li>المواد المرجعية الأولية</li>
+        <li>المواد المرجعية الثانوية</li>
+        <li>المواد المرجعية الداخلية</li>
+      </ul>
+      
+      <h3>متطلبات المواد المرجعية:</h3>
+      <ul>
+        <li>الاختيار المناسب</li>
+        <li>التخزين الصحيح</li>
+        <li>التحقق من الجودة</li>
+        <li>التوثيق</li>
+        <li>المراقبة المستمرة</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>7. تمارين عملية</h2>
+      <div class="exercise-box">
+        <h4>تمرين 1: التحقيق في OOS</h4>
+        <p>السيناريو: نتيجة اختبار لمنتج نهائي أظهرت محتوى مادة فعالة أقل من المحدد.</p>
+        <p><strong>المهمة:</strong> اكتب خطوات التحقيق في هذه النتيجة OOS.</p>
+        <p><strong>الحل المقترح:</strong></p>
+        <ul>
+          <li>إبلاغ المشرف فوراً</li>
+          <li>عزل المنتج المتأثر</li>
+          <li>مراجعة البيانات والسجلات</li>
+          <li>فحص المعدات والأجهزة</li>
+          <li>إعادة الاختبار</li>
+          <li>تحديد السبب</li>
+          <li>اتخاذ إجراء تصحيحي</li>
+          <li>توثيق التحقيق</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>8. أسئلة تقييمية</h2>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 1: ما هو الفرق بين OOT و OOS؟</div>
+        <div class="quiz-answer">الإجابة: OOT هو نتيجة خارج النمط المتوقع، OOS هو نتيجة خارج المواصفات المحددة.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 2: ما هي معايير الاعتماد؟</div>
+        <div class="quiz-answer">الإجابة: الدقة، الدقة، الخطية، الحد، النطاق، القوة.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 3: ما هي عناصر إدارة المختبر؟</div>
+        <div class="quiz-answer">الإجابة: التنظيم، إدارة الموظفين، التدريب، الصيانة، المخزون، السلامة، التوثيق.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 4: ما هي أنواع المواد المرجعية؟</div>
+        <div class="quiz-answer">الإجابة: المواد المرجعية الأولية، الثانوية، الداخلية.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 5: لماذا اعتماد الطرق التحليلية مهم؟</div>
+        <div class="quiz-answer">الإجابة: يضمن أن الطرق مناسبة للغرض المقصود وتنتج نتائج دقيقة.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>9. دراسة حالة</h2>
+      <div class="exercise-box">
+        <h4>حالة: فشل في OOS</h4>
+        <p>الخلفية: مختبر QC اكتشف نتيجة OOS لكن لم يحقق فيها بشكل كامل.</p>
+        <p><strong>المشكلة:</strong> التحقيق لم يكتمل بسبب ضغط الوقت.</p>
+        <p><strong>التحقيق:</strong> تم اكتشاف أن السبب لم يُحدد بشكل صحيح.</p>
+        <p><strong>الإجراء التصحيحي:</strong></p>
+        <ul>
+          <li>إكمال التحقيق فوراً</li>
+          <li>تطوير إجراءات OOS واضحة</li>
+          <li>تدريب الموظفين على التحقيق</li>
+          <li>إضافة مراجعة للتحقيق</li>
+        </ul>
+        <p><strong>الدرس المستفاد:</strong> التحقيق الكامل في OOS ضروري لضمان الجودة.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>10. ملخص النقاط الرئيسية</h2>
+      <ul>
+        <li>مختبر QC ضروري لضمان الجودة</li>
+        <li>إدارة المختبر الفعالة مهمة</li>
+        <li>اعتماد الطرق التحليلية ضروري</li>
+        <li>OOT/OOS يتطلب التحقيق</li>
+        <li>المواد المرجعية ضرورية للدقة</li>
+        <li>التوثيق الكامل مهم</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

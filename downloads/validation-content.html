@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محتوى كورس التحقق والتثبيت - PharmaPro Academy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cairo', Arial, sans-serif;
+      background: #0a0e1a;
+      color: #ffffff;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 40px;
+      background: linear-gradient(135deg, #1a2332, #c9a84c);
+      border-radius: 16px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      color: #c9a84c;
+      margin-bottom: 10px;
+    }
+    .header p {
+      font-size: 1.2rem;
+      color: #a0aec0;
+    }
+    .section {
+      background: #1a2332;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid #2d3748;
+    }
+    .section h2 {
+      color: #c9a84c;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #c9a84c;
+      padding-bottom: 10px;
+    }
+    .section h3 {
+      color: #00d4aa;
+      font-size: 1.4rem;
+      margin: 20px 0 15px;
+    }
+    .section p {
+      margin-bottom: 15px;
+      color: #e2e8f0;
+    }
+    .section ul {
+      margin: 15px 0;
+      padding-right: 30px;
+    }
+    .section li {
+      margin-bottom: 10px;
+      color: #cbd5e0;
+    }
+    .template-box {
+      background: #c9a84c;
+      border: 1px solid #ffd700;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .template-box h4 {
+      color: #0a0e1a;
+      margin-bottom: 15px;
+    }
+    .exercise-box {
+      background: #2d3748;
+      border-left: 4px solid #00d4aa;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .quiz-item {
+      background: #1a2332;
+      border: 1px solid #4a5568;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+    .quiz-question {
+      font-weight: bold;
+      color: #c9a84c;
+      margin-bottom: 10px;
+    }
+    .quiz-answer {
+      color: #a0aec0;
+      margin-top: 10px;
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #c9a84c;
+      color: #0a0e1a;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .print-btn:hover {
+      background: #ffd700;
+    }
+    @media print {
+      .print-btn {
+        display: none;
+      }
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+      .container {
+        max-width: 100%;
+      }
+      .section {
+        background: #ffffff;
+        border: 1px solid #000000;
+        page-break-inside: avoid;
+      }
+      .header {
+        background: #f0f0f0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">📄 طباعة / تحميل PDF</button>
+  
+  <div class="container">
+    <div class="header">
+      <h1>التحقق والتثبيت في الصناعة الصيدلانية</h1>
+      <p>PharmaPro Academy - محتوى تعليمي شامل</p>
+    </div>
+
+    <div class="section">
+      <h2>1. مقدمة في التحقق والتثبيت</h2>
+      <p>التحقق والتثبيت هو عملية تثبت أن المعدات والأنظمة والعمليات تعمل بشكل صحيح وتنتج نتائج متسقة.</p>
+      
+      <h3>أهمية التحقق والتثبيت:</h3>
+      <ul>
+        <li>ضمان جودة المنتج</li>
+        <li>تقليل المخاطر</li>
+        <li>الامتثال للوائح التنظيمية</li>
+        <li>تحسين الكفاءة التشغيلية</li>
+        <li>تقليل التكاليف على المدى الطويل</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>2. IQ/OQ/PQ</h2>
+      <p>التحقق والتثبيت يُقسم عادة إلى ثلاث مراحل رئيسية:</p>
+      
+      <h3>IQ - التثبيت المؤهل:</h3>
+      <ul>
+        <li>التحقق من أن المعدات مُثبتة بشكل صحيح</li>
+        <li>فحص المواصفات الفنية</li>
+        <li>التحقق من التركيب والمواقع</li>
+        <li>فحص التوثيق والشهادات</li>
+        <li>التحقق من الخدمات (كهرباء، ماء، هواء)</li>
+      </ul>
+      
+      <h3>OQ - التشغيل المؤهل:</h3>
+      <ul>
+        <li>التحقق من أن المعدات تعمل بشكل صحيح</li>
+        <li>اختبار جميع الوظائف</li>
+        <li>فحص الأنظمة الأمنية</li>
+        <li>التحقق من الإنذارات والتنبيهات</li>
+        <li>اختبار الحدود الحرجة</li>
+      </ul>
+      
+      <h3>PQ - الأداء المؤهل:</h3>
+      <ul>
+        <li>التحقق من أن المعدات تنتج منتجات جيدة</li>
+        <li>اختبار في ظروف التشغيل العادية</li>
+        <li>اختبار في ظروف التشغيل القصوى</li>
+        <li>التحقق من الاتساق</li>
+        <li>توثيق النتائج</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. قالب IQ/OQ/PQ</h2>
+      <div class="template-box">
+        <h4>مثال على قالب التحقق والتثبيت:</h4>
+        <ul>
+          <li><strong>التثبيت المؤهل (IQ):</strong></li>
+          <li>اسم المعدات: ______________</li>
+          <li>الرقم التسلسلي: ______________</li>
+          <li>المواصفات: ______________</li>
+          <li>موقع التثبيت: ______________</li>
+          <li>التوثيق: ______________</li>
+          <li>الخدمات: ______________</li>
+          <li>توقيع المُثبت: ______________</li>
+          <li><strong>التشغيل المؤهل (OQ):</strong></li>
+          <li>اختبار الوظائف: ______________</li>
+          <li>الأنظمة الأمنية: ______________</li>
+          <li>الحدود الحرجة: ______________</li>
+          <li>النتائج: ______________</li>
+          <li>توقيع المشرف: ______________</li>
+          <li><strong>الأداء المؤهل (PQ):</strong></li>
+          <li>اختبار التشغيل العادي: ______________</li>
+          <li>اختبار التشغيل القصوى: ______________</li>
+          <li>الاتساق: ______________</li>
+          <li>النتائج النهائية: ______________</li>
+          <li>توقيع الموافقة: ______________</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>4. تحقق التنظيف</h2>
+      <p>تحقق التنظيف يضمن أن المعدات تُنظف بشكل فعال بين الدفعات المختلفة.</p>
+      
+      <h3>خطوات تحقق التنظيف:</h3>
+      <ul>
+        <li>تحديد المعدات المراد تنظيفها</li>
+        <li>اختيار طريقة التنظيف</li>
+        <li>تحديد عينات الاختبار</li>
+        <li>تحليل المتبقيات</li>
+        <li>تحديد حدود القبول</li>
+        <li>توثيق النتائج</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>5. تمارين عملية</h2>
+      <div class="exercise-box">
+        <h4>تمرين 1: تحقق خلاط جديد</h4>
+        <p>السيناريو: تم شراء خلاط جديد للصناعة. يجب إجراء التحقق والتثبيت.</p>
+        <p><strong>المهمة:</strong> اكتب خطة التحقق والتثبيت للخلاط.</p>
+        <p><strong>الحل المقترح:</strong></p>
+        <ul>
+          <li><strong>IQ:</strong> فحص المواصفات، التركيب، الخدمات، التوثيق</li>
+          <li><strong>OQ:</strong> اختبار السرعات، درجة الحرارة، الوقت، الأنظمة الأمنية</li>
+          <li><strong>PQ:</strong> تشغيل مع منتج حقيقي، اختبار الاتساق، توثيق النتائج</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>6. أسئلة تقييمية</h2>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 1: ما هو الفرق بين IQ و OQ و PQ؟</div>
+        <div class="quiz-answer">الإجابة: IQ يتحقق من التثبيت الصحيح، OQ يتحقق من التشغيل الصحيح، PQ يتحقق من الأداء الفعلي.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 2: ما هو تحقق التنظيف؟</div>
+        <div class="quiz-answer">الإجابة: عملية تضمن أن المعدات تُنظف بشكل فعال بين الدفعات المختلفة.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 3: لماذا التحقق والتثبيت مهم؟</div>
+        <div class="quiz-answer">الإجابة: يضمن جودة المنتج، يقلل المخاطر، يحقق الامتثال التنظيمي، يحسن الكفاءة.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 4: ما هي خطوات OQ؟</div>
+        <div class="quiz-answer">الإجابة: اختبار الوظائف، الأنظمة الأمنية، الإنذارات، الحدود الحرجة.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 5: ما الذي يجب توثيقه في PQ؟</div>
+        <div class="quiz-answer">الإجابة: اختبار التشغيل العادي والقصوى، الاتساق، النتائج النهائية.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>7. دراسة حالة</h2>
+      <div class="exercise-box">
+        <h4>حالة: فشل في تحقق المعدات</h4>
+        <p>الخلفية: شركة أدوية اكتشفت أن ميزان جديد لم يُتحقق منه بشكل كامل.</p>
+        <p><strong>المشكلة:</strong> الميزان لم يُختبر في ظروف التشغيل القصوى.</p>
+        <p><strong>التحقيق:</strong> تم اكتشاف أن OQ لم يكتمل بسبب ضغط الوقت.</p>
+        <p><strong>الإجراء التصحيحي:</strong></p>
+        <ul>
+          <li>إكمال OQ فوراً</li>
+          <li>إجراء PQ شامل</li>
+          <li>مراجعة إجراءات التحقق</li>
+          <li>تدريب الموظفين على أهمية التحقق الكامل</li>
+        </ul>
+        <p><strong>الدرس المستفاد:</strong> التحقق الكامل ضروري لضمان أداء المعدات بشكل صحيح.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>8. ملخص النقاط الرئيسية</h2>
+      <ul>
+        <li>التحقق والتثبيت يضمن جودة المنتج والامتثال</li>
+        <li>IQ/OQ/PQ هي المراحل الثلاث الرئيسية</li>
+        <li>تحقق التنظيف ضروري بين الدفعات</li>
+        <li>التوثيق الكامل ضروري في جميع المراحل</li>
+        <li>الاختبار في ظروف التشغيل القصوى مهم</li>
+        <li>المراجعة الدورية للأنظمة المُثبتة</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

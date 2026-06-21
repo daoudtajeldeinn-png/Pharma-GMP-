@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محتوى كورس أساسيات GMP - PharmaPro Academy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cairo', Arial, sans-serif;
+      background: #0a0e1a;
+      color: #ffffff;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 40px;
+      background: linear-gradient(135deg, #1a2332, #0d4a4a);
+      border-radius: 16px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      color: #00d4aa;
+      margin-bottom: 10px;
+    }
+    .header p {
+      font-size: 1.2rem;
+      color: #a0aec0;
+    }
+    .section {
+      background: #1a2332;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid #2d3748;
+    }
+    .section h2 {
+      color: #00d4aa;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00d4aa;
+      padding-bottom: 10px;
+    }
+    .section h3 {
+      color: #c9a84c;
+      font-size: 1.4rem;
+      margin: 20px 0 15px;
+    }
+    .section p {
+      margin-bottom: 15px;
+      color: #e2e8f0;
+    }
+    .section ul {
+      margin: 15px 0;
+      padding-right: 30px;
+    }
+    .section li {
+      margin-bottom: 10px;
+      color: #cbd5e0;
+    }
+    .template-box {
+      background: #0d4a4a;
+      border: 1px solid #00d4aa;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .template-box h4 {
+      color: #00d4aa;
+      margin-bottom: 15px;
+    }
+    .exercise-box {
+      background: #2d3748;
+      border-left: 4px solid #c9a84c;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .quiz-item {
+      background: #1a2332;
+      border: 1px solid #4a5568;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+    .quiz-question {
+      font-weight: bold;
+      color: #00d4aa;
+      margin-bottom: 10px;
+    }
+    .quiz-answer {
+      color: #a0aec0;
+      margin-top: 10px;
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #00d4aa;
+      color: #0a0e1a;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .print-btn:hover {
+      background: #00b894;
+    }
+    @media print {
+      .print-btn {
+        display: none;
+      }
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+      .container {
+        max-width: 100%;
+      }
+      .section {
+        background: #ffffff;
+        border: 1px solid #000000;
+        page-break-inside: avoid;
+      }
+      .header {
+        background: #f0f0f0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">📄 طباعة / تحميل PDF</button>
+  
+  <div class="container">
+    <div class="header">
+      <h1>أساسيات GMP في التصنيع الصيدلاني</h1>
+      <p>PharmaPro Academy - محتوى تعليمي شامل</p>
+    </div>
+
+    <div class="section">
+      <h2>1. مقدمة في GMP</h2>
+      <p>ممارسات التصنيع الجيد (GMP) هي المعايير التي تضمن أن المنتجات تُصنع بشكل متسق وضبط الجودة وفقاً لمعايير الجودة.</p>
+      
+      <h3>المبادئ الأساسية لـ GMP:</h3>
+      <ul>
+        <li>العمليات المُعرّفة بوضوح والتحكم فيها</li>
+        <li>الشروط الحرجة للعمليات مُحققة</li>
+        <li>جميع العمليات مُوثقة بشكل صحيح</li>
+        <li>التعليمات والإجراءات مكتوبة بوضوح</li>
+        <li>الموظفون مدربون بشكل كافٍ</li>
+        <li>السجلات تُحفظ بشكل صحيح</li>
+        <li>التوزيع يقلل من المخاطر</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>2. بيئة التصنيع</h2>
+      <p>البيئة الصناعية الصيدلانية يجب أن تُصمم وتُحافظ عليها لمنع التلوث والخلط.</p>
+      
+      <h3>متطلبات البيئة:</h3>
+      <ul>
+        <li>التصميم يسهل التنظيف والصيانة</li>
+        <li>الأسطح ناعمة وغير مسامية</li>
+        <li>التهوية والتحكم في درجة الحرارة</li>
+        <li>المناطق النظيفة والمناطق الملوثة منفصلة</li>
+        <li>نظام تصريف المياه مناسب</li>
+        <li>إدارة النفايات بشكل صحيح</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. التوثيق</h2>
+      <p>التوثيق هو جزء أساسي من GMP. "إذا لم يُوثق، فلم يحدث".</p>
+      
+      <h3>أنواع التوثيق:</h3>
+      <ul>
+        <li>إجراءات التشغيل القياسية (SOPs)</li>
+        <li>سجلات الدفعات (BMR/BPR)</li>
+        <li>سجلات التدريب</li>
+        <li>سجلات الصيانة</li>
+        <li>سجلات التحقق</li>
+        <li>سجلات التدقيق</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>4. قالب BMR/BPR</h2>
+      <div class="template-box">
+        <h4>مثال على سجل دفعة التصنيع:</h4>
+        <ul>
+          <li>رقم الدفعة: ______________</li>
+          <li>اسم المنتج: ______________</li>
+          <li>تاريخ التصنيع: ______________</li>
+          <li>المواد الخام المستخدمة: ______________</li>
+          <li>معايير العملية: ______________</li>
+          <li>فحوصات الجودة: ______________</li>
+          <li>النتائج: ______________</li>
+          <li>توقيع المشرف: ______________</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>5. ضبط التغيير</h2>
+      <p>ضبط التغيير هو نظام رسمي لتقييم جميع التغييرات التي قد تؤثر على جودة المنتج.</p>
+      
+      <h3>خطوات ضبط التغيير:</h3>
+      <ul>
+        <li>تحديد التغيير المقترح</li>
+        <li>تقييم تأثير التغيير</li>
+        <li>الموافقة على التغيير</li>
+        <li>تنفيذ التغيير</li>
+        <li>التحقق من التغيير</li>
+        <li>التوثيق</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>6. تمارين عملية</h2>
+      <div class="exercise-box">
+        <h4>تمرين 1: تحديد الانحراف</h4>
+        <p>السيناريو: أثناء تصنيع دفعة من الأقراص، لاحظت أن لون الأقراص أغمق من المعتاد.</p>
+        <p><strong>المهمة:</strong> اكتب خطوات التحقيق في هذا الانحراف.</p>
+        <p><strong>الحل المقترح:</strong></p>
+        <ul>
+          <li>إيقاف العملية فوراً</li>
+          <li>عزل الدفعة المتأثرة</li>
+          <li>إبلاغ المشرف</li>
+          <li>تسجيل الانحراف</li>
+          <li>التحقيق في السبب المحتمل</li>
+          <li>تقييم تأثير الجودة</li>
+          <li>اتخاذ إجراء تصحيحي</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>7. أسئلة تقييمية</h2>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 1: ما هو الهدف الرئيسي من GMP؟</div>
+        <div class="quiz-answer">الإجابة: ضمان أن المنتجات تُصنع بشكل متسق وضبط الجودة وفقاً لمعايير الجودة.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 2: ما هي أهمية التوثيق في GMP؟</div>
+        <div class="quiz-answer">الإجابة: التوثيق يضمان أن العمليات مُوثقة بشكل صحيح ويمكن تتبعها، ويوفر دليلاً على الامتثال.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 3: ما هي خطوات ضبط التغيير؟</div>
+        <div class="quiz-answer">الإجابة: تحديد التغيير، تقييم التأثير، الموافقة، التنفيذ، التحقق، التوثيق.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 4: ما هو BMR/BPR؟</div>
+        <div class="quiz-answer">الإجابة: سجل دفعة التصنيع/سجل دفعة المعالجة - وثيقة تُستخدم لتسجيل جميع تفاصيل تصنيع دفعة معينة.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 5: ما هي متطلبات بيئة التصنيع؟</div>
+        <div class="quiz-answer">الإجابة: التصميم يسهل التنظيف، الأسطح ناعمة، التهوية، فصل المناطق، نظام تصريف مناسب، إدارة النفايات.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>8. دراسة حالة</h2>
+      <div class="exercise-box">
+        <h4>حالة: فشل في التوثيق</h4>
+        <p>الخلفية: شركة أدوية اكتشفت أثناء تدقيق أن سجلات التدريب للموظفين الجدد غير مكتملة.</p>
+        <p><strong>المشكلة:</strong> الموظفون لم يُوثق تدريبهم بشكل كافٍ.</p>
+        <p><strong>التحقيق:</strong> تم اكتشاف أن المشرفين لم يملأوا سجلات التدريب في الوقت المناسب.</p>
+        <p><strong>الإجراء التصحيحي:</strong></p>
+        <ul>
+          <li>تدريب المشرفين على أهمية التوثيق</li>
+          <li>إنشاء نظام إلكتروني للتدريب</li>
+          <li>مراجعة دورية للسجلات</li>
+          <li>إضافة التدقيق كجزء من تقييم الأداء</li>
+        </ul>
+        <p><strong>الدرس المستفاد:</strong> التوثيق الفوري ضروري لضمان الامتثال وتتبع التدريب.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>9. ملخص النقاط الرئيسية</h2>
+      <ul>
+        <li>GMP يضمن الجودة والاتساق في التصنيع</li>
+        <li>التوثيق ضروري لجميع العمليات</li>
+        <li>بيئة التصنيع يجب أن تُصمم لمنع التلوث</li>
+        <li>ضبط التغيير يدير التعديلات بشكل منهجي</li>
+        <li>التدريب المستمر للموظفين ضروري</li>
+        <li>التحقيق في الانحرافات يجب أن يكون سريعاً وشاملاً</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

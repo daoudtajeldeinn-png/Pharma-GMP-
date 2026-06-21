@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محتوى كورس CAPA - PharmaPro Academy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cairo', Arial, sans-serif;
+      background: #0a0e1a;
+      color: #ffffff;
+      line-height: 1.8;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 40px;
+      background: linear-gradient(135deg, #1a2332, #00d4aa);
+      border-radius: 16px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      color: #00d4aa;
+      margin-bottom: 10px;
+    }
+    .header p {
+      font-size: 1.2rem;
+      color: #a0aec0;
+    }
+    .section {
+      background: #1a2332;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid #2d3748;
+    }
+    .section h2 {
+      color: #00d4aa;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00d4aa;
+      padding-bottom: 10px;
+    }
+    .section h3 {
+      color: #c9a84c;
+      font-size: 1.4rem;
+      margin: 20px 0 15px;
+    }
+    .section p {
+      margin-bottom: 15px;
+      color: #e2e8f0;
+    }
+    .section ul {
+      margin: 15px 0;
+      padding-right: 30px;
+    }
+    .section li {
+      margin-bottom: 10px;
+      color: #cbd5e0;
+    }
+    .template-box {
+      background: #00d4aa;
+      border: 1px solid #00ffaa;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .template-box h4 {
+      color: #0a0e1a;
+      margin-bottom: 15px;
+    }
+    .exercise-box {
+      background: #2d3748;
+      border-left: 4px solid #6495ed;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .quiz-item {
+      background: #1a2332;
+      border: 1px solid #4a5568;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+    .quiz-question {
+      font-weight: bold;
+      color: #00d4aa;
+      margin-bottom: 10px;
+    }
+    .quiz-answer {
+      color: #a0aec0;
+      margin-top: 10px;
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #00d4aa;
+      color: #0a0e1a;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .print-btn:hover {
+      background: #00ffaa;
+    }
+    @media print {
+      .print-btn {
+        display: none;
+      }
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+      .container {
+        max-width: 100%;
+      }
+      .section {
+        background: #ffffff;
+        border: 1px solid #000000;
+        page-break-inside: avoid;
+      }
+      .header {
+        background: #f0f0f0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">📄 طباعة / تحميل PDF</button>
+  
+  <div class="container">
+    <div class="header">
+      <h1>إدارة CAPA الفعّالة</h1>
+      <p>PharmaPro Academy - محتوى تعليمي شامل</p>
+    </div>
+
+    <div class="section">
+      <h2>1. مقدمة في CAPA</h2>
+      <p>CAPA هو اختصار للإجراءات التصحيحية والوقائية (Corrective and Preventive Actions). هو منهجية منظمة للتعامل مع المشاكل ومنع تكرارها.</p>
+      
+      <h3>أهمية CAPA:</h3>
+      <ul>
+        <li>تحسين جودة المنتج</li>
+        <li>تقليل تكاليف الجودة</li>
+        <li>تلبية متطلبات اللوائح التنظيمية</li>
+        <li>تحسين رضا العميل</li>
+        <li>تعزيز ثقافة الجودة</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>2. تحديد الانحرافات</h2>
+      <p>الخطوة الأولى في CAPA هي تحديد الانحرافات بشكل صحيح.</p>
+      
+      <h3>أنواع الانحرافات:</h3>
+      <ul>
+        <li>انحرافات العملية</li>
+        <li>انحرافات الجودة</li>
+        <li>انحرافات التوثيق</li>
+        <li>انحرافات المعدات</li>
+        <li>انحرافات المواد الخام</li>
+      </ul>
+      
+      <h3>تصنيف الانحرافات:</h3>
+      <ul>
+        <li>حرجة - تؤثر على جودة المنتج</li>
+        <li>كبرى - تؤثر على العملية</li>
+        <li>صغرى - تأثير محدود</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. تحليل السبب الجذري (RCA)</h2>
+      <p>تحليل السبب الجذري هو عملية تحديد السبب الحقيقي للمشكلة.</p>
+      
+      <h3>أدوات RCA:</h3>
+      <ul>
+        <li><strong>5 Whys:</strong> طرح "لماذا" خمس مرات للوصول للسبب الجذري</li>
+        <li><strong>Fishbone Diagram:</strong> رسم عظمة السمكة لتحديد الأسباب المحتملة</li>
+        <li><strong>FMEA:</strong> تحليل أنماط الفشل وتأثيرها</li>
+        <li><strong>Pareto Analysis:</strong> تحليل باريتو لتحديد الأسباب الأكثر شيوعاً</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>4. الإجراءات التصحيحية</h2>
+      <p>الإجراءات التصحيحية هي الخطوات المتخذة لإصلاح المشكلة الحالية.</p>
+      
+      <h3>خطوات الإجراءات التصحيحية:</h3>
+      <ul>
+        <li>تطوير خطة الإجراء التصحيحي</li>
+        <li>تقييم الفعالية</li>
+        <li>التنفيذ</li>
+        <li>التوثيق</li>
+        <li>المتابعة</li>
+        <li>إغلاق الانحراف</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>5. الإجراءات الوقائية</h2>
+      <p>الإجراءات الوقائية هي الخطوات المتخذة لمنع حدوث المشاكل في المستقبل.</p>
+      
+      <h3>خطوات الإجراءات الوقائية:</h3>
+      <ul>
+        <li>تحديد المخاطر المحتملة</li>
+        <li>تطوير استراتيجيات الوقاية</li>
+        <li>تقييم الفعالية</li>
+        <li>التنفيذ</li>
+        <li>التوثيق</li>
+        <li>المراقبة المستمرة</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>6. قالب CAPA</h2>
+      <div class="template-box">
+        <h4>مثال على قالب CAPA:</h4>
+        <ul>
+          <li><strong>تحديد المشكلة:</strong></li>
+          <li>وصف المشكلة: ______________</li>
+          <li>تاريخ الاكتشاف: ______________</li>
+          <li>الموقع: ______________</li>
+          <li>التصنيف: ______________</li>
+          <li><strong>التحقيق:</strong></li>
+          <li>السبب الجذري: ______________</li>
+          <li>الأداة المستخدمة: ______________</li>
+          <li><strong>الإجراء التصحيحي:</strong></li>
+          <li>الخطة: ______________</li>
+          <li>المسؤول: ______________</li>
+          <li>التاريخ المستهدف: ______________</li>
+          <li><strong>الإجراء الوقائي:</strong></li>
+          <li>الخطة: ______________</li>
+          <li>المسؤول: ______________</li>
+          <li>التاريخ المستهدف: ______________</li>
+          <li><strong>التقييم:</strong></li>
+          <li>الفعالية: ______________</li>
+          <li>التوقيع: ______________</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>7. تمارين عملية</h2>
+      <div class="exercise-box">
+        <h4>تمرين 1: تحليل انحراف</h4>
+        <p>السيناريو: تم اكتشاف أن دفعة من الأقراص تحتوي على نسبة مادة فعالة أقل من المحدد.</p>
+        <p><strong>المهمة:</strong> استخدم أداة 5 Whys لتحديد السبب الجذري.</p>
+        <p><strong>الحل المقترح:</strong></p>
+        <ul>
+          <li>لماذا النسبة أقل؟ - الخلط غير متساوي</li>
+          <li>لماذا الخلط غير متساوي؟ - وقت الخلط قصير</li>
+          <li>لماذا الوقت قصير؟ - ضغط الإنتاج</li>
+          <li>لماذا ضغط الإنتاج؟ - زيادة الطلبات</li>
+          <li>لماذا زيادة الطلبات؟ - التسويق الناجح</li>
+          <li><strong>السبب الجذري:</strong> عدم التخطيط الكافي للإنتاج</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>8. أسئلة تقييمية</h2>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 1: ما هو CAPA؟</div>
+        <div class="quiz-answer">الإجابة: الإجراءات التصحيحية والوقائية - منهجية للتعامل مع المشاكل ومنع تكرارها.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 2: ما هي أدوات RCA؟</div>
+        <div class="quiz-answer">الإجابة: 5 Whys، Fishbone Diagram، FMEA، Pareto Analysis.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 3: ما هو الفرق بين الإجراء التصحيحي والوقائي؟</div>
+        <div class="quiz-answer">الإجابة: التصحيحي يصلح المشكلة الحالية، الوقائي يمنع حدوثها في المستقبل.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 4: كيف تصنف الانحرافات؟</div>
+        <div class="quiz-answer">الإجابة: حرجة، كبرى، صغرى - حسب تأثيرها على الجودة والعملية.</div>
+      </div>
+      
+      <div class="quiz-item">
+        <div class="quiz-question">سؤال 5: ما هي خطوات 5 Whys؟</div>
+        <div class="quiz-answer">الإجابة: طرح "لماذا" خمس مرات للوصول إلى السبب الجذري الحقيقي.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>9. دراسة حالة</h2>
+      <div class="exercise-box">
+        <h4>حالة: فشل في CAPA</h4>
+        <p>الخلفية: شركة أدوية واجهت مشكلة متكررة في تلوث المنتج.</p>
+        <p><strong>المشكلة:</strong> CAPA لم يُنفذ بشكل كامل.</p>
+        <p><strong>التحقيق:</strong> تم اكتشاف أن الإجراء التصحيحي لم يُتابع.</p>
+        <p><strong>الإجراء التصحيحي:</strong></p>
+        <ul>
+          <li>إكمال الإجراء التصحيحي</li>
+          <li>تطوير نظام متابعة CAPA</li>
+          <li>تدريب الموظفين على أهمية المتابعة</li>
+          <li>إضافة CAPA إلى تقييم الأداء</li>
+        </ul>
+        <p><strong>الدرس المستفاد:</strong> المتابعة ضرورية لضمان فعالية CAPA.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>10. ملخص النقاط الرئيسية</h2>
+      <ul>
+        <li>CAPA يدير المشاكل بشكل منهجي</li>
+        <li>تحديد السبب الجذري ضروري</li>
+        <li>الإجراءات التصحيحية تصلح المشاكل الحالية</li>
+        <li>الإجراءات الوقائية تمنع المشاكل المستقبلية</li>
+        <li>المتابعة ضرورية للفعالية</li>
+        <li>التوثيق الكامل مهم</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
