@@ -1,0 +1,138 @@
+# Video Script: GMP Basics - Unit 3.3
+## Behavior in Clean Areas
+**Duration:** 15 minutes
+
+---
+
+### Introduction (0:00 - 1:00)
+**Speaker:** In this lecture, we will discuss behavior in clean areas. Proper behavior is essential to prevent contamination and ensure product quality.
+
+### Principles of Behavior in Clean Areas (1:00 - 4:00)
+**Speaker:** Clean areas require special behavior to maintain cleanliness and prevent contamination.
+
+**Basic Principles:**
+1. **Minimize Movement:** Excessive movement increases contamination
+2. **Minimize Talking:** Talking releases particles into the air
+3. **Avoid Touching:** Direct touch transfers bacteria
+4. **Follow Procedures:** Adherence to all procedures
+5. **Report Problems:** Report any deviations
+
+**Detailed Explanation:**
+- Rapid movement increases air currents
+- Loud talking releases more particles
+- Direct touch of product or equipment transfers contamination
+- Procedures exist for a reason
+
+### Entering Clean Areas (4:00 - 7:00)
+**Speaker:** Clean area entry procedures are essential to prevent introducing contamination.
+
+**Entry Procedures:**
+1. **Grey Room:** Changing room
+2. **White Room:** Transition area
+3. **Clean Room:** Manufacturing area
+
+**Detailed Steps:**
+
+**In Grey Room:**
+- Remove outer clothing
+- Don clean workwear
+- Wash hands
+- Don gloves
+
+**In White Room:**
+- Don head cover
+- Don face mask
+- Don gown
+- Verify all clothing is worn
+
+**In Clean Room:**
+- Enter slowly
+- Avoid rapid movements
+- Stay in designated path
+
+### Behavior During Work (7:00 - 11:00)
+**Speaker:** Proper behavior during work is essential to prevent contamination.
+
+**Correct Behaviors:**
+1. **Slow Movement:** Avoid rapid and sudden movements
+2. **Minimize Talking:** Talk only when necessary
+3. **Avoid Touching:** Do not touch face or hair
+4. **Proper Breathing:** Avoid breathing directly on product
+5. **Use Tools:** Use appropriate tools
+
+**Incorrect Behaviors:**
+- Rapid movement
+- Loud talking
+- Touching face or hair
+- Sneezing or coughing without covering
+- Using mobile phone
+
+**Detailed Explanation:**
+- Rapid movement increases air currents
+- Talking releases particles into the air
+- Touching face transfers bacteria to hands
+- Mobile phone is a contamination source
+
+### Emergency Procedures (11:00 - 15:00)
+**Speaker:** Emergency procedures are essential for handling unexpected situations.
+
+**Types of Emergencies:**
+1. **Object Drop:** Dropping a tool or product
+2. **Clothing Tear:** Tearing workwear
+3. **Injury:** Employee injury
+4. **Obvious Contamination:** Obvious contamination of product or equipment
+5. **Equipment Failure:** Sudden equipment failure
+
+**Handling Procedures:**
+
+**Object Drop:**
+- Report immediately
+- Do not touch the object
+- Follow cleaning procedures
+- Document
+
+**Clothing Tear:**
+- Leave area immediately
+- Change clothing
+- Re-enter with proper procedures
+- Document
+
+**Injury:**
+- Leave area immediately
+- Seek medical assistance
+- Document
+- Investigate cause
+
+**Obvious Contamination:**
+- Report immediately
+- Isolate affected product
+- Follow cleaning procedures
+- Investigate cause
+
+**Equipment Failure:**
+- Stop equipment immediately
+- Report failure
+- Document
+- Investigate cause
+
+### Summary (15:00)
+**Speaker:** In this lecture, we learned:
+- Principles of behavior in clean areas
+- Clean area entry procedures
+- Behavior during work
+- Emergency procedures
+
+**Key Points to Remember:**
+- Minimizing movement and talking is essential
+- Entry procedures must be followed precisely
+- Proper behavior during work is essential
+- Emergency procedures are essential
+
+In the next lecture, we will discuss documents and their types.
+
+---
+
+**Speaker Notes:**
+- Use illustrative graphics to show entry procedures
+- Use real-world examples
+- Connect content to practical application

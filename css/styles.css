@@ -1049,3 +1049,11 @@
       opacity: 1;
       transform: none;
     }
+
+    /* Video Preview Section */
+    .video-preview-section {
+      position: relative;
+      z-index: 1;
+      padding: 90px 5%;
+      background: linear-gradient(180deg, transparent, rgba(30,58,95,0.15), transparent);
+    }

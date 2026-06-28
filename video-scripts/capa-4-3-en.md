@@ -1,0 +1,195 @@
+# Video Script: CAPA - Unit 4.3
+## CAPA Case Studies
+**Duration:** 20 minutes
+
+---
+
+### Introduction (0:00 - 1:00)
+**Speaker:** In this lecture, we will discuss CAPA case studies. Studying practical cases is essential to understand how to apply CAPA in reality.
+
+### Case Study 1: Product Quality Failure (1:00 - 8:00)
+**Speaker:** Let's look at a real CAPA case study for product quality failure.
+
+**Background:**
+- Company: Medium-sized pharmaceutical company
+- Product: New drug
+- Problem: Product quality failure
+- Objective: Solve the problem and prevent recurrence
+
+**Challenge:**
+- Problem discovered after producing several batches
+- Significant impact on production
+- Pressure from management
+- Pressure from regulatory authorities
+
+**Solution:**
+
+**Stage 1: Problem Identification:**
+- Report problem immediately
+- Describe problem accurately
+- Determine problem impact
+- Determine problem priority
+
+**Stage 2: Investigation:**
+- Collect all data
+- Analyze data
+- Determine root cause using 5 Whys
+- Document results
+
+**Stage 3: Action Development:**
+- Develop immediate corrective actions
+- Develop preventive actions
+- Define timeline
+- Define responsibilities
+
+**Stage 4: Execution:**
+- Execute actions according to plan
+- Monitor execution
+- Address problems
+- Document
+
+**Stage 5: Verification:**
+- Verify action effectiveness
+- Measure results
+- Analyze data
+- Evaluate effectiveness
+
+**Result:**
+- Problem solved successfully
+- Problem did not recur
+- Performance improved
+- Company obtained regulatory approval
+
+**Lessons Learned:**
+- Immediate reporting is essential
+- Comprehensive investigation is essential
+- Effective actions are essential
+- Verifying effectiveness is essential
+
+### Case Study 2: Process Deviation (8:00 - 14:00)
+**Speaker:** Let's look at a real CAPA case study for process deviation.
+
+**Background:**
+- Company: Large pharmaceutical company
+- Product: Known drug
+- Problem: Process deviation
+- Objective: Solve the problem and prevent recurrence
+
+**Challenge:**
+- Deviation discovered during inspection
+- Impact on compliance
+- Pressure from regulatory authorities
+- Pressure from management
+
+**Solution:**
+
+**Stage 1: Problem Identification:**
+- Report deviation immediately
+- Describe deviation accurately
+- Determine deviation impact
+- Determine deviation priority
+
+**Stage 2: Investigation:**
+- Collect all data
+- Analyze data
+- Determine root cause using Fishbone
+- Document results
+
+**Stage 3: Action Development:**
+- Develop immediate corrective actions
+- Develop preventive actions
+- Update SOPs
+- Train employees
+
+**Stage 4: Execution:**
+- Execute actions according to plan
+- Monitor execution
+- Address problems
+- Document
+
+**Stage 5: Verification:**
+- Verify action effectiveness
+- Measure results
+- Analyze data
+- Evaluate effectiveness
+
+**Result:**
+- Deviation solved successfully
+- Deviation did not recur
+- Compliance improved
+- Company obtained regulatory approval
+
+**Lessons Learned:**
+- Comprehensive investigation is essential
+- Updating SOPs is essential
+- Training employees is essential
+- Verifying effectiveness is essential
+
+### Case Study 3: Failed CAPA (14:00 - 20:00)
+**Speaker:** Let's look at a case study of a failed CAPA and what can be learned from it.
+
+**Background:**
+- Company: Small pharmaceutical company
+- Product: New drug
+- Problem: Product quality failure
+- Objective: Solve the problem and prevent recurrence
+
+**Challenge:**
+- Poor planning
+- Limited resources
+- Limited time
+- Limited experience
+
+**Problems:**
+
+**Problem 1: Poor Planning:**
+- Problem not defined accurately
+- Root cause not determined
+- Appropriate actions not defined
+- Timeline not defined
+
+**Problem 2: Incomplete Investigation:**
+- Not all data collected
+- Data not analyzed accurately
+- True root cause not determined
+- Results not documented
+
+**Problem 3: Ineffective Actions:**
+- Actions did not solve the problem
+- Actions did not prevent recurrence
+- Actions were not realistic
+- Actions not executed correctly
+
+**Result:**
+- Problem not solved
+- Problem recurred
+- Negative impact on performance
+- Negative impact on compliance
+
+**Lessons Learned:**
+- Good planning is essential
+- Comprehensive investigation is essential
+- Effective actions are essential
+- Correct execution is essential
+
+### Summary (20:00)
+**Speaker:** In this lecture, we learned:
+- Case study for product quality failure
+- Case study for process deviation
+- Case study for failed CAPA
+- Lessons learned from each case
+
+**Key Points to Remember:**
+- Studying practical cases is essential
+- Good planning is essential for success
+- Comprehensive investigation is essential
+- Effective actions are essential
+
+In the next lecture, we will discuss evaluating CAPA effectiveness.
+
+---
+
+**Speaker Notes:**
+- Use illustrative graphics to show case studies
+- Use real-world examples
+- Connect content to practical application

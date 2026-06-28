@@ -5,7 +5,277 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>التحقق والتثبيت | PharmaPro Academy</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+section {
+  position: relative;
+  z-index: 1;
+  padding: 90px 5%;
+}
+
+.course-hero {
+  background: linear-gradient(135deg, var(--navy3), var(--navy));
+  padding: 100px 5% 60px;
+  text-align: center;
+}
+
+.course-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.course-hero p {
+  color: var(--muted);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.8;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.course-meta span {
+  color: var(--light);
+  font-size: 0.9rem;
+}
+
+.course-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 5%;
+}
+
+.course-section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+
+.unit-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 2rem;
+}
+
+.unit-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.lesson-item {
+  border-right: 3px solid rgba(201,168,76,0.2);
+  padding-right: 20px;
+  margin-bottom: 1.5rem;
+}
+
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.lesson-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.lesson-duration {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.lesson-desc {
+  font-size: 0.85rem;
+  color: var(--light);
+  line-height: 1.6;
+}
+
+.pricing-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.price-period {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.cta-btn {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.cta-btn:hover {
+  background: var(--gold2);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 968px) {
+  nav ul { display: none; }
+  .course-hero {
+    padding: 80px 5% 40px;
+  }
+}
+  </style>
 </head>
 <body>
   <nav>
@@ -22,191 +292,191 @@
     </ul>
   </nav>
 
-  <section style="padding: 120px 5% 60px; background: linear-gradient(135deg, var(--navy3), var(--navy));">
-    <h1 style="font-size: 2.5rem; font-weight: 900; color: var(--white); margin-bottom: 1rem;">التحقق والتثبيت: Validation & Qualification الشاملة</h1>
-    <p style="color: var(--muted); max-width: 600px; line-height: 1.8;">IQ · OQ · PQ، تحقق العمليات، تحقق التنظيف، تحقق الطرق التحليلية وفق ICH Q2(R2)</p>
-    <div style="display: flex; gap: 2rem; margin-top: 2rem;">
-      <span style="color: var(--light);">⏱ 16 ساعة</span>
-      <span style="color: var(--light);">📁 12 وحدة</span>
-      <span style="color: var(--light);">⭐ 4.9</span>
+  <div class="course-hero">
+    <h1>التحقق والتثبيت: Validation & Qualification الشاملة</h1>
+    <p>IQ · OQ · PQ، تحقق العمليات، تحقق التنظيف، تحقق الطرق التحليلية وفق ICH Q2(R2)</p>
+    <div class="course-meta">
+      <span>⏱ 16 ساعة</span>
+      <span>📁 12 وحدة</span>
+      <span>⭐ 4.9</span>
     </div>
-  </section>
+  </div>
 
-  <section style="padding: 60px 5%; max-width: 1000px; margin: 0 auto;">
-    <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 2rem;">منهج الكورس</h2>
+  <div class="course-section">
+    <h2>منهج الكورس</h2>
     
-    <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 2rem;">
-      <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--gold); margin-bottom: 1.5rem;">الوحدة 1: مقدمة في التحقق والتثبيت</h3>
+    <div class="unit-card">
+      <h3>الوحدة 1: مقدمة في التحقق والتثبيت</h3>
       
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">1.1 تعريف Validation وQualification</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(18:00)</div>
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">1.1 تعريف Validation وQualification</div>
+          <div class="lesson-duration">(18:00)</div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">الفرق بين التحقق والتثبيت ودور كل منهما</div>
+        <div class="lesson-desc">الفرق بين التحقق والتثبيت ودور كل منهما</div>
       </div>
       
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">1.2 الأنظمة التنظيمية</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(22:00)</div>
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">1.2 الأنظمة التنظيمية</div>
+          <div class="lesson-duration">(22:00)</div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">FDA، EMA، ICH، GAMP 5 - المتطلبات التنظيمية</div>
+        <div class="lesson-desc">FDA، EMA، ICH، GAMP 5 - المتطلبات التنظيمية</div>
       </div>
       
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">1.3 إدارة المخاطر في التحقق</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(20:00)</div>
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">1.3 إدارة المخاطر في التحقق</div>
+          <div class="lesson-duration">(20:00)</div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">تطبيق إدارة المخاطر في عمليات التحقق</div>
-      </div>
-    </div>
-
-    <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 2rem;">
-      <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--gold); margin-bottom: 1.5rem;">الوحدة 2: تثبيت المعدات (IQ)</h3>
-      
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">2.1 متطلبات IQ</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">فحص المعدات والتحقق من المواصفات</div>
-      </div>
-      
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">2.2 التثبيت الكهربائي والميكانيكي</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(30:00)</div>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">التحقق من التثبيت الكهربائي والميكانيكي</div>
-      </div>
-      
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">2.3 التوثيق وقبول المعدات</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">التوثيق المناسب وقبول المعدات</div>
+        <div class="lesson-desc">تطبيق إدارة المخاطر في عمليات التحقق</div>
       </div>
     </div>
 
-    <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 2rem;">
-      <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--gold); margin-bottom: 1.5rem;">الوحدة 3: التشغيل التشغيلي (OQ)</h3>
+    <div class="unit-card">
+      <h3>الوحدة 2: تثبيت المعدات (IQ)</h3>
       
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">3.1 اختبار الوظائف</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(28:00)</div>
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">2.1 متطلبات IQ</div>
+          <div class="lesson-duration">(25:00)</div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">اختبار جميع وظائف المعدات</div>
+        <div class="lesson-desc">فحص المعدات والتحقق من المواصفات</div>
       </div>
       
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">3.2 حدود التشغيل والإنذارات</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(30:00)</div>
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">2.2 التثبيت الكهربائي والميكانيكي</div>
+          <div class="lesson-duration">(30:00)</div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">تحديد واختبار حدود التشغيل والإنذارات</div>
+        <div class="lesson-desc">التحقق من التثبيت الكهربائي والميكانيكي</div>
       </div>
       
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">3.3 اختبار الأمان والظروف القصوى</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">2.3 التوثيق وقبول المعدات</div>
+          <div class="lesson-duration">(25:00)</div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">اختبار أنظمة الأمان والتشغيل في الظروف القصوى</div>
-      </div>
-    </div>
-
-    <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 2rem;">
-      <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--gold); margin-bottom: 1.5rem;">الوحدة 4: الأداء (PQ)</h3>
-      
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">4.1 الإنتاج التجريبي</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(30:00)</div>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">إنتاج تجريبي للتحقق من الأداء</div>
-      </div>
-      
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">4.2 التحقق من جودة المنتج</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(28:00)</div>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">التحقق من جودة المنتج والاستقرار</div>
-      </div>
-      
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">4.3 القبول النهائي</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(22:00)</div>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">القبول النهائي للمعدات والتوثيق</div>
+        <div class="lesson-desc">التوثيق المناسب وقبول المعدات</div>
       </div>
     </div>
 
-    <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 2rem;">
-      <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--gold); margin-bottom: 1.5rem;">الوحدة 5: تحقق العمليات</h3>
+    <div class="unit-card">
+      <h3>الوحدة 3: التشغيل المؤهل (OQ)</h3>
       
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">5.1 تحقق عمليات التصنيع</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(35:00)</div>
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">3.1 اختبار الوظائف</div>
+          <div class="lesson-duration">(28:00)</div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">تحقق عمليات التصنيع المختلفة</div>
+        <div class="lesson-desc">اختبار جميع وظائف المعدات</div>
       </div>
       
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">5.2 تحقق عمليات التعبئة والتعقيم</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(30:00)</div>
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">3.2 حدود التشغيل والإنذارات</div>
+          <div class="lesson-duration">(30:00)</div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">تحقق عمليات التعبئة والتعقيم</div>
+        <div class="lesson-desc">تحديد واختبار حدود التشغيل والإنذارات</div>
       </div>
       
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">5.3 إدارة المخاطر وإعادة التحقق</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">3.3 اختبار الأمان والظروف القصوى</div>
+          <div class="lesson-duration">(25:00)</div>
         </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">إدارة المخاطر في تحقق العمليات وإعادة التحقق</div>
-      </div>
-    </div>
-
-    <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin-bottom: 2rem;">
-      <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--gold); margin-bottom: 1.5rem;">الوحدة 6: تحقق التنظيف</h3>
-      
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">6.1 طرق التنظيف</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">طرق التنظيف المختلفة وتطبيقها</div>
-      </div>
-      
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">6.2 تحليل المتبقيات</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(30:00)</div>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">تحليل المتبقيات وتحديد حدود القبول</div>
-      </div>
-      
-      <div style="border-right: 3px solid rgba(201,168,76,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">6.3 التوثيق وإعادة التحقق</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(22:00)</div>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">التوثيق وإعادة التحقق من التنظيف</div>
+        <div class="lesson-desc">اختبار أنظمة الأمان والتشغيل في الظروف القصوى</div>
       </div>
     </div>
 
-    <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-top: 3rem; text-align: center;">
-      <div style="font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 8px;">$129</div>
-      <div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 24px;">دفعة واحدة</div>
-      <a href="#enroll" style="background: var(--gold); color: var(--navy); padding: 16px 32px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block;">سجّل الآن</a>
+    <div class="unit-card">
+      <h3>الوحدة 4: الأداء المؤهل (PQ)</h3>
+      
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">4.1 الإنتاج التجريبي</div>
+          <div class="lesson-duration">(30:00)</div>
+        </div>
+        <div class="lesson-desc">إنتاج تجريبي للتحقق من الأداء</div>
+      </div>
+      
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">4.2 التحقق من جودة المنتج</div>
+          <div class="lesson-duration">(28:00)</div>
+        </div>
+        <div class="lesson-desc">التحقق من جودة المنتج والاستقرار</div>
+      </div>
+      
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">4.3 القبول النهائي</div>
+          <div class="lesson-duration">(22:00)</div>
+        </div>
+        <div class="lesson-desc">القبول النهائي للمعدات والتوثيق</div>
+      </div>
+    </div>
+
+    <div class="unit-card">
+      <h3>الوحدة 5: تحقق العمليات</h3>
+      
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">5.1 تحقق عمليات التصنيع</div>
+          <div class="lesson-duration">(35:00)</div>
+        </div>
+        <div class="lesson-desc">تحقق عمليات التصنيع المختلفة</div>
+      </div>
+      
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">5.2 تحقق عمليات التعبئة والتعقيم</div>
+          <div class="lesson-duration">(30:00)</div>
+        </div>
+        <div class="lesson-desc">تحقق عمليات التعبئة والتعقيم</div>
+      </div>
+      
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">5.3 إدارة المخاطر وإعادة التحقق</div>
+          <div class="lesson-duration">(25:00)</div>
+        </div>
+        <div class="lesson-desc">إدارة المخاطر في تحقق العمليات وإعادة التحقق</div>
+      </div>
+    </div>
+
+    <div class="unit-card">
+      <h3>الوحدة 6: تحقق التنظيف</h3>
+      
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">6.1 طرق التنظيف</div>
+          <div class="lesson-duration">(25:00)</div>
+        </div>
+        <div class="lesson-desc">طرق التنظيف المختلفة وتطبيقها</div>
+      </div>
+      
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">6.2 تحليل المتبقيات</div>
+          <div class="lesson-duration">(30:00)</div>
+        </div>
+        <div class="lesson-desc">تحليل المتبقيات وتحديد حدود القبول</div>
+      </div>
+      
+      <div class="lesson-item">
+        <div class="lesson-header">
+          <div class="lesson-title">6.3 التوثيق وإعادة التحقق</div>
+          <div class="lesson-duration">(22:00)</div>
+        </div>
+        <div class="lesson-desc">التوثيق وإعادة التحقق من التنظيف</div>
+      </div>
+    </div>
+
+    <div class="pricing-card">
+      <div class="price">$129</div>
+      <div class="price-period">دفعة واحدة</div>
+      <a href="#enroll" class="cta-btn">سجّل الآن</a>
     </div>
 
     <div style="margin-top: 4rem; padding: 40px 5%; background: rgba(201,168,76,0.05); border-radius: 16px;">
@@ -254,6 +524,11 @@
         </a>
       </div>
     </div>
-  </section>
+  </div>
+
+  <footer style="background: rgba(10,22,40,0.8); padding: 30px 5%; text-align: center; border-top: 1px solid var(--border); margin-top: 60px;">
+    <p style="color: var(--muted); font-size: 0.85rem; margin-bottom: 8px;">© 2025 PharmaPro Academy · جميع الحقوق محفوظة</p>
+    <p style="color: var(--muted); font-size: 0.85rem;">تطوير وإدارة: د.داود تاج الدين احمد عبدالكريم Dr.Daoud Tajeldeinn Ahmed</p>
+  </footer>
 </body>
 </html>

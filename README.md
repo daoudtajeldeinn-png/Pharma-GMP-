@@ -1,77 +1,104 @@
-# PharmaPro Academy Landing Page
+# PharmaPro Academy - منصة التدريب الصيدلاني
 
-A professional landing page for PharmaPro Academy - a specialized GMP/ISO training platform for pharmaceutical industry professionals.
+منصة تدريبية متخصصة في ممارسات التصنيع الجيد (GMP)، معايير ISO، والتحكم في الجودة للمهنيين في الصناعة الصيدلانية.
 
-## Project Overview
+## نظرة عامة على المشروع
 
-PharmaPro Academy provides specialized training in Good Manufacturing Practices (GMP), ISO standards, and Quality Control for pharmaceutical professionals. The landing page is designed to showcase courses, certifications, and training programs.
+PharmaPro Academy توفر تدريباً متخصصاً في ممارسات التصنيع الجيد، معايير ISO، والتحكم في الجودة للمهنيين الصيدلانيين. المشروع يتضمن صفحات هبوط، صفحات كورسات تفاعلية، نظام اختبارات، وموارد تعليمية.
 
-## Features
+## المميزات
 
-- **Modern Design**: Dark navy theme with teal and gold accents
-- **Responsive Layout**: Fully responsive design for all screen sizes
-- **RTL Support**: Right-to-left layout for Arabic content
-- **Smooth Animations**: Scroll-triggered fade-up animations
-- **Course Showcase**: Interactive course cards with pricing
-- **Testimonials**: Student reviews and ratings
-- **Compliance Frameworks**: Displays covered regulatory frameworks (ICH, WHO, FDA, EU GMP)
+- **تصميم حديث**: سمة أزرق داكن مع لمسات تيل وذهبية
+- **تصميم متجاوب**: يعمل على جميع أحجام الشاشات
+- **دعم RTL**: تخطيط من اليمين لليسار للمحتوى العربي
+- **صفحات self-contained**: جميع الصفحات تحتوي على CSS و JavaScript مدمج
+- **مشغل فيديو تفاعلي**: مشغل فيديو مدمج مع قوائم المحاضرات والموارد
+- **نظام اختبارات**: نظام اختبارات تفاعلي لكل كورس
+- **صفحة موارد**: مصادر رسمية من FDA، WHO، ICH، ISO، EMA
 
-## Project Structure
+## هيكل المشروع
 
 ```
 g:\GMP Pharma\
-├── index.html          # Main landing page
+├── pharma-landing.html      # الصفحة الرئيسية
+├── course-capa.html         # صفحة كورس CAPA
+├── course-gmp-basics.html   # صفحة كورس GMP Basics
+├── course-ipqc.html         # صفحة كورس IPQC
+├── course-iso-9001.html     # صفحة كورس ISO 9001
+├── course-qc-lab.html       # صفحة كورس QC Lab
+├── course-player.html       # مشغل الكورس العام
+├── quiz-page.html           # نظام الاختبارات
+├── resources.html           # صفحة المصادر
 ├── css/
-│   └── styles.css      # External stylesheet
-├── assets/             # Static assets (images, fonts, etc.)
-└── README.md           # Project documentation
+│   ├── styles.css           # الأنماط الرئيسية
+│   └── video-component.css  # أنماط مشغل الفيديو
+├── js/
+│   ├── video-component.js   # مشغل الفيديو
+│   └── quiz-parser.js       # محلل الاختبارات
+├── video-scripts/           # نصوص الفيديوهات
+├── quizzes/                 # ملفات الاختبارات
+├── templates/               # القوالب والنماذج
+├── simple_video_generator.ipynb  # مولد الفيديوهات البسيط
+└── README.md               # توثيق المشروع
 ```
 
-## Technologies Used
+## التقنيات المستخدمة
 
-- **HTML5**: Semantic markup
-- **CSS3**: Custom CSS with CSS variables
-- **Google Fonts**: Cairo (Arabic) and Inter (English)
-- **No JavaScript**: Pure HTML/CSS implementation
+- **HTML5**: ترميز دلالي
+- **CSS3**: CSS مخصص مع متغيرات CSS
+- **JavaScript**: مشغل فيديو تفاعلي ونظام اختبارات
+- **Google Fonts**: Cairo (عربي) و Inter (إنجليزي)
+- **Jupyter Notebook**: مولد فيديوهات بسيط
 
-## Getting Started
+## البدء
 
-1. Clone or download this repository
-2. Open `index.html` in a web browser
-3. No build process or dependencies required
+1. قم بتنزيل المستودع
+2. افتح أي صفحة HTML في متصفح الويب
+3. لا يتطلب عملية بناء أو تبعيات
 
-## Customization
+## التخصيص
 
-### Colors
-Edit CSS variables in `css/styles.css`:
+### الألوان
+قم بتعديل متغيرات CSS في `<style>` tags في كل صفحة:
 
 ```css
 :root {
   --navy:    #0A1628;
   --teal:    #00D4AA;
   --gold:    #C9A84C;
-  /* ... other variables */
+  /* ... متغيرات أخرى */
 }
 ```
 
-### Content
-Edit the HTML content in `index.html` to customize:
-- Course listings
-- Pricing information
-- Testimonials
-- Contact information
+### المحتوى
+قم بتعديل محتوى HTML لتخصيص:
+- قوائم الكورسات
+- معلومات التسعير
+- الشهادات
+- معلومات التواصل
 
-## Browser Support
+## مولد الفيديوهات
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+يتضمن المشروع `simple_video_generator.ipynb` لإنشاء فيديوهات من نصوص الكورسات:
+- يستخدم gTTS لتحويل النص العربي إلى صوت
+- يستخدم MoviePy لإنشاء الفيديو
+- يستخدم Pillow لإنشاء الشرائح
 
-## License
+## دعم المتصفح
 
-This project is proprietary software for PharmaPro Academy.
+- Chrome (الأحدث)
+- Firefox (الأحدث)
+- Safari (الأحدث)
+- Edge (الأحدث)
 
-## Contact
+## الترخيص
 
-For inquiries about training programs, visit the contact section on the landing page.
+هذا المشروع هو برنامج خاص بـ PharmaPro Academy.
+
+## المطور
+
+تطوير وإدارة: د.داود تاج الدين احمد عبدالكريم Dr.Daoud Tajeldeinn Ahmed
+
+## التواصل
+
+للاستفسارات عن برامج التدريب، قم بزيارة قسم التواصل في صفحة الهبوط.
