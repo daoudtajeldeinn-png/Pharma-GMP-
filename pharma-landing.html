@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PharmaPro Academy | تدريب GMP/ISO المتخصص</title>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.10/ext/client-side-templates.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1227,7 +1229,7 @@ footer {
       <a href="#enroll" class="btn-outline">عرض جميع الكورسات ←</a>
     </div>
 
-    <div class="courses-grid">
+    <div class="courses-grid" id="courses-container" hx-get="courses.html" hx-trigger="load" hx-swap="innerHTML">
 
       <a href="course-gmp-basics.html" class="course-card fade-up">
         <div class="course-card-top">
