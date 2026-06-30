@@ -1,0 +1,19 @@
+Video Script: GMP Basics - Unit 1 Definition and History of GMP Duration: 15 minutes (0:00 - 1:00) Welcome to this lecture.
+
+Today we will discuss the definition of Good Manufacturing Practices (GMP) and its history.
+
+This lecture is the foundation for understanding the rest of the course content.
+
+What is GMP?
+
+(1:00 - 4:00) Good Manufacturing Practices or GMP is a set of standards and practices that ensure pharmaceutical products are manufactured safely and effectively.
+
+GMP stands for Good Manufacturing Practice.
+
+GMP is a quality assurance system Ensures products are manufactured consistently with quality control Minimizes risks of manufacturing errors Ensures patient safety and consumer protection GMP covers all aspects of manufacturing - from raw materials to the final product.
+
+It covers: Facility design Employee training Document management Process control Quality monitoring History of GMP (4:00 - 8:00) The history of GMP dates back to the mid-20th century, but its development was gradual over the years.
+
+Key 1962: The US FDA published the first GMP regulations after the thalidomide scandal 1970s: Development of GMP regulations in Europe 1990s: International standardization 2000s: Continuous updates to regulations Important Events: Thalidomide scandal (1960s) - Led to the creation of GMP regulations Establishment of ICH (1990) - To internationalize standards Continuous updates to regulations Why is GMP Important?
+
+(8:00 - 12:00) GMP is important for several vital reasons: Patient Safety: Ensuring medications are safe and effective Preventing contamination and errors Protecting public health Regulatory Compliance: Essential for obtaining manufacturing licenses Required by regulatory authorities (FDA, EMA, SFDA) Avoiding penalties and financial sanctions Product Quality: Ensuring quality consistency Reducing errors and deviations Improving company reputation (12:00 - 15:00) In this lecture, we learned: Definition of GMP and its importance History of GMP and its development Why GMP is important for the pharmaceutical industry Key Points to Remember: GMP = Good Manufacturing Practice Developed after the thalidomide scandal Essential for patient safety and regulatory compliance In the next lecture, we will discuss the main regulatory authorities (FDA, EMA, WHO, SFDA).

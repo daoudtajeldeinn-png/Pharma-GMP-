@@ -1,0 +1,17 @@
+Video Script: ISO 9001 - Unit 1 Planning Duration: 18 minutes (0:00 - 1:00) In this lecture, we will discuss planning in the quality management system.
+
+Planning is essential for the success of the quality management system.
+
+of Planning (1:00 - 5:00) Planning is essential for several vital reasons.
+
+Main Reasons: Clarity: Provides clear direction Efficiency: Increases efficiency and effectiveness Control: Provides better control over processes Measurement: Facilitates performance measurement Improvement: Facilitates continuous improvement Planning must be comprehensive Planning must be realistic Planning must be flexible Planning must be documented Planning Elements (5:00 - 11:00) Planning includes several essential elements.
+
+Main Elements: System Planning: Develop quality management system Define processes Define resources Define timeline Risk and Opportunity Planning: Identify risks Evaluate risks Define control procedures Define opportunities Objective Planning: Define quality objectives Define performance metrics Define detailed objectives Define timeline Change Planning: Evaluate changes Define impact Define procedures Update planning Review Planning: Define review schedules Define review methods Define review criteria Define corrective actions Planning Procedures (11:00 - 15:00) Executing planning requires following specific procedures.
+
+Steps: Analyze Current Situation: Analyze current processes Analyze current performance Analyze current resources Analyze current risks Define Objectives: Define quality objectives Define performance objectives Define improvement objectives Define time objectives Develop Plan: Develop detailed plan Define required resources Define timeline Define responsibilities Approve Plan: Review plan Approval from top management Documentation Signature Execute Plan: Execute plan according to schedule Monitor execution Address problems Document Reviewing and Updating Planning (15:00 - 18:00) Planning must be reviewed and updated regularly.
+
+When to Review Plan?
+
+During major changes During problems When objectives are not achieved Periodically (quarterly or annually) How to Review Plan?
+
+Evaluate effectiveness Evaluate appropriateness Evaluate performance Identify improvement areas Update plan when necessary (18:00) In this lecture, we learned: of planning Planning elements Planning procedures Reviewing and updating planning Key Points to Remember: Planning is essential for success Planning must be comprehensive Planning must be realistic Continuous review is essential In the next lecture, we will discuss Risks and Opportunities.
