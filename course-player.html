@@ -274,6 +274,7 @@ section {
       }
       
       init() {
+        this.currentSlide = 0;
         this.render();
         this.attachEvents();
       }
@@ -281,16 +282,36 @@ section {
       render() {
         const videoSource = this.options.lectures[0]?.videoUrl || '';
         const youtubeId = this.options.lectures[0]?.youtubeId || '';
+        const slides = this.options.lectures[0]?.slides || [];
         
         this.container.innerHTML = `
           <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
             <div style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-              <div style="font-size: 1rem; font-weight: 700; color: var(--white);">${this.options.lectures[0]?.title || 'Video Player'}</div>
-              <div style="background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.3); color: var(--teal); padding: 4px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 600;">HD</div>
+              <div style="font-size: 1rem; font-weight: 700; color: var(--white);">${this.options.lectures[0]?.title || 'Course Player'}</div>
+              <div style="background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.3); color: var(--teal); padding: 4px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 600;">
+                ${slides.length > 0 ? `📊 ${slides.length} شرائح` : 'HD'}
+              </div>
             </div>
             
             <div style="position: relative; background: #000; aspect-ratio: 16/9; max-height: 500px;">
-              ${youtubeId ? `
+              ${slides.length > 0 ? `
+                <div id="slideContainer" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--navy3), var(--navy));">
+                  <div id="slideContent" style="text-align: center; padding: 40px; max-width: 800px;">
+                    <h2 id="slideTitle" style="font-size: 2rem; color: var(--teal); margin-bottom: 1.5rem;">${slides[0]?.title || ''}</h2>
+                    <div id="slideText" style="font-size: 1.1rem; color: var(--light); line-height: 1.8; white-space: pre-line;">${slides[0]?.content || ''}</div>
+                  </div>
+                  <button id="prevSlide" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,212,170,0.2); border: 1px solid rgba(0,212,170,0.4); color: var(--teal); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; font-size: 1.5rem;">→</button>
+                  <button id="nextSlide" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,212,170,0.2); border: 1px solid rgba(0,212,170,0.4); color: var(--teal); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; font-size: 1.5rem;">←</button>
+                </div>
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(10,22,40,0.9); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;">
+                  <div style="font-size: 0.85rem; color: var(--muted);">
+                    الشريحة <span id="currentSlideNum">1</span> من <span id="totalSlides">${slides.length}</span>
+                  </div>
+                  <div style="display: flex; gap: 8px;">
+                    ${slides.map((_, i) => `<div class="slideDot" data-index="${i}" style="width: 8px; height: 8px; border-radius: 50%; background: ${i === 0 ? 'var(--teal)' : 'rgba(0,212,170,0.3)'}; cursor: pointer; transition: all 0.2s;"></div>`).join('')}
+                  </div>
+                </div>
+              ` : youtubeId ? `
                 <iframe 
                   id="mainVideo" 
                   style="width: 100%; height: 100%; border: none;"
@@ -383,9 +404,33 @@ section {
       }
       
       attachEvents() {
-        document.getElementById('playPauseBtn').addEventListener('click', () => this.togglePlay());
-        document.getElementById('prevBtn').addEventListener('click', () => this.previousLecture());
-        document.getElementById('nextBtn').addEventListener('click', () => this.nextLecture());
+        // Slide navigation
+        const prevSlideBtn = document.getElementById('prevSlide');
+        const nextSlideBtn = document.getElementById('nextSlide');
+        
+        if (prevSlideBtn) {
+          prevSlideBtn.addEventListener('click', () => this.previousSlide());
+        }
+        if (nextSlideBtn) {
+          nextSlideBtn.addEventListener('click', () => this.nextSlide());
+        }
+        
+        // Slide dots navigation
+        document.querySelectorAll('.slideDot').forEach(dot => {
+          dot.addEventListener('click', (e) => {
+            const index = parseInt(e.target.dataset.index);
+            this.goToSlide(index);
+          });
+        });
+        
+        // Video controls (if no slides)
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        if (playPauseBtn) playPauseBtn.addEventListener('click', () => this.togglePlay());
+        if (prevBtn) prevBtn.addEventListener('click', () => this.previousLecture());
+        if (nextBtn) nextBtn.addEventListener('click', () => this.nextLecture());
         
         document.getElementById('lectureList').addEventListener('click', (e) => {
           const lectureItem = e.target.closest('.lecture-item');
@@ -403,6 +448,45 @@ section {
         });
       }
       
+      goToSlide(index) {
+        const slides = this.options.lectures[this.currentLecture]?.slides || [];
+        if (index < 0 || index >= slides.length) return;
+        
+        this.currentSlide = index;
+        this.updateSlide();
+      }
+      
+      nextSlide() {
+        const slides = this.options.lectures[this.currentLecture]?.slides || [];
+        if (this.currentSlide < slides.length - 1) {
+          this.currentSlide++;
+          this.updateSlide();
+        }
+      }
+      
+      previousSlide() {
+        if (this.currentSlide > 0) {
+          this.currentSlide--;
+          this.updateSlide();
+        }
+      }
+      
+      updateSlide() {
+        const slides = this.options.lectures[this.currentLecture]?.slides || [];
+        const slide = slides[this.currentSlide];
+        
+        if (slide) {
+          document.getElementById('slideTitle').textContent = slide.title;
+          document.getElementById('slideText').textContent = slide.content;
+          document.getElementById('currentSlideNum').textContent = this.currentSlide + 1;
+          
+          // Update dots
+          document.querySelectorAll('.slideDot').forEach((dot, i) => {
+            dot.style.background = i === this.currentSlide ? 'var(--teal)' : 'rgba(0,212,170,0.3)';
+          });
+        }
+      }
+      
       togglePlay() {
         this.isPlaying = !this.isPlaying;
         document.getElementById('playPauseBtn').textContent = this.isPlaying ? '⏸' : '▶';
@@ -411,40 +495,23 @@ section {
       selectLecture(index) {
         if (index < 0 || index >= this.options.lectures.length) return;
         this.currentLecture = index;
+        this.currentSlide = 0;
         this.renderLectureList();
         this.renderResourceList();
         
-        // Update video player with new lecture
+        // Update player with new lecture
         const lecture = this.options.lectures[index];
+        const slides = lecture.slides || [];
         const youtubeId = lecture.youtubeId || '';
         const videoSource = lecture.videoUrl || '';
         
-        const videoContainer = document.querySelector('#videoPlayerContainer > div > div:nth-child(2)');
-        if (videoContainer) {
-          if (youtubeId) {
-            videoContainer.innerHTML = `
-              <iframe 
-                id="mainVideo" 
-                style="width: 100%; height: 100%; border: none;"
-                src="https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&autoplay=1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
-            `;
-          } else if (videoSource) {
-            videoContainer.innerHTML = `
-              <video id="mainVideo" style="width: 100%; height: 100%; object-fit: cover;" controls autoplay>
-                <source src="${videoSource}" type="video/mp4">
-                متصفحك لا يدعم تشغيل الفيديو
-              </video>
-            `;
-          }
-        }
+        // Re-render the player to show slides or video
+        this.render();
         
         // Update title
         const titleElement = document.querySelector('#videoPlayerContainer > div > div:nth-child(1) > div:nth-child(1)');
         if (titleElement) {
-          titleElement.textContent = lecture.title || 'Video Player';
+          titleElement.textContent = lecture.title || 'Course Player';
         }
         
         if (this.options.onLectureChange) {
