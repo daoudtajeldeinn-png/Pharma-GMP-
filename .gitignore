@@ -37,5 +37,5 @@ yarn-error.log*
 *.temp
 .cache/
 
-# Videos (large files)
+# Videos (large files - use YouTube instead)
 videos/
