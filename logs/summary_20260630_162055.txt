@@ -1,0 +1,13 @@
+VIDEO GENERATION SUMMARY
+==================================================
+Date: 2026-06-30 16:20:55
+Total: 78
+Success: 73
+Failed: 5
+
+Failed scripts:
+  - capa-1-3-en-pro.md
+  - iso-9001-3-2-en-pro.md
+  - iso-9001-3-3-en-pro.md
+  - iso-9001-4-1-en-pro.md
+  - iso-9001-4-2-en-pro.md
