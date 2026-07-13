@@ -1134,28 +1134,48 @@ footer {
 
   <!-- VIDEO PREVIEW -->
   <section class="video-preview-section">
-    <div class="fade-up" style="text-align: center; max-width: 600px; margin: 0 auto 3rem;">
+    <div class="fade-up" style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">
       <div class="section-eyebrow">تجربة التعلم التفاعلية</div>
       <h2 class="section-title">شاهد <em>محاضراتنا</em> على YouTube</h2>
-      <p class="section-sub">أكثر من 30 محاضرة متخصصة في GMP وISO وضبط الجودة الصيدلانية — مجانية ومتاحة للجميع</p>
+      <p class="section-sub">محاضرات متخصصة في GMP وISO وضبط الجودة الصيدلانية — مجانية ومتاحة للجميع</p>
     </div>
     <div class="fade-up" style="max-width: 900px; margin: 0 auto;">
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
-        <iframe
+      <div style="display:flex; gap:0.5rem; margin-bottom:1rem; justify-content:center; flex-wrap:wrap;">
+        <button onclick="switchPlaylist('PLXbuTbPpkiU8its', this)" class="pl-tab active-tab" style="padding:8px 18px; border-radius:8px; border:1px solid rgba(0,212,170,0.4); background:rgba(0,212,170,0.15); color:var(--teal); font-family:Cairo,sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer;">قائمة 1</button>
+        <button onclick="switchPlaylist('PLVgk_Hm49wuM', this)" class="pl-tab" style="padding:8px 18px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--muted); font-family:Cairo,sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer;">قائمة 2</button>
+        <button onclick="switchPlaylist('PLaTE_vkZVZx4', this)" class="pl-tab" style="padding:8px 18px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--muted); font-family:Cairo,sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer;">قائمة 3</button>
+      </div>
+      <div style="position:relative; padding-bottom:56.25%; height:0; border-radius:16px; overflow:hidden; border:1px solid var(--border); box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+        <iframe id="yt-player"
           src="https://www.youtube.com/embed/videoseries?list=PLXbuTbPpkiU8its&rel=0&modestbranding=1"
-          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+          style="position:absolute; top:0; left:0; width:100%; height:100%;"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
       </div>
-      <div style="text-align: center; margin-top: 1.5rem;">
-        <a href="https://www.youtube.com/playlist?list=PLXbuTbPpkiU8its" target="_blank" class="btn-outline" style="display: inline-flex; align-items: center; gap: 8px;">
+      <div style="text-align:center; margin-top:1.5rem;">
+        <a id="yt-link" href="https://www.youtube.com/playlist?list=PLXbuTbPpkiU8its" target="_blank" class="btn-outline" style="display:inline-flex; align-items:center; gap:8px;">
           ▶ استعرض جميع المحاضرات على YouTube
         </a>
       </div>
     </div>
   </section>
+
+  <script>
+  function switchPlaylist(listId, btn) {
+    document.getElementById('yt-player').src = 'https://www.youtube.com/embed/videoseries?list=' + listId + '&rel=0&modestbranding=1';
+    document.getElementById('yt-link').href = 'https://www.youtube.com/playlist?list=' + listId;
+    document.querySelectorAll('.pl-tab').forEach(b => {
+      b.style.background = 'transparent';
+      b.style.color = 'var(--muted)';
+      b.style.borderColor = 'var(--border)';
+    });
+    btn.style.background = 'rgba(0,212,170,0.15)';
+    btn.style.color = 'var(--teal)';
+    btn.style.borderColor = 'rgba(0,212,170,0.4)';
+  }
+  </script>
 
     <!-- TRUSTED BY -->
   <div class="trusted fade-up">
