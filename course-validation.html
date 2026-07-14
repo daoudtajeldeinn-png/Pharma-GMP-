@@ -333,7 +333,9 @@ section {
           <div class="lesson-duration">(18:00)</div>
         </div>
         <div class="lesson-desc">الفرق بين التحقق والتثبيت ودور كل منهما</div>
-        <a href="https://www.youtube.com/watch?v=zWeV_fAnWsE" target="_blank" target="_blank" class="video-link">🎥 شاهد الفيديو</a>
+        <div class="video-embed" style="margin-top: 12px;">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/zWeV_fAnWsE" title="تعريف Validation وQualification" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; border: 1px solid var(--border);"></iframe>
+        </div>
       </div>
       
       <div class="lesson-item">
@@ -569,5 +571,46 @@ section {
       <span>قناة السودان للجودة على YouTube</span>
     </a>
   </footer>
+
+  <script>
+    // Auto-convert YouTube links to embedded videos
+    document.addEventListener('DOMContentLoaded', function() {
+      const videoLinks = document.querySelectorAll('.video-link');
+      
+      videoLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.includes('youtube.com/watch')) {
+          const videoId = extractYouTubeId(href);
+          if (videoId) {
+            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+            const lessonItem = link.closest('.lesson-item');
+            
+            // Create iframe
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.height = '315';
+            iframe.src = embedUrl;
+            iframe.title = link.textContent.replace('🎥 شاهد الفيديو', '').trim();
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.style.borderRadius = '8px';
+            iframe.style.border = '1px solid var(--border)';
+            iframe.style.marginTop = '12px';
+            
+            // Remove the link and add iframe
+            link.remove();
+            lessonItem.appendChild(iframe);
+          }
+        }
+      });
+      
+      function extractYouTubeId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+      }
+    });
+  </script>
 </body>
 </html>
