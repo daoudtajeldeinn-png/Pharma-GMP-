@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>القوالب القابلة للتحرير | PharmaPro Academy</title>
+  <meta name="description" content="قوالب تفاعلية قابلة للتحرير للتوثيق وفق معايير GMP و ISO 9001">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.template-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.template-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal);
+  box-shadow: 0 12px 40px rgba(0,212,170,0.1);
+}
+
+.template-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.template-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.template-description {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.template-category {
+  font-size: 0.8rem;
+  color: var(--teal);
+  font-weight: 600;
+  padding: 4px 12px;
+  background: rgba(0,212,170,0.1);
+  border-radius: 12px;
+  display: inline-block;
+}
+
+/* Template Editor Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 1000px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: var(--card-bg);
+  z-index: 10;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--white);
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.template-editor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.editor-form {
+  background: var(--navy2);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--light);
+  font-weight: 600;
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 10px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+}
+
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.editor-preview {
+  background: var(--navy2);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.preview-header {
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.preview-content {
+  background: var(--white);
+  color: var(--navy);
+  border-radius: 8px;
+  padding: 2rem;
+  min-height: 400px;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.save-btn {
+  background: var(--teal);
+  color: var(--navy);
+}
+
+.save-btn:hover {
+  background: var(--teal2);
+}
+
+.download-btn {
+  background: var(--card-bg);
+  color: var(--white);
+  border: 1px solid var(--border);
+}
+
+.download-btn:hover {
+  border-color: var(--teal);
+}
+
+.reset-btn {
+  background: rgba(244,67,54,0.1);
+  color: #F44336;
+  border: 1px solid #F44336;
+}
+
+.reset-btn:hover {
+  background: rgba(244,67,54,0.2);
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .templates-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .template-editor {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html">الرئيسية</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="templates.html" class="nav-cta">القوالب</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">القوالب القابلة للتحرير</h1>
+      <p class="page-subtitle">قوالب تفاعلية قابلة للتحرير للتوثيق وفق معايير GMP و ISO 9001</p>
+    </div>
+
+    <div class="templates-grid" id="templatesGrid">
+      <!-- Templates will be loaded dynamically -->
+    </div>
+  </div>
+
+  <!-- Template Editor Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">محرر القالب</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Template editor will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Templates Data
+    const templates = [
+      {
+        id: 1,
+        title: "نموذج سجل الدفعة",
+        category: "GMP",
+        icon: "📋",
+        description: "نموذج قياسي لتوثيق معلومات الدفعة وفق معايير GMP",
+        fields: [
+          { name: "batchNumber", label: "رقم الدفعة", type: "text", required: true },
+          { name: "productName", label: "اسم المنتج", type: "text", required: true },
+          { name: "productionDate", label: "تاريخ الإنتاج", type: "date", required: true },
+          { name: "expiryDate", label: "تاريخ الانتهاء", type: "date", required: true },
+          { name: "batchSize", label: "حجم الدفعة", type: "text", required: true },
+          { name: "supervisor", label: "المشرف", type: "text", required: true },
+          { name: "operator", label: "المشغل", type: "text", required: true },
+          { name: "notes", label: "ملاحظات", type: "textarea", required: false }
+        ]
+      },
+      {
+        id: 2,
+        title: "نموذج تقرير الانحراف",
+        category: "CAPA",
+        icon: "📊",
+        description: "نموذج لتوثيق الانحرافات والإجراءات التصحيحية",
+        fields: [
+          { name: "deviationNumber", label: "رقم الانحراف", type: "text", required: true },
+          { name: "deviationDate", label: "تاريخ الانحراف", type: "date", required: true },
+          { name: "description", label: "وصف الانحراف", type: "textarea", required: true },
+          { name: "severity", label: "الشدة", type: "select", options: ["منخفضة", "متوسطة", "عالية", "حرجة"], required: true },
+          { name: "rootCause", label: "السبب الجذري", type: "textarea", required: true },
+          { name: "correctiveAction", label: "الإجراء التصحيحي", type: "textarea", required: true },
+          { name: "preventiveAction", label: "الإجراء الوقائي", type: "textarea", required: true },
+          { name: "responsible", label: "المسؤول", type: "text", required: true }
+        ]
+      },
+      {
+        id: 3,
+        title: "نموذج خطة التحقق",
+        category: "Validation",
+        icon: "🔬",
+        description: "نموذج لتخطيط وتوثيق عمليات التحقق والتثبيت",
+        fields: [
+          { name: "validationNumber", label: "رقم التحقق", type: "text", required: true },
+          { name: "equipmentName", label: "اسم المعدة", type: "text", required: true },
+          { name: "validationType", label: "نوع التحقق", type: "select", options: ["IQ", "OQ", "PQ"], required: true },
+          { name: "startDate", label: "تاريخ البدء", type: "date", required: true },
+          { name: "endDate", label: "تاريخ الانتهاء", type: "date", required: true },
+          { name: "acceptanceCriteria", label: "معايير القبول", type: "textarea", required: true },
+          { name: "results", label: "النتائج", type: "textarea", required: true },
+          { name: "conclusion", label: "الاستنتاج", type: "select", options: ["مقبول", "غير مقبول"], required: true }
+        ]
+      }
+    ];
+
+    // Render templates
+    function renderTemplates() {
+      const grid = document.getElementById('templatesGrid');
+      grid.innerHTML = templates.map(template => `
+        <div class="template-card" onclick="openTemplateEditor(${template.id})">
+          <div class="template-icon">${template.icon}</div>
+          <h3 class="template-title">${template.title}</h3>
+          <p class="template-description">${template.description}</p>
+          <span class="template-category">${template.category}</span>
+        </div>
+      `).join('');
+    }
+
+    // Open template editor
+    function openTemplateEditor(id) {
+      const template = templates.find(t => t.id === id);
+      if (!template) return;
+
+      document.getElementById('modalTitle').textContent = template.title;
+      
+      const modalBody = document.getElementById('modalBody');
+      modalBody.innerHTML = `
+        <div class="template-editor">
+          <div class="editor-form">
+            <h3 style="color: var(--teal); margin-bottom: 1rem;">تعبئة النموذج</h3>
+            <form id="templateForm">
+              ${template.fields.map(field => `
+                <div class="form-group">
+                  <label class="form-label">${field.label} ${field.required ? '*' : ''}</label>
+                  ${field.type === 'select' 
+                    ? `<select class="form-select" name="${field.name}" ${field.required ? 'required' : ''}>
+                        <option value="">اختر...</option>
+                        ${field.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                       </select>`
+                    : field.type === 'textarea'
+                      ? `<textarea class="form-textarea" name="${field.name}" ${field.required ? 'required' : ''}></textarea>`
+                      : `<input type="${field.type}" class="form-input" name="${field.name}" ${field.required ? 'required' : ''}>`
+                  }
+                </div>
+              `).join('')}
+            </form>
+            
+            <div class="editor-actions">
+              <button type="button" class="action-btn save-btn" onclick="saveTemplate()">💾 حفظ</button>
+              <button type="button" class="action-btn download-btn" onclick="downloadTemplate()">📥 تحميل</button>
+              <button type="button" class="action-btn reset-btn" onclick="resetForm()">🔄 إعادة تعيين</button>
+            </div>
+          </div>
+          
+          <div class="editor-preview">
+            <div class="preview-header">معاينة الوثيقة</div>
+            <div class="preview-content" id="previewContent">
+              <p style="color: #666;">املأ النموذج لعرض المعاينة...</p>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Add live preview
+      const form = document.getElementById('templateForm');
+      form.addEventListener('input', updatePreview);
+      
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    // Update preview
+    function updatePreview() {
+      const form = document.getElementById('templateForm');
+      const formData = new FormData(form);
+      const preview = document.getElementById('previewContent');
+      
+      let previewHTML = '<div style="text-align: center; margin-bottom: 2rem;">';
+      previewHTML += '<h2 style="color: var(--navy); margin-bottom: 0.5rem;">وثيقة رسمية</h2>';
+      previewHTML += '<p style="color: #666;">PharmaPro Academy</p>';
+      previewHTML += '</div>';
+      
+      for (let [key, value] of formData.entries()) {
+        if (value) {
+          const field = document.querySelector(`[name="${key}"]`);
+          const label = field.previousElementSibling.textContent.replace('*', '');
+          previewHTML += `
+            <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+              <strong style="color: var(--navy);">${label}:</strong>
+              <p style="color: #333; margin-top: 0.25rem;">${value}</p>
+            </div>
+          `;
+        }
+      }
+      
+      previewHTML += '<div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; text-align: center;">';
+      previewHTML += '<p style="color: #666; font-size: 0.8rem;">تم إنشاء هذه الوثيقة وفق معايير GMP</p>';
+      previewHTML += '</div>';
+      
+      preview.innerHTML = previewHTML;
+    }
+
+    // Save template
+    function saveTemplate() {
+      const form = document.getElementById('templateForm');
+      const formData = new FormData(form);
+      
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+      
+      // Save to localStorage
+      const templateId = document.getElementById('modalTitle').textContent;
+      localStorage.setItem(`template_${templateId}`, JSON.stringify(data));
+      
+      alert('تم حفظ النموذج بنجاح!');
+    }
+
+    // Download template
+    function downloadTemplate() {
+      const preview = document.getElementById('previewContent');
+      const title = document.getElementById('modalTitle').textContent;
+      
+      const htmlContent = `
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+          <meta charset="UTF-8">
+          <title>${title}</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 40px; direction: rtl; }
+            h2 { color: #0A1628; }
+            strong { color: #0A1628; }
+          </style>
+        </head>
+        <body>
+          ${preview.innerHTML}
+        </body>
+        </html>
+      `;
+      
+      const blob = new Blob([htmlContent], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${title.replace(/\s+/g, '_')}.html`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Reset form
+    function resetForm() {
+      document.getElementById('templateForm').reset();
+      document.getElementById('previewContent').innerHTML = '<p style="color: #666;">املأ النموذج لعرض المعاينة...</p>';
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    // Event listeners
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTemplates();
+    });
+  </script>
+</body>
+</html>

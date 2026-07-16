@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title="منتديات النقاش | PharmaPro Academy</title>
+  <meta name="description" content="منتديات تفاعلية للنقاش وتبادل الخبرات في مجال GMP والتحكم في الجودة">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.forums-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+}
+
+.forums-sidebar {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: fit-content;
+}
+
+.sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.forum-list {
+  list-style: none;
+}
+
+.forum-item {
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 0.5rem;
+}
+
+.forum-item:hover, .forum-item.active {
+  background: rgba(0,212,170,0.1);
+}
+
+.forum-name {
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+
+.forum-count {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.new-topic-btn {
+  width: 100%;
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 1rem;
+}
+
+.new-topic-btn:hover {
+  background: var(--teal2);
+}
+
+.forums-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.topics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.topic-card {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.topic-card:hover {
+  border-color: var(--teal);
+}
+
+.topic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.topic-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.topic-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.topic-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.topic-preview {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.topic-stats {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* New Topic Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--light);
+  font-weight: 600;
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 12px;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+}
+
+.form-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.submit-btn {
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background: var(--teal2);
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .forums-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html">الرئيسية</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="forums.html" class="nav-cta">المنتديات</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">منتديات النقاش</h1>
+      <p class="page-subtitle">شارك خبراتك واسأل أسئلتك في مجتمع PharmaPro Academy</p>
+    </div>
+
+    <div class="forums-layout">
+      <div class="forums-sidebar">
+        <h3 class="sidebar-title">المنتديات</h3>
+        <ul class="forum-list" id="forumList">
+          <!-- Forums will be loaded dynamically -->
+        </ul>
+        <button class="new-topic-btn" onclick="openNewTopicModal()">+ موضوع جديد</button>
+      </div>
+
+      <div class="forums-content">
+        <div class="content-header">
+          <h2 class="content-title" id="contentTitle">جميع المواضيع</h2>
+        </div>
+        <div class="topics-list" id="topicsList">
+          <!-- Topics will be loaded dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Topic Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">موضوع جديد</h2>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="newTopicForm">
+          <div class="form-group">
+            <label class="form-label">المنتدى</label>
+            <select class="form-select" id="forumSelect" required>
+              <!-- Options will be loaded dynamically -->
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">عنوان الموضوع</label>
+            <input type="text" class="form-input" id="topicTitle" required placeholder="أدخل عنوان الموضوع...">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">المحتوى</label>
+            <textarea class="form-textarea" id="topicContent" required placeholder="اكتب محتوى الموضوع..."></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">نشر الموضوع</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Forums Data
+    const forums = [
+      { id: 1, name: "GMP العام", icon: "📋", count: 0 },
+      { id: 2, name: "التحقق والتثبيت", icon: "🔬", count: 0 },
+      { id: 3, name: "CAPA", icon: "📊", count: 0 },
+      { id: 4, name: "ISO 9001", icon: "🏗️", count: 0 },
+      { id: 5, name: "التحكم في الجودة", icon: "🧪", count: 0 },
+      { id: 6, name: "الأسئلة والأجوبة", icon: "❓", count: 0 }
+    ];
+
+    // Sample topics
+    let topics = [
+      {
+        id: 1,
+        forumId: 1,
+        title: "كيف يمكن تحسين نظام GMP في الشركة الصغيرة؟",
+        content: "أعمل في شركة صيدلانية صغيرة ونحتاج إلى تحسين نظام GMP لدينا. ما هي الخطوات الأولى التي يجب اتخاذها؟",
+        author: "د.داود",
+        date: new Date('2024-01-15'),
+        replies: 5,
+        views: 120
+      },
+      {
+        id: 2,
+        forumId: 2,
+        title: "أفضل ممارسات التحقق من التنظيف",
+        content: "أبحث عن أفضل الممارسات لعملية التحقق من التنظيف في خطوط الإنتاج الصيدلانية.",
+        author: "م.أحمد",
+        date: new Date('2024-01-14'),
+        replies: 3,
+        views: 85
+      },
+      {
+        id: 3,
+        forumId: 3,
+        title: "كيفية تحديد السبب الجذري للانحرافات؟",
+        content: "ما هي أفضل الطرق لتحديد السبب الجذري للانحرافات في عمليات التصنيع؟",
+        author: "د.سارة",
+        date: new Date('2024-01-13'),
+        replies: 7,
+        views: 150
+      }
+    ];
+
+    let currentForum = null;
+
+    // Render forums
+    function renderForums() {
+      const forumList = document.getElementById('forumList');
+      forumList.innerHTML = forums.map(forum => `
+        <li class="forum-item ${currentForum === forum.id ? 'active' : ''}" onclick="selectForum(${forum.id})">
+          <div class="forum-name">${forum.icon} ${forum.name}</div>
+          <div class="forum-count">${getTopicCount(forum.id)} موضوع</div>
+        </li>
+      `).join('');
+    }
+
+    // Get topic count for forum
+    function getTopicCount(forumId) {
+      return topics.filter(topic => topic.forumId === forumId).length;
+    }
+
+    // Select forum
+    function selectForum(forumId) {
+      currentForum = forumId;
+      const forum = forums.find(f => f.id === forumId);
+      document.getElementById('contentTitle').textContent = forum.name;
+      renderForums();
+      renderTopics();
+    }
+
+    // Render topics
+    function renderTopics() {
+      const topicsList = document.getElementById('topicsList');
+      let filteredTopics = currentForum 
+        ? topics.filter(topic => topic.forumId === currentForum)
+        : topics;
+      
+      if (filteredTopics.length === 0) {
+        topicsList.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 2rem;">لا توجد مواضيع بعد</p>';
+        return;
+      }
+      
+      topicsList.innerHTML = filteredTopics.map(topic => {
+        const forum = forums.find(f => f.id === topic.forumId);
+        const timeAgo = getTimeAgo(topic.date);
+        
+        return `
+          <div class="topic-card" onclick="viewTopic(${topic.id})">
+            <div class="topic-header">
+              <div>
+                <div class="topic-title">${topic.title}</div>
+                <div class="topic-meta">
+                  <span class="topic-author">
+                    <div class="author-avatar">${topic.author.charAt(0)}</div>
+                    ${topic.author}
+                  </span>
+                  <span>•</span>
+                  <span>${timeAgo}</span>
+                  <span>•</span>
+                  <span>${forum.name}</span>
+                </div>
+              </div>
+            </div>
+            <p class="topic-preview">${topic.content.substring(0, 150)}...</p>
+            <div class="topic-stats">
+              <div class="stat-item">💬 ${topic.replies} ردود</div>
+              <div class="stat-item">👁️ ${topic.views} مشاهدة</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Get time ago
+    function getTimeAgo(date) {
+      const seconds = Math.floor((new Date() - date) / 1000);
+      
+      if (seconds < 60) return 'الآن';
+      if (seconds < 3600) return `منذ ${Math.floor(seconds / 60)} دقيقة`;
+      if (seconds < 86400) return `منذ ${Math.floor(seconds / 3600)} ساعة`;
+      if (seconds < 604800) return `منذ ${Math.floor(seconds / 86400)} يوم`;
+      return date.toLocaleDateString('ar-EG');
+    }
+
+    // Open new topic modal
+    function openNewTopicModal() {
+      const modal = document.getElementById('modalOverlay');
+      const forumSelect = document.getElementById('forumSelect');
+      
+      forumSelect.innerHTML = forums.map(forum => 
+        `<option value="${forum.id}">${forum.name}</option>`
+      ).join('');
+      
+      modal.classList.add('active');
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.getElementById('newTopicForm').reset();
+    }
+
+    // Handle new topic submission
+    document.getElementById('newTopicForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const forumId = parseInt(document.getElementById('forumSelect').value);
+      const title = document.getElementById('topicTitle').value;
+      const content = document.getElementById('topicContent').value;
+      
+      const newTopic = {
+        id: topics.length + 1,
+        forumId: forumId,
+        title: title,
+        content: content,
+        author: "د.داود",
+        date: new Date(),
+        replies: 0,
+        views: 0
+      };
+      
+      topics.unshift(newTopic);
+      
+      // Save to localStorage
+      localStorage.setItem('forumTopics', JSON.stringify(topics));
+      
+      closeModal();
+      renderForums();
+      renderTopics();
+      
+      alert('تم نشر الموضوع بنجاح!');
+    });
+
+    // View topic (placeholder)
+    function viewTopic(topicId) {
+      alert('سيتم إضافة صفحة تفاصيل الموضوع قريباً');
+    }
+
+    // Load topics from localStorage
+    function loadTopics() {
+      const saved = localStorage.getItem('forumTopics');
+      if (saved) {
+        topics = JSON.parse(saved);
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadTopics();
+      renderForums();
+      renderTopics();
+    });
+  </script>
+</body>
+</html>

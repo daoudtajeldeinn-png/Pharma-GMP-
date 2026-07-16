@@ -23,7 +23,10 @@
   --border:  rgba(0,212,170,0.15);
 }
 
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
 
 body {
   font-family: 'Cairo', sans-serif;
@@ -31,6 +34,36 @@ body {
   color: var(--light);
   overflow-x: hidden;
   direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.3s ease;
+}
+
+body.study-mode {
+  background: #0a0a0a;
+}
+
+body.study-mode::before {
+  display: none;
+}
+
+body.study-mode nav {
+  display: none;
+}
+
+body.study-mode .study-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,212,170,0.3);
 }
 
 body::before {
@@ -561,6 +594,67 @@ section {
         </a>
       </div>
     </div>
+
+    <!-- Rating System -->
+    <div style="margin-top: 1.5rem; padding: 20px 5%; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border);">
+      <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--teal); margin-bottom: 1rem;">⭐ قيّم هذا الكورس</h3>
+      
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+        <div class="rating-stars" id="ratingStars" style="display: flex; gap: 0.5rem; cursor: pointer;">
+          <span class="star" data-rating="1">☆</span>
+          <span class="star" data-rating="2">☆</span>
+          <span class="star" data-rating="3">☆</span>
+          <span class="star" data-rating="4">☆</span>
+          <span class="star" data-rating="5">☆</span>
+        </div>
+        <span id="ratingText" style="color: var(--muted); font-size: 0.9rem;">اضغط للتقييم</span>
+      </div>
+      
+      <div style="margin-top: 1rem;">
+        <textarea id="ratingComment" placeholder="أضف تعليقك على الكورس..." style="width: 100%; padding: 12px; background: var(--navy2); border: 1px solid var(--border); border-radius: 8px; color: var(--white); font-family: 'Cairo', sans-serif; min-height: 80px; resize: vertical;"></textarea>
+        <button onclick="submitRating()" style="margin-top: 0.5rem; background: var(--teal); color: var(--navy); border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;">إرسال التقييم</button>
+      </div>
+      
+      <div id="ratingSummary" style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+          <span style="font-size: 2rem; font-weight: 700; color: var(--gold);" id="averageRating">4.5</span>
+          <span style="color: var(--muted);">/ 5</span>
+          <span style="color: var(--muted); font-size: 0.9rem;">(125 تقييم)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Sharing -->
+    <div style="margin-top: 1.5rem; padding: 20px 5%; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border);">
+      <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--teal); margin-bottom: 1rem;">📤 شارك هذا الكورس</h3>
+      
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
+        <button onclick="shareToFacebook()" style="background: #1877F2; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+          <span>📘</span> فيسبوك
+        </button>
+        
+        <button onclick="shareToTwitter()" style="background: #1DA1F2; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+          <span>🐦</span> تويتر
+        </button>
+        
+        <button onclick="shareToLinkedIn()" style="background: #0A66C2; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+          <span>💼</span> لينكدإن
+        </button>
+        
+        <button onclick="shareToWhatsApp()" style="background: #25D366; color: white; border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+          <span>💬</span> واتساب
+        </button>
+        
+        <button onclick="shareViaEmail()" style="background: var(--navy2); color: var(--white); border: 1px solid var(--border); padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+          <span>📧</span> بريد إلكتروني
+        </button>
+      </div>
+      
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+        <input type="text" id="shareLink" readonly value="https://pharmapro-academy.com/course-validation" style="flex: 1; padding: 10px; background: var(--navy2); border: 1px solid var(--border); border-radius: 6px; color: var(--white); font-family: 'Cairo', sans-serif;">
+        <button onclick="copyLink()" style="background: var(--teal); color: var(--navy); border: none; padding: 10px 16px; border-radius: 6px; font-weight: 600; cursor: pointer;">نسخ الرابط</button>
+      </div>
+    </div>
   </div>
 
   <footer style="background: rgba(10,22,40,0.8); padding: 30px 5%; text-align: center; border-top: 1px solid var(--border); margin-top: 60px;">
@@ -573,8 +667,267 @@ section {
   </footer>
 
   <script>
+    // Study Mode Toggle
+    const StudyMode = {
+      isActive: false,
+      
+      init() {
+        this.createToggleButton();
+        this.loadState();
+        this.attachEvents();
+      },
+      
+      createToggleButton() {
+        const button = document.createElement('button');
+        button.className = 'study-mode-toggle';
+        button.innerHTML = '📚 وضع الدراسة';
+        button.style.cssText = `
+          position: fixed;
+          top: 80px;
+          left: 20px;
+          z-index: 1000;
+          background: rgba(0,212,170,0.1);
+          color: var(--teal);
+          border: 1px solid var(--teal);
+          padding: 10px 16px;
+          border-radius: 8px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-family: 'Cairo', sans-serif;
+          font-size: 0.9rem;
+        `;
+        document.body.appendChild(button);
+        this.button = button;
+      },
+      
+      toggle() {
+        this.isActive = !this.isActive;
+        document.body.classList.toggle('study-mode', this.isActive);
+        this.button.innerHTML = this.isActive ? '✕ خروج من وضع الدراسة' : '📚 وضع الدراسة';
+        this.button.style.background = this.isActive ? 'var(--teal)' : 'rgba(0,212,170,0.1)';
+        this.button.style.color = this.isActive ? 'var(--navy)' : 'var(--teal)';
+        this.saveState();
+        
+        if (this.isActive) {
+          this.showNotification('تم تفعيل وضع الدراسة', 'التركيز على المحتوى بدون تشتت');
+        } else {
+          this.showNotification('تم إيقاف وضع الدراسة', 'العودة إلى الوضع العادي');
+        }
+      },
+      
+      saveState() {
+        localStorage.setItem('studyMode', this.isActive);
+      },
+      
+      loadState() {
+        const saved = localStorage.getItem('studyMode');
+        if (saved === 'true') {
+          this.isActive = true;
+          document.body.classList.add('study-mode');
+          this.button.innerHTML = '✕ خروج من وضع الدراسة';
+          this.button.style.background = 'var(--teal)';
+          this.button.style.color = 'var(--navy)';
+        }
+      },
+      
+      attachEvents() {
+        this.button.addEventListener('click', () => this.toggle());
+        
+        // Keyboard shortcut (Ctrl+Shift+S)
+        document.addEventListener('keydown', (e) => {
+          if (e.ctrlKey && e.shiftKey && e.key === 'S') {
+            e.preventDefault();
+            this.toggle();
+          }
+        });
+      },
+      
+      showNotification(title, message) {
+        if (window.NotificationSystem) {
+          window.NotificationSystem.addNotification('info', title, message, true);
+        }
+      }
+    };
+
+    // Rating System
+    const RatingSystem = {
+      currentRating: 0,
+      ratings: [],
+      
+      init() {
+        this.loadRatings();
+        this.setupStarRating();
+        this.updateAverageRating();
+      },
+      
+      loadRatings() {
+        const saved = localStorage.getItem('courseRatings');
+        if (saved) {
+          this.ratings = JSON.parse(saved);
+        } else {
+          // Default ratings
+          this.ratings = [
+            { rating: 5, comment: 'كورس ممتاز ومفيد جداً', date: new Date('2024-01-10') },
+            { rating: 4, comment: 'محتوى جيد ومنظم', date: new Date('2024-01-08') },
+            { rating: 5, comment: 'شرح واضح ومفصل', date: new Date('2024-01-05') }
+          ];
+        }
+      },
+      
+      saveRatings() {
+        localStorage.setItem('courseRatings', JSON.stringify(this.ratings));
+      },
+      
+      setupStarRating() {
+        const stars = document.querySelectorAll('.star');
+        const ratingText = document.getElementById('ratingText');
+        
+        stars.forEach(star => {
+          star.addEventListener('click', () => {
+            const rating = parseInt(star.dataset.rating);
+            this.currentRating = rating;
+            this.updateStars(rating);
+            
+            const texts = ['سيء', 'ضعيف', 'متوسط', 'جيد', 'ممتاز'];
+            ratingText.textContent = texts[rating - 1];
+          });
+          
+          star.addEventListener('mouseenter', () => {
+            const rating = parseInt(star.dataset.rating);
+            this.updateStars(rating);
+          });
+          
+          star.addEventListener('mouseleave', () => {
+            this.updateStars(this.currentRating);
+          });
+        });
+      },
+      
+      updateStars(rating) {
+        const stars = document.querySelectorAll('.star');
+        stars.forEach((star, index) => {
+          star.textContent = index < rating ? '★' : '☆';
+          star.style.color = index < rating ? 'var(--gold)' : 'var(--muted)';
+        });
+      },
+      
+      submitRating() {
+        if (this.currentRating === 0) {
+          alert('يرجى اختيار تقييم');
+          return;
+        }
+        
+        const comment = document.getElementById('ratingComment').value;
+        
+        const newRating = {
+          rating: this.currentRating,
+          comment: comment,
+          date: new Date()
+        };
+        
+        this.ratings.push(newRating);
+        this.saveRatings();
+        this.updateAverageRating();
+        
+        // Reset form
+        this.currentRating = 0;
+        this.updateStars(0);
+        document.getElementById('ratingComment').value = '';
+        document.getElementById('ratingText').textContent = 'اضغط للتقييم';
+        
+        alert('شكراً لتقييمك!');
+      },
+      
+      updateAverageRating() {
+        if (this.ratings.length === 0) return;
+        
+        const sum = this.ratings.reduce((acc, r) => acc + r.rating, 0);
+        const average = (sum / this.ratings.length).toFixed(1);
+        
+        document.getElementById('averageRating').textContent = average;
+        document.getElementById('ratingSummary').innerHTML = `
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span style="font-size: 2rem; font-weight: 700; color: var(--gold);">${average}</span>
+            <span style="color: var(--muted);">/ 5</span>
+            <span style="color: var(--muted); font-size: 0.9rem;">(${this.ratings.length} تقييم)</span>
+          </div>
+        `;
+      }
+    };
+
+    // Content Sharing System
+    const SharingSystem = {
+      currentUrl: window.location.href,
+      courseTitle: 'كورس التحقق والتثبيت - PharmaPro Academy',
+      
+      init() {
+        this.updateShareLink();
+      },
+      
+      updateShareLink() {
+        document.getElementById('shareLink').value = this.currentUrl;
+      },
+      
+      shareToFacebook() {
+        const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(this.currentUrl)}&quote=${encodeURIComponent(this.courseTitle)}`;
+        window.open(url, '_blank', 'width=600,height=400');
+      },
+      
+      shareToTwitter() {
+        const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(this.currentUrl)}&text=${encodeURIComponent(this.courseTitle)}`;
+        window.open(url, '_blank', 'width=600,height=400');
+      },
+      
+      shareToLinkedIn() {
+        const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(this.currentUrl)}`;
+        window.open(url, '_blank', 'width=600,height=400');
+      },
+      
+      shareToWhatsApp() {
+        const url = `https://wa.me/?text=${encodeURIComponent(this.courseTitle + ' - ' + this.currentUrl)}`;
+        window.open(url, '_blank');
+      },
+      
+      shareViaEmail() {
+        const subject = encodeURIComponent(this.courseTitle);
+        const body = encodeURIComponent(`أود مشاركة هذا الكورس معك:\n\n${this.courseTitle}\n\nالرابط: ${this.currentUrl}`);
+        window.location.href = `mailto:?subject=${subject}&body=${body}`;
+      },
+      
+      copyLink() {
+        const linkInput = document.getElementById('shareLink');
+        linkInput.select();
+        document.execCommand('copy');
+        
+        // Show feedback
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.textContent = 'تم النسخ!';
+        btn.style.background = '#4CAF50';
+        
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = 'var(--teal)';
+        }, 2000);
+      }
+    };
+
+    // Make sharing functions globally accessible
+    window.shareToFacebook = () => SharingSystem.shareToFacebook();
+    window.shareToTwitter = () => SharingSystem.shareToTwitter();
+    window.shareToLinkedIn = () => SharingSystem.shareToLinkedIn();
+    window.shareToWhatsApp = () => SharingSystem.shareToWhatsApp();
+    window.shareViaEmail = () => SharingSystem.shareViaEmail();
+    window.copyLink = () => SharingSystem.copyLink();
+    window.submitRating = () => RatingSystem.submitRating();
+
     // Auto-convert YouTube links to embedded videos
     document.addEventListener('DOMContentLoaded', function() {
+      StudyMode.init();
+      RatingSystem.init();
+      SharingSystem.init();
+      
       const videoLinks = document.querySelectorAll('.video-link');
       
       videoLinks.forEach(link => {

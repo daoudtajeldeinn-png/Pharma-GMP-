@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الدليل السريع | PharmaPro Academy</title>
+  <meta name="description" content="دليل مرجعي سريع للمعلومات الأساسية في GMP والتحكم في الجودة">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.reference-section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.reference-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.reference-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.reference-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal);
+  box-shadow: 0 12px 40px rgba(0,212,170,0.1);
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.card-content {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.card-list li:last-child {
+  border-bottom: none;
+}
+
+.card-list li::before {
+  content: "•";
+  color: var(--teal);
+  margin-left: 0.5rem;
+}
+
+.cheat-sheet {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cheat-sheet-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.cheat-sheet-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cheat-sheet-table th,
+.cheat-sheet-table td {
+  padding: 12px;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+}
+
+.cheat-sheet-table th {
+  background: var(--navy2);
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.cheat-sheet-table td {
+  color: var(--muted);
+}
+
+.cheat-sheet-table tr:hover {
+  background: rgba(0,212,170,0.05);
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .reference-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html">الرئيسية</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="quick-reference.html" class="nav-cta">الدليل السريع</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">الدليل السريع</h1>
+      <p class="page-subtitle">مرجع سريع للمعلومات الأساسية في GMP والتحكم في الجودة</p>
+    </div>
+
+    <!-- GMP Principles -->
+    <div class="reference-section">
+      <h2 class="section-title">المبادئ العشرة لـ GMP</h2>
+      <div class="reference-grid">
+        <div class="reference-card">
+          <div class="card-icon">👥</div>
+          <h3 class="card-title">الشخص المؤهل</h3>
+          <p class="card-content">يجب أن يكون الموظفون مؤهلين ومدربين بشكل مناسب لأداء مهامهم.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🏢</div>
+          <h3 class="card-title">المباني والمرافق</h3>
+          <p class="card-content">المباني والمرافق يجب أن تكون مصممة ومحافظة عليها بشكل مناسب.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🧹</div>
+          <h3 class="card-title">النظافة</h3>
+          <p class="card-content">يجب الحفاظ على النظافة والنظام في جميع الأوقات.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">📝</div>
+          <h3 class="card-title">التوثيق</h3>
+          <p class="card-content">يجب توثيق جميع الإجراءات والعمليات بدقة.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🔍</div>
+          <h3 class="card-title">التحقق</h3>
+          <p class="card-content">يجب التحقق من جميع العمليات والمعدات بشكل دوري.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🚨</div>
+          <h3 class="card-title">الانحرافات</h3>
+          <p class="card-content">يجب التحقيق في الانحرافات واتخاذ إجراءات تصحيحية.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">📦</div>
+          <h3 class="card-title">التخزين</h3>
+          <p class="card-content">يجب تخزين المواد والمنتجات بشكل صحيح.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🔬</div>
+          <h3 class="card-title">الفحص</h3>
+          <p class="card-content">يجب فحص المواد والمنتجات بشكل دوري.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">📊</div>
+          <h3 class="card-title">الجودة</h3>
+          <p class="card-content">يجب تطبيق نظام إدارة الجودة الشامل.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🔄</div>
+          <h3 class="card-title">التحسين</h3>
+          <p class="card-content">يجب التحسين المستمر للعمليات والإجراءات.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Validation Cheat Sheet -->
+    <div class="reference-section">
+      <h2 class="section-title">جدول التحقق والتثبيت</h2>
+      <div class="cheat-sheet">
+        <h3 class="cheat-sheet-title">مراحل التحقق والتثبيت</h3>
+        <table class="cheat-sheet-table">
+          <thead>
+            <tr>
+              <th>المرحلة</th>
+              <th>الوصف</th>
+              <th>المدة الموصى بها</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>IQ</strong><br>التثبيت المؤهل</td>
+              <td>التحقق من التثبيت الصحيح للمعدات</td>
+              <td>1-2 أسبوع</td>
+            </tr>
+            <tr>
+              <td><strong>OQ</strong><br>التشغيل المؤهل</td>
+              <td>التحقق من أن المعدات تعمل كما هو مصمم</td>
+              <td>2-4 أسابيع</td>
+            </tr>
+            <tr>
+              <td><strong>PQ</strong><br>الأداء المؤهل</td>
+              <td>التحقق من أن المعدات تؤدي وظيفتها بشكل صحيح</td>
+              <td>4-8 أسابيع</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CAPA Process -->
+    <div class="reference-section">
+      <h2 class="section-title">عملية CAPA</h2>
+      <div class="reference-grid">
+        <div class="reference-card">
+          <div class="card-icon">🔍</div>
+          <h3 class="card-title">1. الاكتشاف</h3>
+          <ul class="card-list">
+            <li>تحديد الانحراف</li>
+            <li>توثيق المشكلة</li>
+            <li>تصنيف الشدة</li>
+          </ul>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">2. التحقيق</h3>
+          <ul class="card-list">
+            <li>جمع المعلومات</li>
+            <li>تحليل السبب الجذري</li>
+            <li>تقييم التأثير</li>
+          </ul>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">📋</div>
+          <h3 class="card-title">3. التقييم</h3>
+          <ul class="card-list">
+            <li>تقييم المخاطر</li>
+            <li>تحديد الأولويات</li>
+            <li>تطوير الخطة</li>
+          </ul>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">✏️</div>
+          <h3 class="card-title">4. الخطة</h3>
+          <ul class="card-list">
+            <li>تحديد الإجراءات</li>
+            <li>تعيين المسؤوليات</li>
+            <li>تحديد المواعيد</li>
+          </ul>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">⚡</div>
+          <h3 class="card-title">5. التنفيذ</h3>
+          <ul class="card-list">
+            <li>تنفيذ الإجراءات</li>
+            <li>مراقبة التقدم</li>
+            <li>توثيق النتائج</li>
+          </ul>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">✅</div>
+          <h3 class="card-title">6. التحقق</h3>
+          <ul class="card-list">
+            <li>التحقق من الفعالية</li>
+            <li>مراجعة العملية</li>
+            <li>إغلاق الملف</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ISO 9001 Principles -->
+    <div class="reference-section">
+      <h2 class="section-title">مبادئ ISO 9001</h2>
+      <div class="reference-grid">
+        <div class="reference-card">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">التركيز على العميل</h3>
+          <p class="card-content">فهم وتلبية احتياجات العملاء الحالية والمستقبلية.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">👥</div>
+          <h3 class="card-title">القيادة</h3>
+          <p class="card-content">القيادة والالتزام من الإدارة العليا بتحقيق أهداف الجودة.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">👤</div>
+          <h3 class="card-title">الأشخاص</h3>
+          <p class="card-content">إشراك الأشخاص وتطوير كفاءاتهم لتحقيق أهداف المنظمة.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🔄</div>
+          <h3 class="card-title">العملية</h3>
+          <p class="card-content">نهج قائم على العملية لتحقيق النتائج المرجوة بشكل أكثر كفاءة.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🤝</div>
+          <h3 class="card-title">العلاقات</h3>
+          <p class="card-content">إدارة علاقات الموردين والشركاء لتحقيق الفائدة المتبادلة.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">📊</div>
+          <h3 class="card-title">التحسين</h3>
+          <p class="card-content">التحسين المستمر للأداء والقدرات التنافسية.</p>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🔍</div>
+          <h3 class="card-title">اتخاذ القرار</h3>
+          <p class="card-content">اتخاذ القرار القائم على الأدلة والتحليل الموضوعي.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- QC Testing -->
+    <div class="reference-section">
+      <h2 class="section-title">اختبارات الجودة الأساسية</h2>
+      <div class="cheat-sheet">
+        <h3 class="cheat-sheet-title">أنواع الاختبارات ومتطلباتها</h3>
+        <table class="cheat-sheet-table">
+          <thead>
+            <tr>
+              <th>نوع الاختبار</th>
+              <th>الغرض</th>
+              <th>التكرار</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>الفحص الفيزيائي</strong></td>
+              <td>المظهر، اللون، الرائحة، الطعم</td>
+              <td>كل دفعة</td>
+            </tr>
+            <tr>
+              <td><strong>الفحص الكيميائي</strong></td>
+              <td>التحليل الكيميائي للمادة الفعالة</td>
+              <td>كل دفعة</td>
+            </tr>
+            <tr>
+              <td><strong>الفحص الميكروبيولوجي</strong></td>
+              <td>اختبار الملوثات الميكروبية</td>
+              <td>كل دفعة</td>
+            </tr>
+            <tr>
+              <td><strong>فحص الذوبان</strong></td>
+              <td>اختبار معدل الذوبان</td>
+              <td>كل دفعة</td>
+            </tr>
+            <tr>
+              <td><strong>فحص التجانس</strong></td>
+              <td>اختبار تجانس المحتوى</td>
+              <td>كل دفعة</td>
+            </tr>
+            <tr>
+              <td><strong>فحص الاستقرار</strong></td>
+              <td>اختبار استقرار المنتج</td>
+              <td>دوري (سنوي)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Documentation Requirements -->
+    <div class="reference-section">
+      <h2 class="section-title">متطلبات التوثيق</h2>
+      <div class="reference-grid">
+        <div class="reference-card">
+          <div class="card-icon">📋</div>
+          <h3 class="card-title">SOPs</h3>
+          <ul class="card-list">
+            <li>إجراءات التشغيل القياسية</li>
+            <li>تحديث سنوي</li>
+            <li>موافقة الجودة</li>
+          </ul>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">📊</div>
+          <h3 class="card-title">السجلات</h3>
+          <ul class="card-list">
+            <li>سجلات الإنتاج والجودة</li>
+            <li>حفظ لمدة 5 سنوات</li>
+            <li>توقيع المشرف</li>
+          </ul>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">🔍</div>
+          <h3 class="card-title">التقارير</h3>
+          <ul class="card-list">
+            <li>تقارير الفحص والتحليل</li>
+            <li>إصدار فوري</li>
+            <li>مراجعة الجودة</li>
+          </ul>
+        </div>
+        
+        <div class="reference-card">
+          <div class="card-icon">✅</div>
+          <h3 class="card-title">الشهادات</h3>
+          <ul class="card-list">
+            <li>شهادات التحليل</li>
+            <li>مع كل شحنة</li>
+            <li>توقيع المختبر</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

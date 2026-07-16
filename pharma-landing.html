@@ -5,7 +5,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PharmaPro Academy | تدريب GMP/ISO المتخصص</title>
   <meta name="updated" content="2024-06-30">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="منصة تدريبية متخصصة في ممارسات التصنيع الجيد (GMP)، معايير ISO، والتحكم في الجودة للمهنيين في الصناعة الصيدلانية">
+  <meta name="keywords" content="GMP, ISO, QC, Validation, CAPA, PharmaPro Academy, تدريب صيدلاني, جودة صيدلانية">
+  <meta name="author" content="د.داود تاج الدين احمد عبدالكريم">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="PharmaPro Academy | تدريب GMP/ISO المتخصص">
+  <meta property="og:description" content="منصة تدريبية متخصصة في ممارسات التصنيع الجيد (GMP)، معايير ISO، والتحكم في الجودة للمهنيين في الصناعة الصيدلانية">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pharmapro-academy.com/">
+  <meta property="og:image" content="https://pharmapro-academy.com/assets/og-image.png">
+  <meta property="og:locale" content="ar_AR">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PharmaPro Academy | تدريب GMP/ISO المتخصص">
+  <meta name="twitter:description" content="منصة تدريبية متخصصة في ممارسات التصنيع الجيد (GMP)، معايير ISO، والتحكم في الجودة">
+  <meta name="twitter:image" content="https://pharmapro-academy.com/assets/og-image.png">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://pharmapro-academy.com/">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "PharmaPro Academy",
+    "url": "https://pharmapro-academy.com/",
+    "logo": "https://pharmapro-academy.com/assets/logo.png",
+    "description": "منصة تدريبية متخصصة في ممارسات التصنيع الجيد (GMP)، معايير ISO، والتحكم في الجودة للمهنيين في الصناعة الصيدلانية",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "SD"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "info@pharmapro-academy.com"
+    },
+    "sameAs": [
+      "https://www.youtube.com/@SudanQualityPlatform"
+    ]
+  }
+  </script>
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#00D4AA">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PharmaPro">
+  <link rel="apple-touch-icon" href="/assets/icon-192x192.png">
+  <link rel="manifest" href="/manifest.json">
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,7 +81,10 @@
   --border:  rgba(0,212,170,0.15);
 }
 
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
 
 body {
   font-family: 'Cairo', sans-serif;
@@ -32,6 +92,8 @@ body {
   color: var(--light);
   overflow-x: hidden;
   direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body::before {
@@ -44,6 +106,7 @@ body::before {
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
 }
 
 nav {
@@ -136,6 +199,100 @@ nav ul a:hover { color: var(--teal); }
 }
 .nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
 
+.search-container {
+  position: relative;
+  margin-left: 2rem;
+}
+
+.search-input {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 8px 16px 8px 40px;
+  color: var(--white);
+  font-size: 0.85rem;
+  font-family: 'Cairo', sans-serif;
+  width: 200px;
+  transition: all 0.3s;
+}
+
+.search-input:focus {
+  outline: none;
+  background: rgba(255,255,255,0.12);
+  border-color: var(--teal);
+  width: 280px;
+}
+
+.search-input::placeholder {
+  color: var(--muted);
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-top: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  display: none;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.search-results.active {
+  display: block;
+}
+
+.search-result-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.search-result-item:hover {
+  background: rgba(0,212,170,0.08);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-title {
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.search-result-desc {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.search-result-type {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(0,212,170,0.15);
+  color: var(--teal);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  margin-left: 8px;
+}
+
 section {
   position: relative;
   z-index: 1;
@@ -144,6 +301,115 @@ section {
 
 @media (max-width: 968px) {
   nav ul { display: none; }
+}
+
+/* Sidebar styles */
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: 1rem;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+  background: var(--card-bg);
+  border-left: 1px solid var(--border);
+  z-index: 1000;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 20px 20px;
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-close {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+}
+
+.sidebar-section-title {
+  color: var(--teal);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-nav-link {
+  display: block;
+  color: var(--light);
+  text-decoration: none;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.sidebar-nav-link:hover {
+  background: rgba(0,212,170,0.1);
+  color: var(--teal);
+}
+
+.sidebar-nav-link.active {
+  background: rgba(0,212,170,0.15);
+  color: var(--teal);
+  font-weight: 600;
+}
+
+@media (max-width: 968px) {
+  .sidebar-toggle {
+    display: block;
+  }
 }
 
 /* Video Component Styles */
@@ -597,18 +863,10 @@ section {
     text-align: center;
     gap: 2rem;
   }
-  .hero-sub {
-    max-width: 100%;
-  }
-  .hero-actions {
-    justify-content: center;
-  }
-  .hero-stats {
-    justify-content: center;
-  }
-  .hero-visual {
-    display: none;
-  }
+  .hero-sub { max-width: 100%; }
+  .hero-actions { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-visual { display: none; }
 }
 
 /* Courses Section */
@@ -631,6 +889,13 @@ section {
   gap: 1.5rem;
 }
 
+/* 4-column grid for the 24-course block */
+.courses-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
 .course-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -638,6 +903,9 @@ section {
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   cursor: pointer;
+  text-decoration: none;
+  display: block;
+  color: inherit;
 }
 .course-card:hover {
   transform: translateY(-4px);
@@ -647,6 +915,35 @@ section {
 .course-card.featured {
   border-color: rgba(201,168,76,0.4);
   position: relative;
+}
+
+/* Compact card variant for 24-course grid */
+.course-card.compact .course-card-top {
+  padding: 16px 16px 10px;
+}
+.course-card.compact .course-icon {
+  width: 40px; height: 40px;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.course-card.compact h3 {
+  font-size: 0.88rem;
+  margin-bottom: 5px;
+}
+.course-card.compact p {
+  font-size: 0.75rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.course-card.compact .course-card-bottom {
+  padding: 10px 16px 14px;
+}
+.course-card.compact .course-level {
+  font-size: 0.62rem;
+  margin-bottom: 4px;
 }
 
 .course-card-top {
@@ -732,8 +1029,7 @@ section {
 }
 
 .instructor-avatar {
-  width: 28px;
-  height: 28px;
+  width: 28px; height: 28px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--teal), var(--navy3));
   display: flex;
@@ -801,10 +1097,38 @@ section {
   margin-top: 2px;
 }
 
-@media (max-width: 968px) {
-  .courses-grid {
-    grid-template-columns: 1fr;
-  }
+/* Show-more toggle */
+.show-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 1.5rem auto 0;
+  padding: 11px 28px;
+  background: rgba(0,212,170,0.06);
+  border: 1px solid rgba(0,212,170,0.25);
+  border-radius: 8px;
+  color: var(--teal);
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.show-more-btn:hover { background: rgba(0,212,170,0.12); }
+
+.courses-extra { display: none; }
+.courses-extra.open { display: contents; }
+
+@media (max-width: 1100px) {
+  .courses-grid-4 { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .courses-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .courses-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .courses-grid-4 { grid-template-columns: 1fr; }
 }
 
 /* Testimonials */
@@ -890,10 +1214,7 @@ section {
   flex-shrink: 0;
 }
 
-.fb-content {
-  flex: 1;
-  min-width: 200px;
-}
+.fb-content { flex: 1; min-width: 200px; }
 .fb-content h3 {
   font-size: 1.3rem;
   font-weight: 700;
@@ -1058,7 +1379,54 @@ footer {
       <li><a href="#testimonials">آراء المتدربين</a></li>
       <li><a href="#enroll" class="nav-cta">سجّل الآن</a></li>
     </ul>
+    <div class="search-container">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" placeholder="ابحث في الكورسات..." id="searchInput">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
   </nav>
+
+  <!-- Sidebar -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <div class="logo-text">
+          <span>PharmaPro Academy</span>
+          <span>GMP · ISO · QC</span>
+        </div>
+      </div>
+      <button class="sidebar-close" id="sidebarClose">✕</button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">القائمة الرئيسية</div>
+      <a href="#courses" class="sidebar-nav-link">الكورسات</a>
+      <a href="#curriculum" class="sidebar-nav-link">المنهج</a>
+      <a href="#audience" class="sidebar-nav-link">لمن؟</a>
+      <a href="#testimonials" class="sidebar-nav-link">آراء المتدربين</a>
+      <a href="#enroll" class="sidebar-nav-link">سجّل الآن</a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">الكورسات المتاحة</div>
+      <a href="course-validation.html" class="sidebar-nav-link">التحقق والتثبيت</a>
+      <a href="course-capa.html" class="sidebar-nav-link">إدارة الانحرافات CAPA</a>
+      <a href="course-iso-9001.html" class="sidebar-nav-link">ISO 9001</a>
+      <a href="course-qc-lab.html" class="sidebar-nav-link">التحكم في الجودة المختبري</a>
+      <a href="course-ipqc.html" class="sidebar-nav-link">التحكم في الجودة أثناء العملية</a>
+      <a href="course-gmp-basics.html" class="sidebar-nav-link">أساسيات GMP</a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">الموارد</div>
+      <a href="resources.html" class="sidebar-nav-link">المصادر الرسمية</a>
+      <a href="quiz-page.html" class="sidebar-nav-link">نظام الاختبارات</a>
+      <a href="dashboard.html" class="sidebar-nav-link">لوحة التحكم</a>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1076,12 +1444,8 @@ footer {
       </p>
 
       <div class="hero-actions">
-        <a href="#courses" class="btn-primary">
-          استعرض الكورسات ←
-        </a>
-        <a href="#curriculum" class="btn-outline">
-          ▶ نظرة على المنهج
-        </a>
+        <a href="#courses" class="btn-primary">استعرض الكورسات ←</a>
+        <a href="#curriculum" class="btn-outline">▶ نظرة على المنهج</a>
       </div>
 
       <div class="hero-stats">
@@ -1090,7 +1454,7 @@ footer {
           <div class="stat-label">متدرب محترف</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">12</div>
+          <div class="stat-num">24</div>
           <div class="stat-label">كورس متخصص</div>
         </div>
         <div class="stat-item">
@@ -1132,7 +1496,6 @@ footer {
     </div>
   </section>
 
-  <!-- VIDEO PREVIEW -->
   <!-- FOUNDER SECTION -->
   <section style="padding: 80px 5%; background: linear-gradient(135deg, rgba(10,22,40,0.95), rgba(5,15,30,0.98)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <div class="fade-up" style="max-width: 900px; margin: 0 auto;">
@@ -1142,8 +1505,6 @@ footer {
       </div>
 
       <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start;">
-
-        <!-- Left: Identity card -->
         <div style="background: rgba(0,212,170,0.05); border: 1px solid rgba(0,212,170,0.2); border-radius: 20px; padding: 2rem; text-align: center;">
           <div style="width: 100px; height: 100px; background: linear-gradient(135deg, var(--teal), #0099cc); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2.5rem; font-weight: 700; color: var(--navy); box-shadow: 0 8px 30px rgba(0,212,170,0.3);">د</div>
           <div style="font-size: 1.1rem; font-weight: 800; color: var(--white); margin-bottom: 0.3rem;">د. داود تاج الدين أحمد</div>
@@ -1160,31 +1521,18 @@ footer {
             </div>
           </div>
           <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
-            <a href="https://www.researchgate.net/profile/Daoud-Tajeldeinn-Ahmed" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.3); border-radius:8px; color:var(--teal); text-decoration:none; font-size:0.78rem; font-weight:600; transition:all 0.3s;">
-              🔬 ResearchGate
-            </a>
-            <a href="https://github.com/daoudtajeldeinn-png" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.3); border-radius:8px; color:var(--teal); text-decoration:none; font-size:0.78rem; font-weight:600; transition:all 0.3s;">
-              💻 GitHub
-            </a>
-            <a href="https://scholar.google.com/citations?user=DzRrLjcAAAAJ&hl=ar" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.3); border-radius:8px; color:var(--teal); text-decoration:none; font-size:0.78rem; font-weight:600; transition:all 0.3s;">
-              🎓 Google Scholar
-            </a>
-            <a href="https://www.credential.net/profile/daoudtajeldeinn887198/wallet" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:8px; color:var(--gold); text-decoration:none; font-size:0.78rem; font-weight:600; transition:all 0.3s;">
-              🏅 شهاداتي — Accredible
-            </a>
-            <a href="https://www.skills.google/profile/badges?credential_type=skill_badge" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:8px; color:var(--gold); text-decoration:none; font-size:0.78rem; font-weight:600; transition:all 0.3s;">
-              🎯 Google Skill Badges
-            </a>
+            <a href="https://www.researchgate.net/profile/Daoud-Tajeldeinn-Ahmed" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.3); border-radius:8px; color:var(--teal); text-decoration:none; font-size:0.78rem; font-weight:600;">🔬 ResearchGate</a>
+            <a href="https://github.com/daoudtajeldeinn-png" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.3); border-radius:8px; color:var(--teal); text-decoration:none; font-size:0.78rem; font-weight:600;">💻 GitHub</a>
+            <a href="https://scholar.google.com/citations?user=DzRrLjcAAAAJ&hl=ar" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; background:rgba(0,212,170,0.1); border:1px solid rgba(0,212,170,0.3); border-radius:8px; color:var(--teal); text-decoration:none; font-size:0.78rem; font-weight:600;">🎓 Google Scholar</a>
+            <a href="https://www.credential.net/profile/daoudtajeldeinn887198/wallet" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 16px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); border-radius:8px; color:var(--gold); text-decoration:none; font-size:0.78rem; font-weight:600;">🏅 شهاداتي — Accredible</a>
           </div>
         </div>
 
-        <!-- Right: Bio & achievements -->
         <div style="display: flex; flex-direction: column; gap: 1.5rem;">
           <p style="font-size: 0.95rem; color: var(--muted); line-height: 1.8;">
             باحث صيدلاني وأكاديمي سوداني متخصص في ضمان الجودة الدوائية وممارسات التصنيع الجيد. يعمل في الصناعات الكيميائية السودانية (SCI) ومنتسب لكلية الصيدلة بجامعة أم درمان الإسلامية. يجمع بين الخبرة العملية الميدانية في بيئات GMP/GLP/ISO والبحث الأكاديمي المنشور دولياً.
           </p>
 
-          <!-- Stats -->
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
             <div style="background: rgba(0,212,170,0.05); border: 1px solid rgba(0,212,170,0.15); border-radius: 12px; padding: 1rem; text-align: center;">
               <div style="font-size: 1.8rem; font-weight: 800; color: var(--teal);">7+</div>
@@ -1200,7 +1548,6 @@ footer {
             </div>
           </div>
 
-          <!-- Key publications -->
           <div>
             <div style="font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem;">🏆 أبرز المنشورات</div>
             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
@@ -1219,7 +1566,6 @@ footer {
             </div>
           </div>
 
-          <!-- Platforms -->
           <div>
             <div style="font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem;">💻 المنصات التقنية المطورة</div>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
@@ -1235,7 +1581,7 @@ footer {
     </div>
   </section>
 
-    <!-- TRUSTED BY -->
+  <!-- TRUSTED BY -->
   <div class="trusted fade-up">
     <p>متخصصون من مؤسسات رائدة</p>
     <div class="trusted-logos">
@@ -1294,7 +1640,7 @@ footer {
           <div class="compliance-tags">
             <span class="compliance-tag highlight">ICH Q7 · Q8 · Q9 · Q10</span>
             <span class="compliance-tag">WHO GMP TRS 1044</span>
-            <span class="compliance-tag">EU GMP Part I & II</span>
+            <span class="compliance-tag">EU GMP Part I &amp; II</span>
             <span class="compliance-tag highlight">FDA 21 CFR 211</span>
             <span class="compliance-tag">ISO 9001:2015</span>
             <span class="compliance-tag">ISO/IEC 17025</span>
@@ -1310,107 +1656,381 @@ footer {
     </div>
   </section>
 
-  <!-- COURSES -->
+  <!-- ============================================================
+       COURSES SECTION
+       ============================================================ -->
   <section id="courses" class="courses-bg">
     <div class="courses-header fade-up">
       <div>
         <div class="section-eyebrow">الكورسات المتاحة</div>
         <h2 class="section-title">اختر مسارك <em>التخصصي</em></h2>
       </div>
-      <a href="#enroll" class="btn-outline">عرض جميع الكورسات ←</a>
+      <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="btn-outline">ادخل المنصة ←</a>
     </div>
 
-    <!-- BLOCK 1: منصة السودان للجودة — امتحان + شهادة -->
+    <!-- ══════════════════════════════════════════════════════
+         BLOCK 1 — منصة السودان للجودة · 24 كورس + شهادة
+         ══════════════════════════════════════════════════════ -->
     <div class="fade-up" style="margin-bottom: 3rem;">
+
+      <!-- Block header -->
       <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 16px 20px; background: rgba(0,212,170,0.06); border: 1px solid rgba(0,212,170,0.25); border-radius: 12px;">
         <div style="width: 44px; height: 44px; background: rgba(0,212,170,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;">🎓</div>
         <div>
-          <div style="font-size: 1rem; font-weight: 700; color: var(--white);">منصة السودان للجودة — امتحان تفاعلي + شهادة معتمدة</div>
-          <div style="font-size: 0.8rem; color: var(--teal); margin-top: 2px;">كورسات تفاعلية كاملة · اختبر معرفتك · احصل على شهادتك الرقمية</div>
+          <div style="font-size: 1rem; font-weight: 700; color: var(--white);">منصة السودان للجودة — 24 كورساً تفاعلياً · امتحان + شهادة معتمدة</div>
+          <div style="font-size: 0.8rem; color: var(--teal); margin-top: 2px;">كورسات كاملة · اختبر معرفتك · احصل على شهادتك الرقمية فور الاجتياز</div>
         </div>
         <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="btn-primary" style="margin-right: auto; padding: 10px 20px; font-size: 0.85rem; flex-shrink: 0;">ادخل المنصة ←</a>
       </div>
-      <div class="courses-grid">
-        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card fade-up" style="border-color: rgba(0,212,170,0.3);">
+
+      <!-- ── First 8 cards always visible ── -->
+      <div class="courses-grid-4" id="sudanCoursesGrid">
+
+        <!-- 1 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact" style="border-color: rgba(0,212,170,0.3);">
           <div class="course-card-top">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <div class="course-icon icon-teal" style="margin-bottom:0;">🏭</div>
-              <span style="font-size:0.65rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:3px 10px; border-radius:100px; font-weight:700;">🎓 امتحان + شهادة</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-teal">🏭</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
             </div>
-            <div class="course-level">الأساسيات · مستوى I</div>
+            <div class="course-level">أساسيات · I</div>
             <h3>مقدمة في GMP</h3>
-            <p>ممارسات التصنيع الجيد — نظام لضمان إنتاج المنتجات ومراقبتها باستمرار وفقاً لمعايير الجودة.</p>
-            <div class="course-features"><span class="feature-badge">✓ 16 شرائح</span><span class="feature-badge">✓ 45 دقيقة</span></div>
+            <p>ممارسات التصنيع الجيد — المبادئ الجوهرية لضمان جودة المنتج الدوائي.</p>
           </div>
-          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">🎯 مبتدئ</span></div></div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 16 شريحة</span></div></div>
         </a>
-        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card fade-up" style="border-color: rgba(0,212,170,0.3);">
+
+        <!-- 2 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact" style="border-color: rgba(0,212,170,0.3);">
           <div class="course-card-top">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <div class="course-icon icon-gold" style="margin-bottom:0;">🔬</div>
-              <span style="font-size:0.65rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:3px 10px; border-radius:100px; font-weight:700;">🎓 امتحان + شهادة</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-gold">🧹</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
             </div>
-            <div class="course-level gold-level">متقدم · مستوى III</div>
-            <h3>التحقق من التنظيف (Cleaning Validation)</h3>
-            <p>إثبات علمي بأن عملية التنظيف قادرة على إزالة بقايا الأدوية والمنظفات والتلوث الميكروبي.</p>
-            <div class="course-features"><span class="feature-badge">✓ 10 شرائح</span><span class="feature-badge">✓ 40 دقيقة</span></div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>تحقق التنظيف (Cleaning Validation)</h3>
+            <p>إثبات علمي لإزالة بقايا الأدوية والمنظفات والتلوث الميكروبي.</p>
           </div>
-          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">🎯 متقدم</span></div></div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 10 شرائح</span></div></div>
         </a>
-        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card fade-up" style="border-color: rgba(0,212,170,0.3);">
+
+        <!-- 3 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact" style="border-color: rgba(0,212,170,0.3);">
           <div class="course-card-top">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <div class="course-icon icon-gold" style="margin-bottom:0;">⚙️</div>
-              <span style="font-size:0.65rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:3px 10px; border-radius:100px; font-weight:700;">🎓 امتحان + شهادة</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-gold">⚙️</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
             </div>
-            <div class="course-level gold-level">متقدم · مستوى III</div>
-            <h3>تأهيل الأجهزة والمرافق (Equipment Qualification)</h3>
-            <p>التحقق الموثق من أن المعدات مُثبَّتة بصورة صحيحة. يشمل DQ · IQ · OQ · PQ.</p>
-            <div class="course-features"><span class="feature-badge">✓ 10 شرائح</span><span class="feature-badge">✓ 45 دقيقة</span></div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>تأهيل الأجهزة والمرافق</h3>
+            <p>DQ · IQ · OQ · PQ — التحقق الموثق من تثبيت المعدات وأدائها.</p>
           </div>
-          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">🎯 متقدم</span></div></div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 10 شرائح</span></div></div>
         </a>
-        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card fade-up" style="border-color: rgba(0,212,170,0.3);">
+
+        <!-- 4 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact" style="border-color: rgba(0,212,170,0.3);">
           <div class="course-card-top">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <div class="course-icon icon-blue" style="margin-bottom:0;">📋</div>
-              <span style="font-size:0.65rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:3px 10px; border-radius:100px; font-weight:700;">🎓 امتحان + شهادة</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-blue">📋</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
             </div>
-            <div class="course-level">متوسط · مستوى II</div>
-            <h3>الرقابة الدوائية (NMPB Regulatory)</h3>
+            <div class="course-level">متوسط · II</div>
+            <h3>الرقابة الدوائية NMPB</h3>
             <p>المجلس القومي للأدوية والسموم — السلطة الرقابية الوطنية في السودان.</p>
-            <div class="course-features"><span class="feature-badge">✓ 10 شرائح</span><span class="feature-badge">✓ 35 دقيقة</span></div>
           </div>
-          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">🎯 متوسط</span></div></div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 10 شرائح</span></div></div>
         </a>
-        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card fade-up" style="border-color: rgba(0,212,170,0.3);">
+
+        <!-- 5 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact" style="border-color: rgba(0,212,170,0.3);">
           <div class="course-card-top">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <div class="course-icon icon-blue" style="margin-bottom:0;">🧪</div>
-              <span style="font-size:0.65rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:3px 10px; border-radius:100px; font-weight:700;">🎓 امتحان + شهادة</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-blue">🧪</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
             </div>
-            <div class="course-level">متوسط · مستوى II</div>
-            <h3>مبادئ GLP (Good Laboratory Practice)</h3>
-            <p>نظام جودة يتعلق بالعملية التنظيمية للدراسات غير السريرية وإجرائها ومراقبتها.</p>
-            <div class="course-features"><span class="feature-badge">✓ 9 شرائح</span><span class="feature-badge">✓ 30 دقيقة</span></div>
+            <div class="course-level">متوسط · II</div>
+            <h3>مبادئ GLP</h3>
+            <p>Good Laboratory Practice — جودة الدراسات غير السريرية ومراقبتها.</p>
           </div>
-          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">🎯 متوسط</span></div></div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 9 شرائح</span></div></div>
         </a>
-        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card fade-up" style="border-color: rgba(0,212,170,0.3);">
+
+        <!-- 6 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact" style="border-color: rgba(0,212,170,0.3);">
           <div class="course-card-top">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-              <div class="course-icon icon-gold" style="margin-bottom:0;">📊</div>
-              <span style="font-size:0.65rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:3px 10px; border-radius:100px; font-weight:700;">🎓 امتحان + شهادة</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-gold">📊</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
             </div>
-            <div class="course-level gold-level">متقدم · مستوى III</div>
+            <div class="course-level gold-level">متقدم · III</div>
             <h3>ISO/IEC 17025:2017</h3>
-            <p>المعيار الدولي لكفاءة وحيادية المختبرات مع التفكير المبني على المخاطر.</p>
-            <div class="course-features"><span class="feature-badge">✓ 8 شرائح</span><span class="feature-badge">✓ 25 دقيقة</span></div>
+            <p>المعيار الدولي لكفاءة المختبرات — التفكير المبني على المخاطر.</p>
           </div>
-          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">🎯 متقدم</span></div></div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 8 شرائح</span></div></div>
         </a>
-      </div>
-    </div>
+
+        <!-- 7 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-teal">🔬</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>تحقق الطرق التحليلية</h3>
+            <p>ICH Q2(R2) — النوعية، الخطية، الدقة، الحدود، المتانة.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 12 شريحة</span></div></div>
+        </a>
+
+        <!-- 8 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-teal">📦</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level">متوسط · II</div>
+            <h3>اختبارات الاستقرار ICH Q1</h3>
+            <p>دراسات الاستقرار — المنطقة المناخية IVb، ظروف التخزين، مدة الصلاحية.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 10 شرائح</span></div></div>
+        </a>
+
+        <!-- ── Remaining 16 cards (hidden by default) ── -->
+        <!-- 9 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-blue">⚠️</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level">متوسط · II</div>
+            <h3>إدارة الانحرافات والـ CAPA</h3>
+            <p>تحليل السبب الجذري، خطط العمل التصحيحية والوقائية وفق ICH Q10.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 11 شريحة</span></div></div>
+        </a>
+
+        <!-- 10 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-teal">🏗️</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level">أساسيات · I</div>
+            <h3>بيئة التصنيع وتصميم المرافق</h3>
+            <p>الغرف النظيفة، HVAC، مستويات التلوث، ومتطلبات GMP للمرافق.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 14 شريحة</span></div></div>
+        </a>
+
+        <!-- 11 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-gold">📝</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level">أساسيات · I</div>
+            <h3>نظام التوثيق الصيدلاني</h3>
+            <p>BMR · BPR · SOP · Protocol — إعداد الوثائق وفق متطلبات GMP.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 13 شريحة</span></div></div>
+        </a>
+
+        <!-- 12 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-blue">🔍</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>OOS &amp; OOT: الاستقصاء والقرار</h3>
+            <p>التحقيق في النتائج خارج المواصفات وخارج الاتجاه — المرحلة I و II.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 10 شرائح</span></div></div>
+        </a>
+
+        <!-- 13 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-gold">🧫</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>Annex 1: المنتجات المعقمة</h3>
+            <p>استراتيجية مكافحة التلوث، ضمان التعقيم، غرف النظيفة وفق EU GMP Annex 1.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 12 شريحة</span></div></div>
+        </a>
+
+        <!-- 14 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-teal">⚖️</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>إدارة المخاطر ICH Q9</h3>
+            <p>FMEA · HACCP · Risk Acceptability — منهجية إدارة مخاطر الجودة الدوائية.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 11 شريحة</span></div></div>
+        </a>
+
+        <!-- 15 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-blue">💊</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level">أساسيات · I</div>
+            <h3>الأشكال الصيدلانية والـ IPQC</h3>
+            <p>مراقبة الجودة أثناء العملية — أقراص، كبسولات، سوائل، مواصفات CoA.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 12 شريحة</span></div></div>
+        </a>
+
+        <!-- 16 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-gold">🏭</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>تحقق العمليات Process Validation</h3>
+            <p>المراحل I، II، III — التحقق المستمر من العملية وفق FDA Guidance 2011.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 14 شريحة</span></div></div>
+        </a>
+
+        <!-- 17 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-teal">🚚</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level">متوسط · II</div>
+            <h3>GDP والسلسلة الباردة</h3>
+            <p>ممارسات التوزيع الجيد — التخزين، النقل، إدارة سلسلة التبريد الدوائية.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 10 شرائح</span></div></div>
+        </a>
+
+        <!-- 18 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-blue">🖥️</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>تحقق الأنظمة الحاسوبية</h3>
+            <p>FDA 21 CFR Part 11 · GAMP 5 — تحقق البرمجيات وسجلات الأنظمة الإلكترونية.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 11 شريحة</span></div></div>
+        </a>
+
+        <!-- 19 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-teal">🧲</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level">متوسط · II</div>
+            <h3>تأهيل المواد الخام والموردين</h3>
+            <p>Supplier Qualification · CoA · خطط أخذ العينات وفق خطط أخذ العينات الإحصائية.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 9 شرائح</span></div></div>
+        </a>
+
+        <!-- 20 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-gold">🔎</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>التدقيق الداخلي وفق ISO 9001</h3>
+            <p>تخطيط التدقيق، قائمة المراجعة، إغلاق النتائج وإعداد تقرير التدقيق.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 12 شريحة</span></div></div>
+        </a>
+
+        <!-- 21 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-blue">🛡️</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level">متوسط · II</div>
+            <h3>سلامة المريض ومضادات التزوير</h3>
+            <p>Track &amp; Trace، رموز الاستجابة السريعة، اشتراطات التغليف الأمني الدوائي.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 8 شرائح</span></div></div>
+        </a>
+
+        <!-- 22 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-teal">🌡️</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>الـ HVAC والمرافق النظيفة</h3>
+            <p>تصميم أنظمة التهوية والتكييف لمناطق التصنيع الدوائي وفق EU GMP.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 10 شرائح</span></div></div>
+        </a>
+
+        <!-- 23 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-gold">📈</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level">متوسط · II</div>
+            <h3>مراجعة بيانات الدفعة وفحص الجودة</h3>
+            <p>مراجعة سجلات الإنتاج، قرار الإفراج عن الدفعة، ومعايير القبول.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 11 شريحة</span></div></div>
+        </a>
+
+        <!-- 24 -->
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="course-card compact courses-extra" style="border-color: rgba(0,212,170,0.3);">
+          <div class="course-card-top">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <div class="course-icon icon-blue">🏅</div>
+              <span style="font-size:0.6rem; background:rgba(0,212,170,0.15); color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:2px 8px; border-radius:100px; font-weight:700; white-space:nowrap;">🎓 شهادة</span>
+            </div>
+            <div class="course-level gold-level">متقدم · III</div>
+            <h3>نظام الجودة الدوائية ICH Q10</h3>
+            <p>بناء PQS متكامل — القيادة، المراجعة الإدارية، التحسين المستمر.</p>
+          </div>
+          <div class="course-card-bottom"><div class="course-meta"><span class="meta-item">📄 13 شريحة</span></div></div>
+        </a>
+
+      </div><!-- /courses-grid-4 -->
+
+      <!-- Show more / less button -->
+      <button class="show-more-btn" id="showMoreBtn" onclick="toggleCourses()">
+        <span id="showMoreText">عرض الـ 16 كورساً المتبقية ↓</span>
+      </button>
+
+    </div><!-- /block 1 -->
 
     <!-- DIVIDER -->
     <div class="fade-up" style="display:flex; align-items:center; gap:1.5rem; margin: 2rem 0 3rem;">
@@ -1419,7 +2039,9 @@ footer {
       <div style="flex:1; height:1px; background:var(--border);"></div>
     </div>
 
-    <!-- BLOCK 2: موارد PDF وشرائح -->
+    <!-- ══════════════════════════════════════════════════════
+         BLOCK 2 — موارد PDF وشرائح (unchanged)
+         ══════════════════════════════════════════════════════ -->
     <div class="fade-up">
       <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 16px 20px; background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.25); border-radius: 12px;">
         <div style="width: 44px; height: 44px; background: rgba(201,168,76,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;">📄</div>
@@ -1454,7 +2076,7 @@ footer {
               <span style="font-size:0.65rem; background:rgba(201,168,76,0.12); color:var(--gold); border:1px solid rgba(201,168,76,0.3); padding:3px 10px; border-radius:100px; font-weight:700;">📄 شرائح + PDF</span>
             </div>
             <div class="course-level gold-level">متقدم · مستوى III</div>
-            <h3>التحقق والتثبيت: Validation & Qualification الشاملة</h3>
+            <h3>التحقق والتثبيت: Validation &amp; Qualification الشاملة</h3>
             <p>IQ · OQ · PQ، تحقق العمليات والتنظيف والطرق التحليلية وفق ICH Q2(R2) وGAMP 5.</p>
             <div class="course-features">
               <span class="feature-badge" style="background:rgba(201,168,76,0.08); border-color:rgba(201,168,76,0.2); color:var(--gold);">✓ شرائح تفاعلية</span>
@@ -1532,7 +2154,7 @@ footer {
     </div>
   </section>
 
-    <!-- AUDIENCE -->
+  <!-- AUDIENCE -->
   <section id="audience">
     <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto">
       <div class="section-eyebrow">الفئة المستهدفة</div>
@@ -1572,42 +2194,27 @@ footer {
       <div class="module-block">
         <div class="module-item">
           <div class="module-num">01</div>
-          <div class="module-info">
-            <h5>بيئة التصنيع وتصميم المرافق</h5>
-            <span>Facility Design · Clean Rooms · HVAC GMP</span>
-          </div>
+          <div class="module-info"><h5>بيئة التصنيع وتصميم المرافق</h5><span>Facility Design · Clean Rooms · HVAC GMP</span></div>
           <span class="module-duration">90 د</span>
         </div>
         <div class="module-item">
           <div class="module-num">02</div>
-          <div class="module-info">
-            <h5>نظام التوثيق الصيدلاني</h5>
-            <span>BMR · BPR · SOP · Protocol · Report</span>
-          </div>
+          <div class="module-info"><h5>نظام التوثيق الصيدلاني</h5><span>BMR · BPR · SOP · Protocol · Report</span></div>
           <span class="module-duration">2 ساعة</span>
         </div>
         <div class="module-item">
           <div class="module-num">03</div>
-          <div class="module-info">
-            <h5>المواد الخام والموردون</h5>
-            <span>Supplier Qualification · CoA · Sampling</span>
-          </div>
+          <div class="module-info"><h5>المواد الخام والموردون</h5><span>Supplier Qualification · CoA · Sampling</span></div>
           <span class="module-duration">75 د</span>
         </div>
         <div class="module-item">
           <div class="module-num">04</div>
-          <div class="module-info">
-            <h5>التحقق من العمليات</h5>
-            <span>Process Validation Stages I, II, III</span>
-          </div>
+          <div class="module-info"><h5>التحقق من العمليات</h5><span>Process Validation Stages I, II, III</span></div>
           <span class="module-duration">2.5 ساعة</span>
         </div>
         <div class="module-item">
           <div class="module-num">05</div>
-          <div class="module-info">
-            <h5>التدقيق الداخلي وإدارة CAPA</h5>
-            <span>Audit Planning · RCA · Action Closure</span>
-          </div>
+          <div class="module-info"><h5>التدقيق الداخلي وإدارة CAPA</h5><span>Audit Planning · RCA · Action Closure</span></div>
           <span class="module-duration">2 ساعة</span>
         </div>
       </div>
@@ -1615,42 +2222,27 @@ footer {
       <div class="module-block">
         <div class="module-item">
           <div class="module-num">06</div>
-          <div class="module-info">
-            <h5>اختبارات الاستقرار والمنطقة المناخية</h5>
-            <span>ICH Q1 · Zone IVb · Packaging Studies</span>
-          </div>
+          <div class="module-info"><h5>اختبارات الاستقرار والمنطقة المناخية</h5><span>ICH Q1 · Zone IVb · Packaging Studies</span></div>
           <span class="module-duration">90 د</span>
         </div>
         <div class="module-item">
           <div class="module-num">07</div>
-          <div class="module-info">
-            <h5>تحقق الطرق التحليلية</h5>
-            <span>ICH Q2(R2) · Specificity · Linearity · Robustness</span>
-          </div>
+          <div class="module-info"><h5>تحقق الطرق التحليلية</h5><span>ICH Q2(R2) · Specificity · Linearity · Robustness</span></div>
           <span class="module-duration">2 ساعة</span>
         </div>
         <div class="module-item">
           <div class="module-num">08</div>
-          <div class="module-info">
-            <h5>OOS & OOT: الاستقصاء والقرار</h5>
-            <span>Phase I/II Investigation · FDA Guidance</span>
-          </div>
+          <div class="module-info"><h5>OOS &amp; OOT: الاستقصاء والقرار</h5><span>Phase I/II Investigation · FDA Guidance</span></div>
           <span class="module-duration">75 د</span>
         </div>
         <div class="module-item">
           <div class="module-num">09</div>
-          <div class="module-info">
-            <h5>Annex 1 المُعدَّل: المنتجات المعقمة</h5>
-            <span>Contamination Control Strategy · Sterility Assurance</span>
-          </div>
+          <div class="module-info"><h5>Annex 1 المُعدَّل: المنتجات المعقمة</h5><span>Contamination Control Strategy · Sterility Assurance</span></div>
           <span class="module-duration">2 ساعة</span>
         </div>
         <div class="module-item">
           <div class="module-num">10</div>
-          <div class="module-info">
-            <h5>إدارة المخاطر وفق ICH Q9</h5>
-            <span>FMEA · HACCP · Risk Acceptability</span>
-          </div>
+          <div class="module-info"><h5>إدارة المخاطر وفق ICH Q9</h5><span>FMEA · HACCP · Risk Acceptability</span></div>
           <span class="module-duration">90 د</span>
         </div>
       </div>
@@ -1670,34 +2262,23 @@ footer {
         <q>أخيراً تدريب يفهم الفرق بين GMP النظري وما يحدث فعلاً داخل المصنع. استطعت تطبيق منهجية OOS في أسبوع واحد بعد إتمام الكورس.</q>
         <div class="testimonial-author">
           <div class="author-avatar">م.أ</div>
-          <div class="author-info">
-            <span>م. أحمد عبدالله</span>
-            <small>مهندس كيميائي — مصنع أدوية، الخرطوم</small>
-          </div>
+          <div class="author-info"><span>م. أحمد عبدالله</span><small>مهندس كيميائي — مصنع أدوية، الخرطوم</small></div>
         </div>
       </div>
-
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
         <q>كورس التحقق من الطرق التحليلية وفق ICH Q2(R2) كان بالضبط ما أحتاجه. المحتوى دقيق، مرتب، ومدعوم بأمثلة حقيقية من بيئات QC.</q>
         <div class="testimonial-author">
           <div class="author-avatar">د.س</div>
-          <div class="author-info">
-            <span>د. سارة محمود</span>
-            <small>صيدلانية QC — شركة دواء متعددة الجنسيات</small>
-          </div>
+          <div class="author-info"><span>د. سارة محمود</span><small>صيدلانية QC — شركة دواء متعددة الجنسيات</small></div>
         </div>
       </div>
-
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
         <q>منذ إتمام كورس ISO 9001 وبناء QMS، أصبح فريقنا يمتلك مرجعاً واضحاً لكل إجراء. التدريب غيّر طريقة عمل قسم الجودة بالكامل.</q>
         <div class="testimonial-author">
           <div class="author-avatar">خ.إ</div>
-          <div class="author-info">
-            <span>خالد إبراهيم</span>
-            <small>مختص QA — مجمع صناعي دوائي</small>
-          </div>
+          <div class="author-info"><span>خالد إبراهيم</span><small>مختص QA — مجمع صناعي دوائي</small></div>
         </div>
       </div>
     </div>
@@ -1711,9 +2292,7 @@ footer {
         <h3>انضم إلى مجتمعنا على فيسبوك</h3>
         <p>صفحة متخصصة للكيميائيين والمهندسين الكيميائيين ومختصي ضبط الجودة — آخر المستجدات التنظيمية، نقاشات مهنية، وإعلانات الكورسات الجديدة.</p>
       </div>
-      <a href="https://www.facebook.com" target="_blank" class="btn-facebook">
-        📘 تابعنا على فيسبوك
-      </a>
+      <a href="https://www.facebook.com" target="_blank" class="btn-facebook">📘 تابعنا على فيسبوك</a>
     </div>
   </section>
 
@@ -1724,20 +2303,12 @@ footer {
       <p>انضم إلى مئات المختصين الذين طوّروا كفاءتهم مع PharmaPro Academy</p>
 
       <div class="cta-actions">
-        <a href="#courses" class="btn-primary" style="font-size:1rem; padding:16px 36px;">
-          استعرض جميع الكورسات ←
-        </a>
-        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="btn-secondary" style="font-size:1rem; padding:16px 36px;">
-          منصة السودان للجودة 🎓
-        </a>
-        <a href="#" class="btn-outline" style="font-size:1rem; padding:15px 28px;">
-          📧 تواصل معنا
-        </a>
+        <a href="#courses" class="btn-primary" style="font-size:1rem; padding:16px 36px;">استعرض جميع الكورسات ←</a>
+        <a href="https://decisive-octane-472816-d3.web.app/" target="_blank" class="btn-outline" style="font-size:1rem; padding:15px 28px; border-color:rgba(0,212,170,0.5);">منصة السودان للجودة 🎓</a>
+        <a href="#" class="btn-outline" style="font-size:1rem; padding:15px 28px;">📧 تواصل معنا</a>
       </div>
 
-      <p class="guarantee">
-        🔒 &nbsp;ضمان استرداد كامل خلال 7 أيام · وصول مدى الحياة للمحتوى · شهادة إتمام موثقة
-      </p>
+      <p class="guarantee">🔒 &nbsp;ضمان استرداد كامل خلال 7 أيام · وصول مدى الحياة للمحتوى · شهادة إتمام موثقة</p>
     </div>
   </section>
 
@@ -1780,6 +2351,7 @@ footer {
       <div class="footer-col">
         <h5>التواصل</h5>
         <ul>
+          <li><a href="sitemap.html">🗺️ خريطة الموقع</a></li>
           <li><a href="#">📘 فيسبوك</a></li>
           <li><a href="#">📧 راسلنا</a></li>
           <li><a href="#">📋 برنامج الكورسات</a></li>
@@ -1796,238 +2368,146 @@ footer {
   </footer>
 
   <script>
-    // Video Player Component (Embedded)
-    class VideoPlayer {
-      constructor(containerId, options = {}) {
-        this.container = document.getElementById(containerId);
-        this.options = {
-          lectures: options.lectures || [],
-          autoPlay: options.autoPlay || false,
-          onLectureChange: options.onLectureChange || null,
-          onProgress: options.onProgress || null
-        };
-        
-        this.currentLecture = 0;
-        this.isPlaying = false;
-        this.currentTime = 0;
-        this.duration = 0;
-        this.progress = 0;
-        
-        this.init();
-      }
+    // ── Search functionality ──
+    const coursesData = [
+      { title: 'التحقق والتثبيت: Validation & Qualification', desc: 'IQ · OQ · PQ، تحقق العمليات، تحقق التنظيف، تحقق الطرق التحليلية وفق ICH Q2(R2)', type: 'كورس', link: 'course-validation.html' },
+      { title: 'إدارة الانحرافات والإجراءات التصحيحية: CAPA', desc: 'تحليل السبب الجذري، إدارة الانحرافات، CAPA، التوثيق التنظيمي', type: 'كورس', link: 'course-capa.html' },
+      { title: 'ISO 9001:2015 وبناء نظام إدارة الجودة', desc: 'متطلبات ISO 9001، بناء QMS، السياسات والإجراءات، التدقيق الداخلي', type: 'كورس', link: 'course-iso-9001.html' },
+      { title: 'التحكم في الجودة المختبري: QC Lab', desc: 'طرق التحليل، صيانة المعدات، إدارة العينات، ضمان الجودة المختبري', type: 'كورس', link: 'course-qc-lab.html' },
+      { title: 'التحكم في الجودة أثناء العملية: IPQC', desc: 'مراقبة العملية، اختبارات في الخط، التحكم في المعاملات الحرجة', type: 'كورس', link: 'course-ipqc.html' },
+      { title: 'أساسيات ممارسات التصنيع الجيد: GMP Basics', desc: 'مبادئ GMP، التوثيق، التدريب، النظافة الشخصية، إدارة المخاطر', type: 'كورس', link: 'course-gmp-basics.html' }
+    ];
+
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', function() {
+      const query = this.value.trim().toLowerCase();
       
-      init() {
-        this.render();
-        this.attachEvents();
+      if (query.length === 0) {
+        searchResults.classList.remove('active');
+        return;
       }
-      
-      render() {
-        const videoSource = this.options.lectures[0]?.videoUrl || '';
-        
-        this.container.innerHTML = `
-          <div class="video-player-container">
-            <div class="video-player-header">
-              <div class="video-player-title">${this.options.lectures[0]?.title || 'Video Player'}</div>
-              <div class="video-player-badge">HD</div>
-            </div>
-            
-            <div class="video-player-main">
-              ${videoSource ? `
-                <video id="mainVideo" style="width: 100%; height: 100%; object-fit: cover;" controls>
-                  <source src="${videoSource}" type="video/mp4">
-                  متصفحك لا يدعم تشغيل الفيديو
-                </video>
-              ` : `
-                <div class="video-player-placeholder">
-                  <div class="play-button"></div>
-                  <div class="video-placeholder-text">انقر للتشغيل</div>
-                </div>
-              `}
-            </div>
-            
-            <div class="video-player-controls">
-              <button id="playPauseBtn" class="video-control-btn">▶</button>
-              <button id="prevBtn" class="video-control-btn">⏮</button>
-              <button id="nextBtn" class="video-control-btn">⏭</button>
-              <div class="video-progress">
-                <div class="video-progress-bar"></div>
-              </div>
-              <div class="video-time">
-                <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
-              </div>
-            </div>
-            
-            <div style="display: flex; border-bottom: 1px solid var(--border);">
-              <div class="video-tab active" data-tab="lectures">المحاضرات</div>
-              <div class="video-tab" data-tab="notes">ملاحظات</div>
-              <div class="video-tab" data-tab="resources">الموارد</div>
-            </div>
-            
-            <div id="tab-lectures" class="video-tab-content" style="display: block;">
-              <div id="lectureList" class="lecture-list"></div>
-            </div>
-            
-            <div id="tab-notes" class="video-tab-content">
-              <textarea style="width: 100%; min-height: 200px; padding: 12px 16px; background: rgba(10,22,40,0.5); border: 2px solid var(--border); border-radius: 8px; color: var(--light); font-family: 'Cairo', sans-serif; font-size: 0.9rem;" placeholder="أضف ملاحظاتك هنا..."></textarea>
-            </div>
-            
-            <div id="tab-resources" class="video-tab-content">
-              <div id="resourceList" class="lecture-list"></div>
-            </div>
-          </div>
-        `;
-        
-        this.renderLectureList();
-        this.renderResourceList();
+
+      const filteredCourses = coursesData.filter(course => 
+        course.title.toLowerCase().includes(query) || 
+        course.desc.toLowerCase().includes(query) ||
+        course.type.toLowerCase().includes(query)
+      );
+
+      displaySearchResults(filteredCourses);
+    });
+
+    function displaySearchResults(results) {
+      if (results.length === 0) {
+        searchResults.innerHTML = '<div class="search-result-item"><div class="search-result-title">لا توجد نتائج</div></div>';
+        searchResults.classList.add('active');
+        return;
       }
-      
-      renderLectureList() {
-        const lectureList = document.getElementById('lectureList');
-        lectureList.innerHTML = this.options.lectures.map((lecture, index) => `
-          <div class="lecture-item" data-index="${index}">
-            <div class="lecture-number">${index + 1}</div>
-            <div class="lecture-info">
-              <div class="lecture-title">${lecture.title}</div>
-              <div class="lecture-duration">${lecture.duration || '0:00'}</div>
-            </div>
-            <div class="lecture-status">${index === this.currentLecture ? '▶' : '✓'}</div>
-          </div>
-        `).join('');
-      }
-      
-      renderResourceList() {
-        const resourceList = document.getElementById('resourceList');
-        const resources = this.options.lectures[this.currentLecture]?.resources || [];
-        
-        if (resources.length === 0) {
-          resourceList.innerHTML = '<div style="color: var(--muted); padding: 20px;">لا توجد موارد متاحة لهذه المحاضرة</div>';
-          return;
-        }
-        
-        resourceList.innerHTML = resources.map(resource => `
-          <div class="lecture-item">
-            <div class="lecture-number" style="font-size: 1rem;">📄</div>
-            <div class="lecture-info">
-              <div class="lecture-title">${resource.title}</div>
-              <div class="lecture-duration">${resource.type || 'PDF'}</div>
-            </div>
-            <div class="lecture-status">⬇</div>
-          </div>
-        `).join('');
-      }
-      
-      attachEvents() {
-        document.getElementById('playPauseBtn').addEventListener('click', () => this.togglePlay());
-        document.getElementById('prevBtn').addEventListener('click', () => this.previousLecture());
-        document.getElementById('nextBtn').addEventListener('click', () => this.nextLecture());
-        
-        document.getElementById('lectureList').addEventListener('click', (e) => {
-          const lectureItem = e.target.closest('.lecture-item');
-          if (lectureItem) {
-            const index = parseInt(lectureItem.dataset.index);
-            this.selectLecture(index);
-          }
-        });
-        
-        document.querySelectorAll('.video-tab').forEach(tab => {
-          tab.addEventListener('click', () => {
-            const tabName = tab.dataset.tab;
-            this.switchTab(tabName);
-          });
-        });
-      }
-      
-      togglePlay() {
-        this.isPlaying = !this.isPlaying;
-        document.getElementById('playPauseBtn').textContent = this.isPlaying ? '⏸' : '▶';
-      }
-      
-      selectLecture(index) {
-        if (index < 0 || index >= this.options.lectures.length) return;
-        this.currentLecture = index;
-        this.renderLectureList();
-        this.renderResourceList();
-        
-        if (this.options.onLectureChange) {
-          this.options.onLectureChange(index, this.options.lectures[index]);
-        }
-      }
-      
-      previousLecture() {
-        this.selectLecture(this.currentLecture - 1);
-      }
-      
-      nextLecture() {
-        this.selectLecture(this.currentLecture + 1);
-      }
-      
-      switchTab(tabName) {
-        document.querySelectorAll('.video-tab').forEach(tab => {
-          tab.classList.remove('active');
-          if (tab.dataset.tab === tabName) {
-            tab.classList.add('active');
-          }
-        });
-        
-        document.querySelectorAll('.video-tab-content').forEach(content => {
-          content.style.display = 'none';
-        });
-        
-        document.getElementById(`tab-${tabName}`).style.display = 'block';
-      }
+
+      searchResults.innerHTML = results.map(course => `
+        <div class="search-result-item" onclick="window.location.href='${course.link}'">
+          <div class="search-result-title">${course.title} <span class="search-result-type">${course.type}</span></div>
+          <div class="search-result-desc">${course.desc}</div>
+        </div>
+      `).join('');
+
+      searchResults.classList.add('active');
     }
 
-    // Scroll animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-    
-    // Initialize Video Player
-    const videoPlayer = new VideoPlayer('videoPlayerContainer', {
-      lectures: [
-        {
-          title: 'مقدمة في GMP',
-          duration: '15:00',
-          videoUrl: '',
-          resources: [
-            { title: 'ملخص المحاضرة', type: 'PDF' },
-            { title: 'قائمة المراجعة', type: 'DOC' }
-          ]
-        },
-        {
-          title: 'بيئة التصنيع',
-          duration: '20:00',
-          videoUrl: '',
-          resources: [
-            { title: 'دليل التصميم', type: 'PDF' }
-          ]
-        },
-        {
-          title: 'نظام التوثيق',
-          duration: '18:00',
-          videoUrl: '',
-          resources: [
-            { title: 'نماذج SOP', type: 'PDF' },
-            { title: 'دليل التوثيق', type: 'PDF' }
-          ]
-        }
-      ],
-      autoPlay: false,
-      onLectureChange: (index, lecture) => {
-        console.log('Lecture changed:', lecture.title);
-      },
-      onProgress: (progress, currentTime) => {
-        // Track progress
+    // Close search results when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+        searchResults.classList.remove('active');
       }
     });
+
+    // ── Service Worker Registration ──
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('Service Worker registered: ', registration);
+          })
+          .catch((registrationError) => {
+            console.log('Service Worker registration failed: ', registrationError);
+          });
+      });
+    }
+
+    // ── Load Additional Scripts ──
+    // Load analytics
+    const analyticsScript = document.createElement('script');
+    analyticsScript.src = '/js/analytics.js';
+    document.head.appendChild(analyticsScript);
+
+    // Load automation
+    const automationScript = document.createElement('script');
+    automationScript.src = '/js/automation.js';
+    document.head.appendChild(automationScript);
+
+    // Load backup system
+    const backupScript = document.createElement('script');
+    backupScript.src = '/js/backup.js';
+    document.head.appendChild(backupScript);
+
+    // Load CDN config
+    const cdnScript = document.createElement('script');
+    cdnScript.src = '/cdn-config.js';
+    document.head.appendChild(cdnScript);
+
+    // Load database optimizer
+    const dbScript = document.createElement('script');
+    dbScript.src = '/js/database-optimizer.js';
+    document.head.appendChild(dbScript);
+
+    // Load cloud storage
+    const cloudScript = document.createElement('script');
+    cloudScript.src = '/js/cloud-storage.js';
+    document.head.appendChild(cloudScript);
+
+    // ── Sidebar functionality ──
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    function openSidebar() {
+      sidebar.classList.add('active');
+      sidebarOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    sidebarToggle.addEventListener('click', openSidebar);
+    sidebarClose.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar when clicking on nav links
+    document.querySelectorAll('.sidebar-nav-link').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+
+    // ── Show more / less toggle ──
+    function toggleCourses() {
+      const extras = document.querySelectorAll('.courses-extra');
+      const btn = document.getElementById('showMoreBtn');
+      const txt = document.getElementById('showMoreText');
+      const isOpen = extras[0].classList.contains('open');
+      extras.forEach(el => el.classList.toggle('open', !isOpen));
+      txt.textContent = isOpen ? 'عرض الـ 16 كورساً المتبقية ↓' : 'إخفاء الكورسات الإضافية ↑';
+    }
+
+    // ── Scroll animations ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
-
-

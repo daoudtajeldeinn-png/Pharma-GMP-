@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دراسات حالة تفاعلية | PharmaPro Academy</title>
+  <meta name="description" content="دراسات حالة واقعية وتفاعلية في مجال GMP والتحكم في الجودة الصيدلانية">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.case-studies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.case-study-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.case-study-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal);
+  box-shadow: 0 12px 40px rgba(0,212,170,0.1);
+}
+
+.case-study-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.case-study-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(0,212,170,0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.case-study-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.case-study-category {
+  font-size: 0.8rem;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.case-study-description {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.case-study-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.case-study-difficulty {
+  padding: 4px 12px;
+  background: rgba(201,168,76,0.1);
+  color: var(--gold);
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.case-study-duration {
+  padding: 4px 12px;
+  background: rgba(0,212,170,0.1);
+  color: var(--teal);
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: var(--card-bg);
+  z-index: 10;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--white);
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.case-study-section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.section-content {
+  color: var(--light);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.interactive-scenario {
+  background: rgba(0,212,170,0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.scenario-question {
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.scenario-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.scenario-option {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.scenario-option:hover {
+  border-color: var(--teal);
+  background: rgba(0,212,170,0.05);
+}
+
+.scenario-option.selected {
+  border-color: var(--teal);
+  background: rgba(0,212,170,0.1);
+}
+
+.scenario-option.correct {
+  border-color: #4CAF50;
+  background: rgba(76,175,80,0.1);
+}
+
+.scenario-option.incorrect {
+  border-color: #F44336;
+  background: rgba(244,67,54,0.1);
+}
+
+.scenario-feedback {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  display: none;
+}
+
+.scenario-feedback.show {
+  display: block;
+}
+
+.scenario-feedback.correct {
+  background: rgba(76,175,80,0.1);
+  border: 1px solid #4CAF50;
+}
+
+.scenario-feedback.incorrect {
+  background: rgba(244,67,54,0.1);
+  border: 1px solid #F44336;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(0,212,170,0.1);
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--teal2));
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .case-studies-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html">الرئيسية</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="case-studies.html" class="nav-cta">دراسات الحالة</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">دراسات حالة تفاعلية</h1>
+      <p class="page-subtitle">سيناريوهات واقعية من الصناعة الصيدلانية لتطبيق معارفك في GMP والتحكم في الجودة</p>
+    </div>
+
+    <div class="case-studies-grid" id="caseStudiesGrid">
+      <!-- Case studies will be loaded dynamically -->
+    </div>
+  </div>
+
+  <!-- Modal for case study details -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">دراسة الحالة</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Case study content will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Case Studies Data
+    const caseStudies = [
+      {
+        id: 1,
+        title: "انحراف في درجة نقاء المادة الخام",
+        category: "CAPA",
+        icon: "📊",
+        difficulty: "متوسط",
+        duration: "15 دقيقة",
+        description: "اكتشاف انحراف في درجة نقاء مادة خام أساسية أثناء فحص الجودة. كيف تدير هذا الموقف وفق معايير GMP؟",
+        scenario: [
+          {
+            question: "ما هو أول إجراء يجب اتخاذه عند اكتشاف الانحراف؟",
+            options: [
+              "إيقاف استخدام المادة فوراً",
+              "توثيق الانحراف في سجل الانحرافات",
+              "إبلاغ مدير الجودة",
+              "فحص العينات المتبقية"
+            ],
+            correct: 0,
+            explanation: "الإجراء الأول هو إيقاف استخدام المادة فوراً لمنع أي تأثير على المنتج النهائي. هذا يتوافق مع مبدأ منع تدهور الجودة."
+          },
+          {
+            question: "ما هي الخطوة التالية بعد توثيق الانحراف؟",
+            options: [
+              "إجراء تحقيق لتحديد السبب الجذري",
+              "طلب مادة خام بديلة",
+              "إعادة فحص العينة",
+              "إبلاغ الجهات التنظيمية"
+            ],
+            correct: 0,
+            explanation: "تحديد السبب الجذري هو خطوة أساسية في نظام CAPA لمنع تكرار الانحراف."
+          },
+          {
+            question: "إذا كان السبب الجذري هو خطأ في التخزين، ما هو الإجراء التصحيحي المناسب؟",
+            options: [
+              "تغيير المورد",
+              "تحسين ظروف التخزين",
+              "إضافة فحص إضافي",
+              "تقليل كمية الشراء"
+            ],
+            correct: 1,
+            explanation: "تحسين ظروف التخزين يعالج السبب الجذري ويمنع تكرار المشكلة."
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "فشل في التحقق من التنظيف",
+        category: "Validation",
+        icon: "🔬",
+        difficulty: "متقدم",
+        duration: "20 دقيقة",
+        description: "فشل عملية التحقق من التنظيف لخط إنتاج. كيف تطبق بروتوكول إعادة التحقق وفق ICH Q7؟",
+        scenario: [
+          {
+            question: "ما هو المعيار المقبول لنتائج التحقق من التنظيف؟",
+            options: [
+              "أقل من 10 ppm",
+              "أقل من 1 ppm",
+              "أقل من 100 ppm",
+              "لا يوجد بقايا قابلة للكشف"
+            ],
+            correct: 0,
+            explanation: "المعيار المقبول عادة هو أقل من 10 ppm أو 0.1% من الجرعة العلاجية، أيهما أقل."
+          },
+          {
+            question: "ما هي الخطوة الأولى عند فشل التحقق من التنظيف؟",
+            options: [
+              "تكرار عملية التنظيف",
+              "مراجعة بروتوكول التنظيف",
+              "إجراء تحقيق في السبب",
+              "إيقاف خط الإنتاج"
+            ],
+            correct: 3,
+            explanation: "إيقاف خط الإنتاج ضروري لمنع استخدام معدات غير نظيفة."
+          },
+          {
+            question: "كم مرة يجب إعادة التحقق من التنظيف بعد الفشل؟",
+            options: [
+              "مرة واحدة",
+              "مرتين متتاليتين",
+              "ثلاث مرات متتالية",
+              "حتى النجاح"
+            ],
+            correct: 2,
+            explanation: "المعيار المقبول هو ثلاث عمليات تنظيف وتحقق ناجحة متتالية."
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "تدقيق داخلي ISO 9001",
+        category: "ISO 9001",
+        icon: "📋",
+        difficulty: "متوسط",
+        duration: "15 دقيقة",
+        description: "أنت مدقق داخلي ISO 9001. اكتشفت عدم مطابقة في نظام إدارة الجودة. كيف تدير هذا الموقف؟",
+        scenario: [
+          {
+            question: "ما هو أول إجراء عند اكتشاف عدم المطابقة؟",
+            options: [
+              "توثيق عدم المطابقة",
+              "إبلاغ الإدارة العليا",
+              "طلب خطة تصحيحية",
+              "إغلاق التدقيق"
+            ],
+            correct: 0,
+            explanation: "التوثيق هو الأساس لأي إجراء لاحق في نظام ISO 9001."
+          },
+          {
+            question: "ما هي المدة القصوى للإجراء التصحيحي؟",
+            options: [
+              "7 أيام",
+              "14 يوم",
+              "30 يوم",
+              "60 يوم"
+            ],
+            correct: 2,
+            explanation: "المعيار المقبول هو 30 يوم للإجراء التصحيحي، مع إمكانية التمديد."
+          },
+          {
+            question: "ما هو التحقق المطلوب بعد الإجراء التصحيحي؟",
+            options: [
+              "مراجعة الوثائق",
+              "فحص فعالية الإجراء",
+              "إعادة التدقيق",
+              "موافقة الإدارة"
+            ],
+            correct: 1,
+            explanation: "التحقق من فعالية الإجراء التصحيحي هو مطلب أساسي في ISO 9001."
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: "خطأ في المختبر: نتائج OOS",
+        category: "QC Lab",
+        icon: "🧫",
+        difficulty: "متقدم",
+        duration: "25 دقيقة",
+        description: "حصلت على نتائج خارج المواصفات (OOS) في اختبار مختبري. كيف تطبق بروتوكول التحقيق وفق FDA؟",
+        scenario: [
+          {
+            question: "ما هو أول إجراء عند الحصول على نتيجة OOS؟",
+            options: [
+              "إعادة الاختبار",
+              "إجراء تحقيق فوري",
+              "إبلاغ المدير",
+              "تدمير العينة"
+            ],
+            correct: 1,
+            explanation: "التحقيق الفوري هو مطلب FDA قبل أي إجراء آخر."
+          },
+          {
+            question: "ما هي الأسباب المحتملة لنتائج OOS؟",
+            options: [
+              "خطأ في المختبر فقط",
+              "مشكلة في المنتج فقط",
+              "خطأ مختبري أو مشكلة في المنتج",
+              "خطأ في المواصفات"
+            ],
+            correct: 2,
+            explanation: "يجب التحقيق في كلا الاحتمالين: خطأ مختبري أو مشكلة حقيقية في المنتج."
+          },
+          {
+            question: "متى يسمح بإعادة الاختبار؟",
+            options: [
+              "دائماً",
+              "بعد إثبات خطأ مختبري",
+              "بعد موافقة المدير",
+              "مسموح أبداً"
+            ],
+            correct: 1,
+            explanation: "إعادة الاختبار مسموحة فقط بعد إثبات وجود خطأ مختبري."
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: "تلوث متقاطع في خط الإنتاج",
+        category: "GMP",
+        icon: "⚠️",
+        difficulty: "متوسط",
+        duration: "15 دقيقة",
+        description: "اكتشفت تلوث متقاطع محتمل بين منتجين مختلفين. كيف تطبق إجراءات منع التلوث المتقاطع؟",
+        scenario: [
+          {
+            question: "ما هو أول إجراء عند اكتشاف التلوث المتقاطع؟",
+            options: [
+              "إيقاف الإنتاج فوراً",
+              "إجراء فحص للمنتج",
+              "تطهير المعدات",
+              "إبلاغ الجهات التنظيمية"
+            ],
+            correct: 0,
+            explanation: "إيقاف الإنتاج فوراً ضروري لمنع تدهور الجودة."
+          },
+          {
+            question: "ما هي طريقة التحقق من التلوث المتقاطع؟",
+            options: [
+              "فحص بصري فقط",
+              "فحص كيميائي فقط",
+              "فحص بصري وكيميائي",
+              "فحص ميكروبيولوجي فقط"
+            ],
+            correct: 2,
+            explanation: "التحقق من التلوث المتقاطع يتطلب فحصاً بصرياً وكيميائياً."
+          },
+          {
+            question: "ما هي الحد الأقصى المقبول للتلوث المتقاطع؟",
+            options: [
+              "0.1%",
+              "0.5%",
+              "1%",
+              "لا يوجد حد محدد"
+            ],
+            correct: 0,
+            explanation: "الحد الأقصى المقبول عادة هو 0.1% من الجرعة العلاجية."
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: "تغيير في عملية التصنيع",
+        category: "Change Control",
+        icon: "🔄",
+        difficulty: "متقدم",
+        duration: "20 دقيقة",
+        description: "مطلوب تغيير في عملية تصنيع رئيسية. كيف تطبق نظام التحكم في التغييرات؟",
+        scenario: [
+          {
+            question: "ما هو أول خطوة في طلب التغيير؟",
+            options: [
+              "تقييم التأثير",
+              "إملاء نموذج التغيير",
+              "موافقة الإدارة",
+              "تنفيذ التغيير"
+            ],
+            correct: 1,
+            explanation: "إملاء نموذج التغيير هو الخطوة الأولى في نظام التحكم في التغييرات."
+          },
+          {
+            question: "ما هي المستويات المطلوبة للموافقة على التغيير؟",
+            options: [
+              "موافقة واحدة",
+              "موافقتان",
+              "ثلاث موافقات",
+              "أربع موافقات"
+            ],
+            correct: 2,
+            explanation: "عادة تتطلب ثلاث موافقات: الجودة، الإنتاج، والبحث والتطوير."
+          },
+          {
+            question: "متى يعتبر التغيير مكتمل؟",
+            options: [
+              "بعد الموافقة",
+              "بعد التنفيذ",
+              "بعد التحقق من الفعالية",
+              "بعد التوثيق"
+            ],
+            correct: 2,
+            explanation: "التغيير يعتبر مكتملاً فقط بعد التحقق من فعاليته."
+          }
+        ]
+      }
+    ];
+
+    // Render case studies
+    function renderCaseStudies() {
+      const grid = document.getElementById('caseStudiesGrid');
+      grid.innerHTML = caseStudies.map(study => `
+        <div class="case-study-card" onclick="openCaseStudy(${study.id})">
+          <div class="case-study-header">
+            <div class="case-study-icon">${study.icon}</div>
+            <div>
+              <div class="case-study-title">${study.title}</div>
+              <div class="case-study-category">${study.category}</div>
+            </div>
+          </div>
+          <p class="case-study-description">${study.description}</p>
+          <div class="case-study-meta">
+            <span class="case-study-difficulty">${study.difficulty}</span>
+            <span class="case-study-duration">${study.duration}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Open case study modal
+    function openCaseStudy(id) {
+      const study = caseStudies.find(s => s.id === id);
+      if (!study) return;
+
+      document.getElementById('modalTitle').textContent = study.title;
+      
+      const modalBody = document.getElementById('modalBody');
+      modalBody.innerHTML = `
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        
+        <div class="case-study-section">
+          <h3 class="section-title">وصف الحالة</h3>
+          <p class="section-content">${study.description}</p>
+        </div>
+        
+        <div class="case-study-section">
+          <h3 class="section-title">السيناريو التفاعلي</h3>
+          <div id="scenarioContainer"></div>
+        </div>
+      `;
+
+      renderScenario(study.scenario, 0);
+      
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    // Render scenario questions
+    function renderScenario(scenario, currentIndex) {
+      const container = document.getElementById('scenarioContainer');
+      const question = scenario[currentIndex];
+      
+      container.innerHTML = `
+        <div class="interactive-scenario">
+          <div class="scenario-question">السؤال ${currentIndex + 1}/${scenario.length}: ${question.question}</div>
+          <div class="scenario-options">
+            ${question.options.map((option, index) => `
+              <div class="scenario-option" onclick="selectOption(${index}, ${question.correct}, '${question.explanation.replace(/'/g, "\\'")}', ${currentIndex}, ${scenario.length})">
+                ${option}
+              </div>
+            `).join('')}
+          </div>
+          <div class="scenario-feedback" id="feedback"></div>
+        </div>
+      `;
+
+      // Update progress
+      const progress = ((currentIndex) / scenario.length) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    // Handle option selection
+    function selectOption(selectedIndex, correctIndex, explanation, currentIndex, totalQuestions) {
+      const options = document.querySelectorAll('.scenario-option');
+      options.forEach(opt => opt.classList.remove('selected'));
+      options[selectedIndex].classList.add('selected');
+
+      const isCorrect = selectedIndex === correctIndex;
+      options[selectedIndex].classList.add(isCorrect ? 'correct' : 'incorrect');
+      if (!isCorrect) {
+        options[correctIndex].classList.add('correct');
+      }
+
+      const feedback = document.getElementById('feedback');
+      feedback.className = `scenario-feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = `
+        <strong>${isCorrect ? '✓ إجابة صحيحة!' : '✗ إجابة خاطئة'}</strong>
+        <p style="margin-top: 0.5rem;">${explanation}</p>
+      `;
+
+      // Disable all options
+      options.forEach(opt => opt.style.pointerEvents = 'none');
+
+      // Next question after delay
+      setTimeout(() => {
+        if (currentIndex < totalQuestions - 1) {
+          renderScenario(caseStudies.find(s => s.id === getCurrentStudyId()).scenario, currentIndex + 1);
+        } else {
+          showCompletion();
+        }
+      }, 3000);
+    }
+
+    function getCurrentStudyId() {
+      const title = document.getElementById('modalTitle').textContent;
+      return caseStudies.find(s => s.title === title)?.id;
+    }
+
+    function showCompletion() {
+      const container = document.getElementById('scenarioContainer');
+      container.innerHTML = `
+        <div class="interactive-scenario" style="text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🎉</div>
+          <h3 style="color: var(--teal); margin-bottom: 1rem;">تم إكمال دراسة الحالة!</h3>
+          <p style="color: var(--muted); margin-bottom: 1.5rem;">لقد أتممت جميع الأسئل في هذه الدراسة.</p>
+          <button onclick="closeModal()" style="background: var(--teal); color: var(--navy); border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; cursor: pointer;">
+            إغلاق
+          </button>
+        </div>
+      `;
+      document.getElementById('progressFill').style.width = '100%';
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    // Event listeners
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCaseStudies();
+    });
+  </script>
+</body>
+</html>

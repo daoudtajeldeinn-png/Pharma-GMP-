@@ -6,21 +6,115 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
     "headers": [
       {
-        "source": "**/*.@(html|css|js)",
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=1800"
+          },
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "X-Frame-Options",
+            "value": "SAMEORIGIN"
+          },
+          {
+            "key": "X-XSS-Protection",
+            "value": "1; mode=block"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(css|js)",
         "headers": [
           {
             "key": "Cache-Control",
             "value": "max-age=31536000"
           }
         ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|png|gif|svg|ico)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      },
+      {
+        "source": "sw.js",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          },
+          {
+            "key": "Service-Worker-Allowed",
+            "value": "/"
+          }
+        ]
+      },
+      {
+        "source": "manifest.json",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/manifest+json"
+          }
+        ]
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/pharma-landing.html",
+        "type": 302
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/pharma-landing.html"
+      }
+    ]
+  },
+  "firestore": {
+    "rules": [
+      "allow read: if true",
+      "allow write: if request.auth != null"
+    ],
+    "indexes": [
+      {
+        "collectionGroup": "users",
+        "queryScope": "COLLECTION",
+        "fields": [
+          { "fieldPath": "email", "order": "ASCENDING" }
+        ]
+      },
+      {
+        "collectionGroup": "courses",
+        "queryScope": "COLLECTION",
+        "fields": [
+          { "fieldPath": "category", "order": "ASCENDING" },
+          { "fieldPath": "createdAt", "order": "DESCENDING" }
+        ]
+      }
+    ]
+  },
+  "storage": {
+    "rules": [
+      {
+        "allow": "read",
+        "if": true
+      },
+      {
+        "allow": "write",
+        "if": "request.auth != null"
       }
     ]
   }

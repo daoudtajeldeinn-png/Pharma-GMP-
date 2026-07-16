@@ -1,0 +1,129 @@
+# PharmaPro Academy - Apache Configuration
+
+# Enable compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Enable browser caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Force HTTPS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Remove www
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+</IfModule>
+
+# Custom error pages
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+ErrorDocument 503 /503.html
+
+# Protect sensitive files
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+<FilesMatch "(^\.htaccess|^\.env|^\.git)">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Protect JSON files with sensitive data
+<FilesMatch "\.json$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+</FilesMatch>
+
+# Allow access to manifest.json
+<FilesMatch "manifest.json">
+  <IfModule mod_authz_core.c>
+    Require all granted
+  </IfModule>
+</FilesMatch>
+
+# Protect logs directory
+<DirectoryMatch "logs/">
+  Order allow,deny
+  Deny from all
+</DirectoryMatch>
+
+# Protect .git directory
+<DirectoryMatch "\.git/">
+  Order allow,deny
+  Deny from all
+</DirectoryMatch>
+
+# Protect __pycache__ directory
+<DirectoryMatch "__pycache__/">
+  Order allow,deny
+  Deny from all
+</DirectoryMatch>
+
+# Enable CORS for specific domains
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Set default character encoding
+AddDefaultCharset UTF-8
+
+# Enable keep-alive
+<IfModule mod_headers.c>
+  Header set Connection keep-alive
+</IfModule>
+
+# Increase upload size
+<IfModule mod_php.c>
+  upload_max_filesize 50M
+  post_max_size 50M
+  max_execution_time 300
+</IfModule>
+
+# Service Worker
+<FilesMatch "sw.js">
+  <IfModule mod_headers.c>
+    Header set Service-Worker-Allowed "/"
+  </IfModule>
+</FilesMatch>
+
+# PWA Manifest
+<FilesMatch "manifest.json">
+  <IfModule mod_headers.c>
+    Header set Content-Type "application/manifest+json"
+  </IfModule>
+</FilesMatch>

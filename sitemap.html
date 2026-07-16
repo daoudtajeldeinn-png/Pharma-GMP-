@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>خريطة الموقع | PharmaPro Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.sitemap-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sitemap-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,212,170,0.1);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-icon {
+  font-size: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+.sitemap-links {
+  list-style: none;
+}
+
+.sitemap-links li {
+  margin-bottom: 0.75rem;
+}
+
+.sitemap-links a {
+  color: var(--light);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.sitemap-links a:hover {
+  background: rgba(0,212,170,0.1);
+  color: var(--teal);
+  transform: translateX(-4px);
+}
+
+.sitemap-links a::before {
+  content: '→';
+  color: var(--teal);
+  font-size: 0.8rem;
+}
+
+.link-description {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 4px;
+  margin-right: 20px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.breadcrumb a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .sitemap-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC TRAINING</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html#courses">الكورسات</a></li>
+      <li><a href="pharma-landing.html#curriculum">المنهج</a></li>
+      <li><a href="pharma-landing.html#audience">لمن؟</a></li>
+      <li><a href="pharma-landing.html#enroll" class="nav-cta">سجّل الآن</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="pharma-landing.html">الرئيسية</a>
+      <span>›</span>
+      <span>خريطة الموقع</span>
+    </div>
+
+    <div class="page-header">
+      <h1 class="page-title">خريطة الموقع</h1>
+      <p class="page-subtitle">تصفح جميع صفحات ومحتوى منصة PharmaPro Academy التعليمية</p>
+    </div>
+
+    <div class="sitemap-grid">
+      <div class="sitemap-section">
+        <div class="section-header">
+          <span class="section-icon">🏠</span>
+          <h2 class="section-title">الصفحات الرئيسية</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="pharma-landing.html">الصفحة الرئيسية</a>
+            <span class="link-description">الصفحة الرئيسية مع معلومات عن الكورسات والخدمات</span>
+          </li>
+          <li>
+            <a href="courses.html">صفحة الكورسات</a>
+            <span class="link-description">عرض جميع الكورسات المتاحة</span>
+          </li>
+          <li>
+            <a href="resources.html">المصادر الرسمية</a>
+            <span class="link-description">مصادر من FDA، WHO، ICH، ISO، EMA</span>
+          </li>
+          <li>
+            <a href="quiz-page.html">نظام الاختبارات</a>
+            <span class="link-description">اختبارات تفاعلية لكل كورس</span>
+          </li>
+          <li>
+            <a href="dashboard.html">لوحة التحكم</a>
+            <span class="link-description">تتبع تقدمك التعليمي</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <div class="section-header">
+          <span class="section-icon">📚</span>
+          <h2 class="section-title">الكورسات المتاحة</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="course-validation.html">التحقق والتثبيت: Validation & Qualification</a>
+            <span class="link-description">IQ · OQ · PQ، تحقق العمليات، تحقق التنظيف</span>
+          </li>
+          <li>
+            <a href="course-capa.html">إدارة الانحرافات: CAPA</a>
+            <span class="link-description">تحليل السبب الجذري، إدارة الانحرافات</span>
+          </li>
+          <li>
+            <a href="course-iso-9001.html">ISO 9001:2015</a>
+            <span class="link-description">بناء نظام إدارة الجودة QMS</span>
+          </li>
+          <li>
+            <a href="course-qc-lab.html">التحكم في الجودة المختبري: QC Lab</a>
+            <span class="link-description">طرق التحليل، صيانة المعدات</span>
+          </li>
+          <li>
+            <a href="course-ipqc.html">التحكم في الجودة أثناء العملية: IPQC</a>
+            <span class="link-description">مراقبة العملية، اختبارات في الخط</span>
+          </li>
+          <li>
+            <a href="course-gmp-basics.html">أساسيات ممارسات التصنيع الجيد: GMP Basics</a>
+            <span class="link-description">مبادئ GMP، التوثيق، التدريب</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <div class="section-header">
+          <span class="section-icon">📋</span>
+          <h2 class="section-title">الموارد التعليمية</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="downloads/validation-content.html">محتوى كورس التحقق والتثبيت</a>
+            <span class="link-description">المحتوى الكامل للكورس</span>
+          </li>
+          <li>
+            <a href="downloads/capa-content.html">محتوى كورس CAPA</a>
+            <span class="link-description">المحتوى الكامل للكورس</span>
+          </li>
+          <li>
+            <a href="downloads/iso-9001-content.html">محتوى كورس ISO 9001</a>
+            <span class="link-description">المحتوى الكامل للكورس</span>
+          </li>
+          <li>
+            <a href="downloads/qc-lab-content.html">محتوى كورس QC Lab</a>
+            <span class="link-description">المحتوى الكامل للكورس</span>
+          </li>
+          <li>
+            <a href="downloads/ipqc-content.html">محتوى كورس IPQC</a>
+            <span class="link-description">المحتوى الكامل للكورس</span>
+          </li>
+          <li>
+            <a href="downloads/gmp-basics-content.html">محتوى كورس GMP Basics</a>
+            <span class="link-description">المحتوى الكامل للكورس</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <div class="section-header">
+          <span class="section-icon">📝</span>
+          <h2 class="section-title">القوالب والتمارين</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="templates/">قوالب الكورسات</a>
+            <span class="link-description">قوالب جاهزة للاستخدام</span>
+          </li>
+          <li>
+            <a href="exercises/">تمارين عملية</a>
+            <span class="link-description">تمارين تطبيقية لكل كورس</span>
+          </li>
+          <li>
+            <a href="case-studies/">دراسات حالة</a>
+            <span class="link-description">دراسات حالة واقعية</span>
+          </li>
+          <li>
+            <a href="quizzes/">ملفات الاختبارات</a>
+            <span class="link-description">اختبارات لكل كورس</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <div class="section-header">
+          <span class="section-icon">🎓</span>
+          <h2 class="section-title">منصات تعليمية</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="https://decisive-octane-472816-d3.web.app/" target="_blank">منصة السودان للجودة</a>
+            <span class="link-description">منصة الاختبارات والشهادات</span>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/@SudanQualityPlatform" target="_blank">قناة السودان للجودة على YouTube</a>
+            <span class="link-description">محاضرات فيديو مجانية</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <div class="section-header">
+          <span class="section-icon">🔧</span>
+          <h2 class="section-title">أدوات وموارد</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="video-resources.md">مصادر الفيديوهات</a>
+            <span class="link-description">قائمة بمصادر الفيديوهات التعليمية</span>
+          </li>
+          <li>
+            <a href="README.md">توثيق المشروع</a>
+            <span class="link-description">معلومات عن المشروع والتقنيات المستخدمة</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

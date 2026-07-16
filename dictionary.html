@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>قاموس المصطلحات | PharmaPro Academy</title>
+  <meta name="description" content="قاموس شامل للمصطلحات الصيدلانية في مجال GMP والتحكم في الجودة">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-bar {
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 16px 20px;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 1.2rem;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--light);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: var(--teal);
+  color: var(--navy);
+  border-color: var(--teal);
+}
+
+.dictionary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.term-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.term-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal);
+  box-shadow: 0 12px 40px rgba(0,212,170,0.1);
+}
+
+.term-arabic {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.term-english {
+  font-size: 0.9rem;
+  color: var(--teal);
+  margin-bottom: 0.75rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.term-definition {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.term-category {
+  font-size: 0.75rem;
+  color: var(--gold);
+  font-weight: 600;
+  padding: 4px 12px;
+  background: rgba(201,168,76,0.1);
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.no-results {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1.1rem;
+  padding: 3rem;
+  display: none;
+}
+
+.no-results.show {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .dictionary-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html">الرئيسية</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="dictionary.html" class="nav-cta">القاموس</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">قاموس المصطلحات</h1>
+      <p class="page-subtitle">قاموس شامل للمصطلحات الصيدلانية في مجال GMP والتحكم في الجودة</p>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن مصطلح...">
+      <span class="search-icon">🔍</span>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterTerms('all')">الكل</button>
+      <button class="filter-btn" onclick="filterTerms('gmp')">GMP</button>
+      <button class="filter-btn" onclick="filterTerms('validation')">التحقق والتثبيت</button>
+      <button class="filter-btn" onclick="filterTerms('capa')">CAPA</button>
+      <button class="filter-btn" onclick="filterTerms('iso')">ISO 9001</button>
+      <button class="filter-btn" onclick="filterTerms('qc')">التحكم في الجودة</button>
+    </div>
+
+    <div class="dictionary-grid" id="dictionaryGrid">
+      <!-- Terms will be loaded dynamically -->
+    </div>
+
+    <div class="no-results" id="noResults">
+      <p>لم يتم العثور على نتائج</p>
+    </div>
+  </div>
+
+  <script>
+    // Dictionary Data
+    const terms = [
+      {
+        id: 1,
+        arabic: "ممارسات التصنيع الجيد",
+        english: "Good Manufacturing Practices (GMP)",
+        definition: "مجموعة من المعايير والإرشادات التي تضمن إنتاج المنتجات الصيدلانية بشكل متسق ووفقاً لمعايير الجودة",
+        category: "gmp"
+      },
+      {
+        id: 2,
+        arabic: "التحقق والتثبيت",
+        english: "Validation",
+        definition: "عملية توثيق أن أي إجراء أو عملية أو نظام أو نشاط يقوم فعلياً بما هو مخصص له بشكل متسق ودقيق",
+        category: "validation"
+      },
+      {
+        id: 3,
+        arabic: "التثبيت المؤهل",
+        english: "Installation Qualification (IQ)",
+        definition: "التوثيق الذي يثبت أن المعدات والمعدات المساعدة، كما تم تثبيتها، تتوافق مع معايير التصميم الموصى بها من قبل الشركة المصنعة",
+        category: "validation"
+      },
+      {
+        id: 4,
+        arabic: "التشغيل المؤهل",
+        english: "Operational Qualification (OQ)",
+        definition: "التوثيق الذي يثبت أن المعدات والمعدات المساعدة، كما تم تشغيلها، تعمل ضمن جميع المعايير المحددة مسبقاً",
+        category: "validation"
+      },
+      {
+        id: 5,
+        arabic: "الأداء المؤهل",
+        english: "Performance Qualification (PQ)",
+        definition: "التوثيق الذي يثبت أن المعدات والمعدات المساعدة، كما تم تشغيلها، تؤدي بشكل فعال ومتسق بناءً على العملية الموصى بها",
+        category: "validation"
+      },
+      {
+        id: 6,
+        arabic: "الإجراءات التصحيحية والوقائية",
+        english: "Corrective and Preventive Actions (CAPA)",
+        definition: "الإجراءات المتخذة للقضاء على أسباب الانحرافات أو المشاكل الأخرى غير المرغوبية لمنع تكرارها",
+        category: "capa"
+      },
+      {
+        id: 7,
+        arabic: "السبب الجذري",
+        english: "Root Cause Analysis (RCA)",
+        definition: "عملية تحديد الأسباب الأساسية للمشاكل أو الحوادث لمنع تكرارها",
+        category: "capa"
+      },
+      {
+        id: 8,
+        arabic: "الانحراف",
+        english: "Deviation",
+        definition: "أي انحراف عن المعايير المحددة أو الإجراءات الموثقة أو المواصفات",
+        category: "gmp"
+      },
+      {
+        id: 9,
+        arabic: "التغيير",
+        english: "Change Control",
+        definition: "نظام رسمي لإدارة التغييرات في العمليات والمعدات والوثائق لضمان عدم التأثير سلباً على الجودة",
+        category: "gmp"
+      },
+      {
+        id: 10,
+        arabic: "إجراء التشغيل القياسي",
+        english: "Standard Operating Procedure (SOP)",
+        definition: "وثائق مكتوبة توضح الإجراءات القياسية لأداء مهمة أو عملية محددة بشكل متسق",
+        category: "gmp"
+      },
+      {
+        id: 11,
+        arabic: "نظام إدارة الجودة",
+        english: "Quality Management System (QMS)",
+        definition: "الهيكل التنظيم والإجراءات والعمليات والموارد اللازمة لتنفيذ إدارة الجودة",
+        category: "iso"
+      },
+      {
+        id: 12,
+        arabic: "التدقيق الداخلي",
+        english: "Internal Audit",
+        definition: "فحص منهجي ومستقل لتحديد ما إذا كانت أنشطة الجودة والنتائج المتعلقة بها تتوافق مع الترتيبات المخطط لها",
+        category: "iso"
+      },
+      {
+        id: 13,
+        arabic: "التحكم في الجودة",
+        english: "Quality Control (QC)",
+        definition: "الإجراءات التشغيلية والأنشطة التي تهدف إلى تلبية متطلبات الجودة",
+        category: "qc"
+      },
+      {
+        id: 14,
+        arabic: "ضمان الجودة",
+        english: "Quality Assurance (QA)",
+        definition: "جميع الأنشطة المنظمة والمخططة المنفذة داخل نظام الجودة لتوفير الثقة بأن المنتج سيلبي متطلبات الجودة",
+        category: "qc"
+      },
+      {
+        id: 15,
+        arabic: "اختبار خارج المواصفات",
+        english: "Out of Specification (OOS)",
+        definition: "نتيجة اختبار لا تفي بالمعايير المحددة مسبقاً",
+        category: "qc"
+      },
+      {
+        id: 16,
+        arabic: "التوثيق",
+        english: "Documentation",
+        definition: "جميع السجلات والإجراءات والتعليمات والبيانات المتعلقة بتصنيع المنتجات الصيدلانية",
+        category: "gmp"
+      },
+      {
+        id: 17,
+        arabic: "تتبع",
+        english: "Traceability",
+        definition: "القدرة على تتبع تاريخ أو تطبيق أو موقع عنصر أو نشاط من خلال عمليات مسجلة",
+        category: "gmp"
+      },
+      {
+        id: 18,
+        arabic: "التحقق من التنظيف",
+        english: "Cleaning Validation",
+        definition: "التوثيق الذي يثبت أن إجراءات التنظيف فعالة في إزالة الملوثات إلى مستويات مقبولة",
+        category: "validation"
+      },
+      {
+        id: 19,
+        arabic: "التخزين المؤهل",
+        english: "Qualification of Storage",
+        definition: "التوثيق الذي يثبت أن ظروف التخزين مناسبة للحفاظ على جودة المنتجات",
+        category: "validation"
+      },
+      {
+        id: 20,
+        arabic: "إدارة المخاطر",
+        english: "Risk Management",
+        definition: "عملية تحديد وتقييم والتحكم في المخاطر المحتملة التي قد تؤثر على جودة المنتجات",
+        category: "gmp"
+      },
+      {
+        id: 21,
+        arabic: "التلوث المتقاطع",
+        english: "Cross Contamination",
+        definition: "انتقال الملوثات من منتج أو عملية إلى أخرى",
+        category: "gmp"
+      },
+      {
+        id: 22,
+        arabic: "التحكم في التلوث",
+        english: "Contamination Control",
+        definition: "الإجراءات المتخذة لمنع أو تقليل التلوث في البيئة الصيدلانية",
+        category: "gmp"
+      },
+      {
+        id: 23,
+        arabic: "الاستقرار",
+        english: "Stability",
+        definition: "قدرة المنتج على الحفاظ على خصائصه الفيزيائية والكيميائية والميكروبيولوجية ضمن حدود محددة",
+        category: "qc"
+      },
+      {
+        id: 24,
+        arabic: "اختبار الاستقرار",
+        english: "Stability Testing",
+        definition: "الاختبارات التي تجرى لتحديد مدة صلاحية المنتج وظروف التخزين المناسبة",
+        category: "qc"
+      },
+      {
+        id: 25,
+        arabic: "التحليل الميكروبيولوجي",
+        english: "Microbiological Analysis",
+        definition: "فحص المنتجات والمواد للكشف عن الملوثات الميكروبية",
+        category: "qc"
+      },
+      {
+        id: 26,
+        arabic: "التحليل الكيميائي",
+        english: "Chemical Analysis",
+        definition: "فحص المنتجات والمواد لتحديد التركيب الكيميائي والنقاء",
+        category: "qc"
+      },
+      {
+        id: 27,
+        arabic: "الفحص الفيزيائي",
+        english: "Physical Testing",
+        definition: "فحص الخصائص الفيزيائية للمنتجات مثل المظهر واللون والرائحة",
+        category: "qc"
+      },
+      {
+        id: 28,
+        arabic: "معيار القبول",
+        english: "Acceptance Criteria",
+        definition: "المعايير التي يجب أن يفي بها المنتج أو العملية ليتم قبولها",
+        category: "validation"
+      },
+      {
+        id: 29,
+        arabic: "خطة التحقق",
+        english: "Validation Protocol",
+        description: "وثيقة تحدد كيفية إجراء التحقق والتثبيت ومعايير القبول",
+        category: "validation"
+      },
+      {
+        id: 30,
+        arabic: "تقرير التحقق",
+        english: "Validation Report",
+        definition: "وثيقة تلخص نتائج عملية التحقق والتثبيت والاستنتاجات",
+        category: "validation"
+      }
+    ];
+
+    // Render terms
+    function renderTerms(filter = 'all', searchTerm = '') {
+      const grid = document.getElementById('dictionaryGrid');
+      const noResults = document.getElementById('noResults');
+      
+      let filteredTerms = terms;
+      
+      // Apply category filter
+      if (filter !== 'all') {
+        filteredTerms = filteredTerms.filter(term => term.category === filter);
+      }
+      
+      // Apply search filter
+      if (searchTerm) {
+        const lowerSearch = searchTerm.toLowerCase();
+        filteredTerms = filteredTerms.filter(term => 
+          term.arabic.toLowerCase().includes(lowerSearch) ||
+          term.english.toLowerCase().includes(lowerSearch) ||
+          term.definition.toLowerCase().includes(lowerSearch)
+        );
+      }
+      
+      if (filteredTerms.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.add('show');
+      } else {
+        noResults.classList.remove('show');
+        grid.innerHTML = filteredTerms.map(term => `
+          <div class="term-card">
+            <div class="term-arabic">${term.arabic}</div>
+            <div class="term-english">${term.english}</div>
+            <p class="term-definition">${term.definition}</p>
+            <span class="term-category">${term.category.toUpperCase()}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Filter terms by category
+    function filterTerms(category) {
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase() === category || (category === 'all' && btn.textContent === 'الكل')) {
+          btn.classList.add('active');
+        }
+      });
+      
+      const searchTerm = document.getElementById('searchInput').value;
+      renderTerms(category, searchTerm);
+    }
+
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const searchTerm = e.target.value;
+      const activeFilter = document.querySelector('.filter-btn.active').textContent.toLowerCase();
+      const filter = activeFilter === 'الكل' ? 'all' : activeFilter;
+      renderTerms(filter, searchTerm);
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTerms();
+    });
+  </script>
+</body>
+</html>

@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>لوحة التحكم | PharmaPro Academy</title>
   <meta name="updated" content="2024-06-30">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="لوحة التحكم الشخصية لتتبع تقدمك التعليمي في كورسات GMP وISO والتحكم في الجودة">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,7 +29,10 @@
   --border:  rgba(0,212,170,0.15);
 }
 
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
 
 body {
   font-family: 'Cairo', sans-serif;
@@ -32,6 +40,8 @@ body {
   color: var(--light);
   overflow-x: hidden;
   direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body::before {
@@ -297,6 +307,134 @@ main {
   color: var(--teal);
 }
 
+/* Notification System Styles */
+.notification-container {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  z-index: 1000;
+  max-width: 350px;
+}
+
+.notification {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  animation: slideIn 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.notification.removing {
+  animation: slideOut 0.3s ease;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.notification-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.notification-message {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.notification-close:hover {
+  color: var(--white);
+}
+
+.notification.info {
+  border-left: 4px solid var(--teal);
+}
+
+.notification.success {
+  border-left: 4px solid #4CAF50;
+}
+
+.notification.warning {
+  border-left: 4px solid #FF9800;
+}
+
+.notification.error {
+  border-left: 4px solid #F44336;
+}
+
+.notification-badge {
+  position: fixed;
+  top: 70px;
+  left: 20px;
+  background: var(--teal);
+  color: var(--navy);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  z-index: 999;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
 .status-in-progress {
   background: rgba(201,168,76,0.2);
   color: var(--gold);
@@ -443,6 +581,10 @@ main {
       </div>
     </div>
   </nav>
+
+  <!-- Notification Container -->
+  <div class="notification-container" id="notificationContainer"></div>
+  <div class="notification-badge" id="notificationBadge" style="display: none;">0</div>
 
   <main>
     <div class="container">
@@ -658,6 +800,256 @@ main {
           }
         });
       });
+
+      // Progress Tracking System
+      const ProgressTracker = {
+        courses: [
+          { id: 'validation', name: 'التحقق والتثبيت', icon: '🔬' },
+          { id: 'capa', name: 'إدارة الانحرافات CAPA', icon: '📊' },
+          { id: 'iso-9001', name: 'ISO 9001', icon: '📋' },
+          { id: 'qc-lab', name: 'التحكم في الجودة المختبري', icon: '🧫' },
+          { id: 'ipqc', name: 'التحكم في الجودة أثناء العملية', icon: '⚙️' },
+          { id: 'gmp-basics', name: 'أساسيات GMP', icon: '📚' }
+        ],
+
+        init() {
+          this.loadProgress();
+          this.updateDashboard();
+        },
+
+        loadProgress() {
+          const saved = localStorage.getItem('pharmaProProgress');
+          if (saved) {
+            this.progress = JSON.parse(saved);
+          } else {
+            this.progress = {};
+            this.courses.forEach(course => {
+              this.progress[course.id] = {
+                completed: false,
+                currentLesson: 0,
+                totalLessons: this.getTotalLessons(course.id),
+                completedLessons: 0,
+                lastAccessed: null,
+                quizScore: 0
+              };
+            });
+            this.saveProgress();
+          }
+        },
+
+        getTotalLessons(courseId) {
+          const lessonCounts = {
+            'validation': 12,
+            'capa': 10,
+            'iso-9001': 8,
+            'qc-lab': 15,
+            'ipqc': 12,
+            'gmp-basics': 10
+          };
+          return lessonCounts[courseId] || 10;
+        },
+
+        saveProgress() {
+          localStorage.setItem('pharmaProProgress', JSON.stringify(this.progress));
+        },
+
+        updateCourseProgress(courseId, lessonNumber, completed = false) {
+          if (this.progress[courseId]) {
+            this.progress[courseId].currentLesson = lessonNumber;
+            this.progress[courseId].lastAccessed = new Date().toISOString();
+            
+            if (completed) {
+              this.progress[courseId].completedLessons++;
+              const total = this.progress[courseId].totalLessons;
+              if (this.progress[courseId].completedLessons >= total) {
+                this.progress[courseId].completed = true;
+              }
+            }
+            
+            this.saveProgress();
+            this.updateDashboard();
+          }
+        },
+
+        updateQuizScore(courseId, score) {
+          if (this.progress[courseId]) {
+            this.progress[courseId].quizScore = score;
+            this.saveProgress();
+            this.updateDashboard();
+          }
+        },
+
+        getOverallProgress() {
+          const totalCourses = this.courses.length;
+          const completedCourses = this.courses.filter(c => this.progress[c.id]?.completed).length;
+          return Math.round((completedCourses / totalCourses) * 100);
+        },
+
+        updateDashboard() {
+          const overallProgress = this.getOverallProgress();
+          const overallBar = document.querySelector('.card-value');
+          if (overallBar) {
+            overallBar.textContent = overallProgress + '%';
+          }
+        }
+      };
+
+      // Initialize progress tracking
+      ProgressTracker.init();
+
+      // Notification System
+      const NotificationSystem = {
+        notifications: [],
+        unreadCount: 0,
+
+        init() {
+          this.loadNotifications();
+          this.renderNotifications();
+          this.updateBadge();
+          this.setupEventListeners();
+          this.scheduleReminders();
+        },
+
+        loadNotifications() {
+          const saved = localStorage.getItem('pharmaProNotifications');
+          if (saved) {
+            this.notifications = JSON.parse(saved);
+            this.unreadCount = this.notifications.filter(n => !n.read).length;
+          } else {
+            // Default welcome notification
+            this.addNotification('info', 'مرحباً بك في لوحة التحكم', 'ابدأ رحلتك التعليمية في مجال الجودة الصيدلانية');
+          }
+        },
+
+        saveNotifications() {
+          localStorage.setItem('pharmaProNotifications', JSON.stringify(this.notifications));
+        },
+
+        addNotification(type, title, message, autoRemove = false) {
+          const notification = {
+            id: Date.now(),
+            type: type,
+            title: title,
+            message: message,
+            timestamp: new Date().toISOString(),
+            read: false
+          };
+
+          this.notifications.unshift(notification);
+          this.unreadCount++;
+          this.saveNotifications();
+          this.renderNotifications();
+          this.updateBadge();
+
+          if (autoRemove) {
+            setTimeout(() => {
+              this.removeNotification(notification.id);
+            }, 5000);
+          }
+        },
+
+        removeNotification(id) {
+          const notification = this.notifications.find(n => n.id === id);
+          if (notification && !notification.read) {
+            this.unreadCount--;
+          }
+          
+          this.notifications = this.notifications.filter(n => n.id !== id);
+          this.saveNotifications();
+          this.renderNotifications();
+          this.updateBadge();
+        },
+
+        markAsRead(id) {
+          const notification = this.notifications.find(n => n.id === id);
+          if (notification && !notification.read) {
+            notification.read = true;
+            this.unreadCount--;
+            this.saveNotifications();
+            this.renderNotifications();
+            this.updateBadge();
+          }
+        },
+
+        markAllAsRead() {
+          this.notifications.forEach(n => n.read = true);
+          this.unreadCount = 0;
+          this.saveNotifications();
+          this.renderNotifications();
+          this.updateBadge();
+        },
+
+        getNotificationIcon(type) {
+          const icons = {
+            'info': 'ℹ️',
+            'success': '✅',
+            'warning': '⚠️',
+            'error': '❌'
+          };
+          return icons[type] || 'ℹ️';
+        },
+
+        renderNotifications() {
+          const container = document.getElementById('notificationContainer');
+          if (!container) return;
+
+          container.innerHTML = this.notifications.map(notification => `
+            <div class="notification ${notification.type} ${notification.read ? 'read' : ''}" data-id="${notification.id}">
+              <div class="notification-icon">${this.getNotificationIcon(notification.type)}</div>
+              <div class="notification-content">
+                <div class="notification-title">${notification.title}</div>
+                <div class="notification-message">${notification.message}</div>
+              </div>
+              <button class="notification-close" onclick="NotificationSystem.removeNotification(${notification.id})">✕</button>
+            </div>
+          `).join('');
+        },
+
+        updateBadge() {
+          const badge = document.getElementById('notificationBadge');
+          if (!badge) return;
+
+          if (this.unreadCount > 0) {
+            badge.textContent = this.unreadCount > 9 ? '9+' : this.unreadCount;
+            badge.style.display = 'flex';
+          } else {
+            badge.style.display = 'none';
+          }
+        },
+
+        setupEventListeners() {
+          const badge = document.getElementById('notificationBadge');
+          if (badge) {
+            badge.addEventListener('click', () => {
+              this.markAllAsRead();
+            });
+          }
+        },
+
+        scheduleReminders() {
+          // Schedule daily study reminders
+          const now = new Date();
+          const tomorrow = new Date(now);
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          tomorrow.setHours(9, 0, 0, 0);
+
+          const timeUntilReminder = tomorrow - now;
+
+          setTimeout(() => {
+            this.addNotification('info', 'تذكير بالدراسة', 'حان وقت دراستك اليومية! استمر في تحقيق أهدافك التعليمية.');
+            // Schedule next reminder
+            setInterval(() => {
+              this.addNotification('info', 'تذكير بالدراسة', 'حان وقت دراستك اليومية! استمر في تحقيق أهدافك التعليمية.');
+            }, 24 * 60 * 60 * 1000);
+          }, timeUntilReminder);
+        }
+      };
+
+      // Initialize notification system
+      NotificationSystem.init();
+
+      // Make notification system globally accessible
+      window.NotificationSystem = NotificationSystem;
     });
   </script>
 </body>

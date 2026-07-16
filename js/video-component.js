@@ -14,6 +14,9 @@ class VideoPlayer {
     this.currentTime = 0;
     this.duration = 0;
     this.progress = 0;
+    this.volume = 1;
+    this.playbackSpeed = 1;
+    this.isMuted = false;
     
     this.init();
   }
@@ -57,7 +60,23 @@ class VideoPlayer {
           <div class="video-time">
             <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
           </div>
+          <button class="video-control-btn" id="volumeBtn">🔊</button>
+          <button class="video-control-btn" id="speedBtn">1x</button>
+          <button class="video-control-btn" id="pipBtn">📺</button>
           <button class="video-control-btn" id="fullscreenBtn">⛶</button>
+        </div>
+        
+        <div class="video-player-volume-slider" id="volumeSlider" style="display: none;">
+          <input type="range" min="0" max="100" value="100" id="volumeInput">
+        </div>
+        
+        <div class="video-player-speed-menu" id="speedMenu" style="display: none;">
+          <div class="speed-option" data-speed="0.5">0.5x</div>
+          <div class="speed-option" data-speed="0.75">0.75x</div>
+          <div class="speed-option active" data-speed="1">1x</div>
+          <div class="speed-option" data-speed="1.25">1.25x</div>
+          <div class="speed-option" data-speed="1.5">1.5x</div>
+          <div class="speed-option" data-speed="2">2x</div>
         </div>
         
         <div class="video-player-tabs">
@@ -167,6 +186,43 @@ class VideoPlayer {
     document.getElementById('fullscreenBtn').addEventListener('click', () => {
       this.toggleFullscreen();
     });
+    
+    // Volume button
+    document.getElementById('volumeBtn').addEventListener('click', () => {
+      this.toggleMute();
+    });
+    
+    // Volume slider
+    document.getElementById('volumeInput').addEventListener('input', (e) => {
+      this.setVolume(e.target.value / 100);
+    });
+    
+    // Speed button
+    document.getElementById('speedBtn').addEventListener('click', () => {
+      this.toggleSpeedMenu();
+    });
+    
+    // Speed options
+    document.querySelectorAll('.speed-option').forEach(option => {
+      option.addEventListener('click', () => {
+        this.setPlaybackSpeed(parseFloat(option.dataset.speed));
+      });
+    });
+    
+    // PiP button
+    document.getElementById('pipBtn').addEventListener('click', () => {
+      this.togglePiP();
+    });
+    
+    // Close menus when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#volumeBtn') && !e.target.closest('#volumeSlider')) {
+        document.getElementById('volumeSlider').style.display = 'none';
+      }
+      if (!e.target.closest('#speedBtn') && !e.target.closest('#speedMenu')) {
+        document.getElementById('speedMenu').style.display = 'none';
+      }
+    });
   }
   
   togglePlay() {
@@ -269,6 +325,69 @@ class VideoPlayer {
     }
   }
   
+  toggleMute() {
+    this.isMuted = !this.isMuted;
+    const btn = document.getElementById('volumeBtn');
+    btn.textContent = this.isMuted ? '🔇' : '🔊';
+    
+    // Show/hide volume slider
+    const slider = document.getElementById('volumeSlider');
+    slider.style.display = slider.style.display === 'none' ? 'block' : 'none';
+  }
+  
+  setVolume(value) {
+    this.volume = value;
+    const btn = document.getElementById('volumeBtn');
+    if (value === 0) {
+      btn.textContent = '🔇';
+      this.isMuted = true;
+    } else {
+      btn.textContent = '🔊';
+      this.isMuted = false;
+    }
+  }
+  
+  toggleSpeedMenu() {
+    const menu = document.getElementById('speedMenu');
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  }
+  
+  setPlaybackSpeed(speed) {
+    this.playbackSpeed = speed;
+    const btn = document.getElementById('speedBtn');
+    btn.textContent = speed + 'x';
+    
+    // Update active state
+    document.querySelectorAll('.speed-option').forEach(option => {
+      option.classList.remove('active');
+      if (parseFloat(option.dataset.speed) === speed) {
+        option.classList.add('active');
+      }
+    });
+    
+    // Hide menu
+    document.getElementById('speedMenu').style.display = 'none';
+    
+    // Adjust playback interval if playing
+    if (this.isPlaying) {
+      this.stopPlayback();
+      this.startPlayback();
+    }
+  }
+  
+  togglePiP() {
+    const video = this.container.querySelector('video');
+    if (video && document.pictureInPictureEnabled) {
+      if (document.pictureInPictureElement) {
+        document.exitPictureInPicture();
+      } else {
+        video.requestPictureInPicture();
+      }
+    } else {
+      alert('متصفحك لا يدعم وضع Picture-in-Picture');
+    }
+  }
+  
   formatTime(seconds) {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -284,7 +403,7 @@ class VideoPlayer {
   }
 }
 
-// ── QUIZ SYSTEM ──
+// ── ENHANCED QUIZ SYSTEM ──
 class QuizSystem {
   constructor(containerId, quizData) {
     this.container = document.getElementById(containerId);
@@ -292,6 +411,7 @@ class QuizSystem {
     this.currentQuestion = 0;
     this.score = 0;
     this.answers = [];
+    this.attempts = 0;
     
     this.init();
   }
@@ -310,11 +430,14 @@ class QuizSystem {
             <span class="quiz-score">النقاط: <span id="currentScore">0</span>/${this.quizData.questions.length}</span>
             <span style="color: var(--muted);">|</span>
             <span id="questionCounter">1/${this.quizData.questions.length}</span>
+            <span style="color: var(--muted);">|</span>
+            <span id="attemptCounter">المحاولة: 1</span>
           </div>
         </div>
         
         <div id="quizContent">
           <div class="quiz-question">
+            <div class="quiz-question-type" id="questionType"></div>
             <div class="quiz-question-text" id="questionText"></div>
             <div class="quiz-options" id="optionsContainer"></div>
             <div class="quiz-feedback" id="feedback"></div>
@@ -329,6 +452,7 @@ class QuizSystem {
         <div id="quizResults" class="quiz-results" style="display: none;">
           <div class="quiz-results-score" id="finalScore"></div>
           <div class="quiz-results-message" id="resultsMessage"></div>
+          <div class="quiz-performance-analysis" id="performanceAnalysis"></div>
           <div class="quiz-actions" style="justify-content: center;">
             <button class="quiz-btn" id="retryBtn">إعادة المحاولة</button>
             <button class="quiz-btn quiz-btn-outline" id="reviewBtn">مراجعة الإجابات</button>
@@ -346,16 +470,96 @@ class QuizSystem {
     document.getElementById('questionText').textContent = question.question;
     document.getElementById('questionCounter').textContent = `${this.currentQuestion + 1}/${this.quizData.questions.length}`;
     
+    // Render question type indicator
+    const typeLabels = {
+      'multiple-choice': 'اختيار من متعدد',
+      'true-false': 'صح أو خطأ',
+      'fill-blank': 'أكمل الفراغ',
+      'matching': 'مطابقة',
+      'ordering': 'ترتيب'
+    };
+    document.getElementById('questionType').textContent = typeLabels[question.type] || 'سؤال';
+    
     const optionsContainer = document.getElementById('optionsContainer');
-    optionsContainer.innerHTML = question.options.map((option, index) => `
-      <div class="quiz-option" data-index="${index}">
-        <div class="quiz-option-marker">${String.fromCharCode(65 + index)}</div>
-        <div class="quiz-option-text">${option}</div>
-      </div>
-    `).join('');
+    
+    // Render based on question type
+    switch(question.type) {
+      case 'true-false':
+        optionsContainer.innerHTML = `
+          <div class="quiz-option" data-index="0">
+            <div class="quiz-option-marker">A</div>
+            <div class="quiz-option-text">صح</div>
+          </div>
+          <div class="quiz-option" data-index="1">
+            <div class="quiz-option-marker">B</div>
+            <div class="quiz-option-text">خطأ</div>
+          </div>
+        `;
+        break;
+        
+      case 'fill-blank':
+        optionsContainer.innerHTML = `
+          <div class="quiz-fill-blank">
+            <input type="text" class="quiz-input" id="fillBlankInput" placeholder="أدخل إجابتك هنا...">
+          </div>
+        `;
+        break;
+        
+      case 'matching':
+        optionsContainer.innerHTML = this.renderMatchingQuestion(question);
+        break;
+        
+      case 'ordering':
+        optionsContainer.innerHTML = this.renderOrderingQuestion(question);
+        break;
+        
+      default: // multiple-choice
+        optionsContainer.innerHTML = question.options.map((option, index) => `
+          <div class="quiz-option" data-index="${index}">
+            <div class="quiz-option-marker">${String.fromCharCode(65 + index)}</div>
+            <div class="quiz-option-text">${option}</div>
+          </div>
+        `).join('');
+    }
     
     document.getElementById('feedback').classList.remove('show');
     document.getElementById('nextBtn').disabled = true;
+  }
+  
+  renderMatchingQuestion(question) {
+    const items = question.matchingItems || [];
+    return `
+      <div class="quiz-matching">
+        ${items.map((item, index) => `
+          <div class="matching-pair" data-index="${index}">
+            <div class="matching-item matching-left">${item.left}</div>
+            <div class="matching-arrow">→</div>
+            <div class="matching-item matching-right">
+              <select class="matching-select" data-left="${index}">
+                <option value="">اختر...</option>
+                ${items.map((opt, i) => `<option value="${i}">${opt.right}</option>`).join('')}
+              </select>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+  
+  renderOrderingQuestion(question) {
+    const items = question.orderingItems || [];
+    const shuffled = [...items].sort(() => Math.random() - 0.5);
+    return `
+      <div class="quiz-ordering">
+        <div class="ordering-instructions">رتب العناصر بالترتيب الصحيح:</div>
+        ${shuffled.map((item, index) => `
+          <div class="ordering-item" data-original="${item.id}" draggable="true">
+            <span class="ordering-number">${index + 1}</span>
+            <span class="ordering-text">${item.text}</span>
+          </div>
+        `).join('')}
+      </div>
+    `;
   }
   
   attachEvents() {
@@ -365,6 +569,24 @@ class QuizSystem {
         this.selectOption(parseInt(option.dataset.index));
       }
     });
+    
+    // Handle fill-blank input
+    document.getElementById('optionsContainer').addEventListener('input', (e) => {
+      if (e.target.classList.contains('quiz-input')) {
+        const value = e.target.value.trim();
+        document.getElementById('nextBtn').disabled = value.length === 0;
+      }
+    });
+    
+    // Handle matching selects
+    document.getElementById('optionsContainer').addEventListener('change', (e) => {
+      if (e.target.classList.contains('matching-select')) {
+        this.checkMatchingComplete();
+      }
+    });
+    
+    // Handle ordering drag and drop
+    this.setupOrderingDragDrop();
     
     document.getElementById('nextBtn').addEventListener('click', () => {
       this.nextQuestion();
@@ -381,6 +603,54 @@ class QuizSystem {
     document.getElementById('reviewBtn').addEventListener('click', () => {
       this.reviewAnswers();
     });
+  }
+  
+  setupOrderingDragDrop() {
+    const container = document.getElementById('optionsContainer');
+    let draggedItem = null;
+    
+    container.addEventListener('dragstart', (e) => {
+      if (e.target.classList.contains('ordering-item')) {
+        draggedItem = e.target;
+        e.target.style.opacity = '0.5';
+      }
+    });
+    
+    container.addEventListener('dragend', (e) => {
+      if (e.target.classList.contains('ordering-item')) {
+        e.target.style.opacity = '1';
+        draggedItem = null;
+        this.updateOrderingNumbers();
+      }
+    });
+    
+    container.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      const target = e.target.closest('.ordering-item');
+      if (target && target !== draggedItem) {
+        const rect = target.getBoundingClientRect();
+        const midY = rect.top + rect.height / 2;
+        if (e.clientY < midY) {
+          target.parentNode.insertBefore(draggedItem, target);
+        } else {
+          target.parentNode.insertBefore(draggedItem, target.nextSibling);
+        }
+      }
+    });
+  }
+  
+  updateOrderingNumbers() {
+    const items = document.querySelectorAll('.ordering-item');
+    items.forEach((item, index) => {
+      item.querySelector('.ordering-number').textContent = index + 1;
+    });
+    document.getElementById('nextBtn').disabled = false;
+  }
+  
+  checkMatchingComplete() {
+    const selects = document.querySelectorAll('.matching-select');
+    const allAnswered = Array.from(selects).every(select => select.value !== '');
+    document.getElementById('nextBtn').disabled = !allAnswered;
   }
   
   selectOption(index) {
@@ -413,9 +683,25 @@ class QuizSystem {
   showFeedback(isCorrect, explanation) {
     const feedback = document.getElementById('feedback');
     feedback.className = `quiz-feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
-    feedback.innerHTML = isCorrect 
-      ? `✓ إجابة صحيحة! ${explanation}`
-      : `✗ إجابة خاطئة. ${explanation}`;
+    
+    let feedbackHTML = isCorrect 
+      ? `<div class="feedback-icon">✓</div>`
+      : `<div class="feedback-icon">✗</div>`;
+    
+    feedbackHTML += `<div class="feedback-content">`;
+    feedbackHTML += `<div class="feedback-title">${isCorrect ? 'إجابة صحيحة!' : 'إجابة خاطئة'}</div>`;
+    
+    if (explanation) {
+      feedbackHTML += `<div class="feedback-explanation">${explanation}</div>`;
+    }
+    
+    // Add learning tips for incorrect answers
+    if (!isCorrect && this.quizData.questions[this.currentQuestion].learningTip) {
+      feedbackHTML += `<div class="feedback-tip">💡 نصيحة: ${this.quizData.questions[this.currentQuestion].learningTip}</div>`;
+    }
+    
+    feedbackHTML += `</div>`;
+    feedback.innerHTML = feedbackHTML;
   }
   
   nextQuestion() {
@@ -452,6 +738,212 @@ class QuizSystem {
     }
     
     document.getElementById('resultsMessage').textContent = message;
+    
+    // Performance analysis
+    this.showPerformanceAnalysis(percentage);
+    
+    // Update attempt counter
+    this.attempts++;
+    document.getElementById('attemptCounter').textContent = `المحاولة: ${this.attempts}`;
+    
+    // Generate certificate if passed
+    if (percentage >= 70) {
+      this.generateCertificate();
+    }
+  }
+  
+  showPerformanceAnalysis(percentage) {
+    const analysis = document.getElementById('performanceAnalysis');
+    
+    // Calculate performance by question type
+    const typePerformance = {};
+    this.quizData.questions.forEach((question, index) => {
+      const type = question.type || 'multiple-choice';
+      if (!typePerformance[type]) {
+        typePerformance[type] = { correct: 0, total: 0 };
+      }
+      typePerformance[type].total++;
+      if (this.answers[index]?.correct) {
+        typePerformance[type].correct++;
+      }
+    });
+    
+    let analysisHTML = '<div class="performance-breakdown">';
+    analysisHTML += '<h4>تحليل الأداء</h4>';
+    
+    Object.keys(typePerformance).forEach(type => {
+      const data = typePerformance[type];
+      const typePercent = Math.round((data.correct / data.total) * 100);
+      const typeLabels = {
+        'multiple-choice': 'اختيار من متعدد',
+        'true-false': 'صح أو خطأ',
+        'fill-blank': 'أكمل الفراغ',
+        'matching': 'مطابقة',
+        'ordering': 'ترتيب'
+      };
+      
+      analysisHTML += `
+        <div class="performance-item">
+          <div class="performance-label">${typeLabels[type] || type}</div>
+          <div class="performance-bar">
+            <div class="performance-fill" style="width: ${typePercent}%"></div>
+          </div>
+          <div class="performance-value">${data.correct}/${data.total} (${typePercent}%)</div>
+        </div>
+      `;
+    });
+    
+    analysisHTML += '</div>';
+    analysis.innerHTML = analysisHTML;
+  }
+  
+  generateCertificate() {
+    const certificateData = {
+      courseName: this.quizData.title,
+      score: this.score,
+      total: this.quizData.questions.length,
+      percentage: Math.round((this.score / this.quizData.questions.length) * 100),
+      date: new Date().toLocaleDateString('ar-EG'),
+      studentName: 'د.داود تاج الدين احمد عبدالكريم'
+    };
+    
+    // Save certificate data
+    localStorage.setItem(`certificate_${this.quizData.id}`, JSON.stringify(certificateData));
+    
+    // Add certificate download button
+    const resultsDiv = document.getElementById('quizResults');
+    const certBtn = document.createElement('button');
+    certBtn.className = 'quiz-btn quiz-btn-outline';
+    certBtn.textContent = '🎓 تحميل الشهادة';
+    certBtn.style.marginTop = '1rem';
+    certBtn.onclick = () => this.downloadCertificate(certificateData);
+    
+    // Remove existing certificate button if any
+    const existingBtn = resultsDiv.querySelector('.certificate-btn');
+    if (existingBtn) {
+      existingBtn.remove();
+    }
+    
+    certBtn.classList.add('certificate-btn');
+    resultsDiv.querySelector('.quiz-actions').appendChild(certBtn);
+  }
+  
+  downloadCertificate(certificateData) {
+    // Create a simple certificate HTML
+    const certificateHTML = `
+      <!DOCTYPE html>
+      <html lang="ar" dir="rtl">
+      <head>
+        <meta charset="UTF-8">
+        <title>شهادة إتمام - ${certificateData.courseName}</title>
+        <style>
+          body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+          }
+          .certificate {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border: 8px solid #C9A84C;
+          }
+          .certificate-header {
+            margin-bottom: 30px;
+          }
+          .certificate-title {
+            font-size: 2.5rem;
+            color: #0A1628;
+            margin-bottom: 10px;
+            font-weight: 700;
+          }
+          .certificate-subtitle {
+            font-size: 1.2rem;
+            color: #8BA3C4;
+          }
+          .certificate-body {
+            margin: 40px 0;
+          }
+          .student-name {
+            font-size: 2rem;
+            color: #00D4AA;
+            margin: 20px 0;
+            font-weight: 700;
+          }
+          .course-name {
+            font-size: 1.5rem;
+            color: #0A1628;
+            margin: 15px 0;
+            font-weight: 600;
+          }
+          .certificate-footer {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .score {
+            font-size: 1.5rem;
+            color: #C9A84C;
+            font-weight: 700;
+          }
+          .date {
+            color: #8BA3C4;
+          }
+          .seal {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #C9A84C 0%, #E8C96A 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="certificate">
+          <div class="certificate-header">
+            <div class="certificate-title">شهادة إتمام</div>
+            <div class="certificate-subtitle">PharmaPro Academy</div>
+          </div>
+          <div class="certificate-body">
+            <p style="color: #8BA3C4; font-size: 1.1rem;">تشهد منصة PharmaPro Academy بأن</p>
+            <div class="student-name">${certificateData.studentName}</div>
+            <p style="color: #8BA3C4; font-size: 1.1rem;">قد أتم بنجاح كورس</p>
+            <div class="course-name">${certificateData.courseName}</div>
+          </div>
+          <div class="certificate-footer">
+            <div class="score">النتيجة: ${certificateData.percentage}%</div>
+            <div class="seal">معتمد</div>
+            <div class="date">${certificateData.date}</div>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+    
+    // Create download link
+    const blob = new Blob([certificateHTML], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `شهادة_${certificateData.courseName.replace(/\s+/g, '_')}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
   
   retryQuiz() {

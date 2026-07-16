@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>التحقق والتثبيت المتقدم | PharmaPro Academy</title>
+  <meta name="description" content="كورس متقدم في التحقق والتثبيت للمعدات والعمليات الصيدلانية">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.course-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.course-badge {
+  display: inline-block;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.course-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.course-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-block {
+  margin-bottom: 2rem;
+}
+
+.content-block h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.content-block p {
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.content-block ul {
+  list-style: none;
+  padding-right: 1.5rem;
+}
+
+.content-block li {
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.content-block li::before {
+  content: '•';
+  color: var(--teal);
+  position: absolute;
+  right: -1rem;
+  font-size: 1.2rem;
+}
+
+.prerequisites {
+  background: rgba(0,212,170,0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.prerequisites h4 {
+  color: var(--teal);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.learning-outcomes {
+  background: rgba(201,168,76,0.05);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.learning-outcomes h4 {
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.enroll-btn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 2rem auto;
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  padding: 16px 32px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.enroll-btn:hover {
+  background: var(--teal2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,212,170,0.3);
+}
+
+@media (max-width: 768px) {
+  .course-title {
+    font-size: 2rem;
+  }
+  
+  .course-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html">الرئيسية</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="courses.html">الكورسات</a></li>
+      <li><a href="course-advanced-validation.html" class="nav-cta">التحقق المتقدم</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="course-header">
+      <span class="course-badge">🏆 كورس متقدم</span>
+      <h1 class="course-title">التحقق والتثبيت المتقدم</h1>
+      <div class="course-meta">
+        <span>⏱️ 12 ساعة</span>
+        <span>📊 8 وحدات</span>
+        <span>🎯 مستوى متقدم</span>
+      </div>
+    </div>
+
+    <div class="prerequisites">
+      <h4>📋 المتطلبات السابقة</h4>
+      <ul>
+        <li>إكمال كورس التحقق والتثبيت الأساسي</li>
+        <li>خبرة عملية في مجال GMP لمدة سنة على الأقل</li>
+        <li>معرفة أساسية بالتحليل الإحصائي</li>
+      </ul>
+    </div>
+
+    <div class="learning-outcomes">
+      <h4>🎓 نتائج التعلم</h4>
+      <ul>
+        <li>فهم عميق لاستراتيجيات التحقق المتقدمة</li>
+        <li>القدرة على تصميم وتنفيذ خطط التحقق المعقدة</li>
+        <li>إتقان تقنيات التحليل الإحصائي للبيانات</li>
+        <li>المهارة في إدارة مشاريع التحقق الكبيرة</li>
+        <li>القدرة على تدقيق وتحسين عمليات التحقق الحالية</li>
+      </ul>
+    </div>
+
+    <div class="course-content">
+      <h2 class="section-title">محتوى الكورس</h2>
+      
+      <div class="content-block">
+        <h3>الوحدة 1: استراتيجيات التحقق المتقدمة</h3>
+        <p>استكشاف استراتيجيات التحقق المتقدمة للمعدات والعمليات المعقدة في الصناعة الصيدلانية.</p>
+        <ul>
+          <li>التحقق المتزامن (Concurrent Validation)</li>
+          <li>التحقق الرجعي (Retrospective Validation)</li>
+          <li>التحقق المستمر (Continuous Validation)</li>
+          <li>إدارة المخاطر في التحقق</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h3>الوحدة 2: التحليل الإحصائي للبيانات</h3>
+        <p>تعلم تطبيق التحليل الإحصائي المتقدم على بيانات التحقق والتثبيت.</p>
+        <ul>
+          <li>تحليل القدرة الإحصائية (Capability Analysis)</li>
+          <li>تحليل التباين (ANOVA)</li>
+          <li>مخططات التحكم الإحصائية (SPC)</li>
+          <li>تحليل الانحرافات الإحصائي</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h3>الوحدة 3: التحقق من الأنظمة المعقدة</h3>
+        <p>استراتيجيات التحقق للأنظمة المعقدة والمترابطة.</p>
+        <ul>
+          <li>التحقق من أنظمة الأتمتة</li>
+          <li>التحقق من أنظمة إدارة البيانات</li>
+          <li>التحقق من أنظمة التحكم في العمليات</li>
+          <li>التحقق من تكامل الأنظمة</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h3>الوحدة 4: إدارة مشاريع التحقق</h3>
+        <p>مبادئ إدارة المشاريع المطبقة على مشاريع التحقق والتثبيت.</p>
+        <ul>
+          <li>تخطيط مشاريع التحقق</li>
+          <li>إدارة الموارد والجدولة</li>
+          <li>إدارة المخاطر في المشاريع</li>
+          <li>التواصل والإبلاغ</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h3>الوحدة 5: التدقيق وتحسين العمليات</h3>
+        <p>تقنيات تدقيق وتحسين عمليات التحقق والتثبيت.</p>
+        <ul>
+          <li>التدقيق الداخلي لعمليات التحقق</li>
+          <li>تحليل الأسباب الجذرية للمشاكل</li>
+          <li>تحسين مستمر للعمليات</li>
+          <li>تطبيق أفضل الممارسات</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h3>الوحدة 6: التوثيق والامتثال</h3>
+        <p>متطلبات التوثيق والامتثال للتحقق المتقدم.</p>
+        <ul>
+          <li>توثيق خطط التحقق المعقدة</li>
+          <li>إعداد تقارير التحقق المتقدمة</li>
+          <li>الامتثال التنظيمي الدولي</li>
+          <li>التحضير للتفتيشات</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h3>الوحدة 7: دراسات حالة متقدمة</h3>
+        <p>تحليل دراسات حالة واقعية لمشاريع التحقق المعقدة.</p>
+        <ul>
+          <li>دراسة حالة: تحقق من خط إنتاج متكامل</li>
+          <li>دراسة حالة: تحقق من نظام أتمتة</li>
+          <li>دراسة حالة: تحقق من عملية نقل التكنولوجيا</li>
+          <li>تحليل الأخطاء الشائعة والحلول</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h3>الوحدة 8: المشروع العملي</h3>
+        <p>مشروع عملي متكامل لتطبيق المفاهيم المتقدمة.</p>
+        <ul>
+          <li>تخطيط مشروع التحقق</li>
+          <li>تنفيذ خطة التحقق</li>
+          <li>تحليل النتائج</li>
+          <li>تقديم التقرير النهائي</li>
+        </ul>
+      </div>
+    </div>
+
+    <a href="dashboard.html" class="enroll-btn">سجل الآن</a>
+  </div>
+</body>
+</html>

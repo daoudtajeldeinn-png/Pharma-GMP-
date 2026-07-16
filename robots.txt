@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pharmapro-academy.com/sitemap.xml
+
+# Disallow sensitive directories
+Disallow: /logs/
+Disallow: /.git/
+Disallow: /__pycache__/
+Disallow: /.firebase/

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المكتبة المرئية | PharmaPro Academy</title>
+  <meta name="description" content="مكتبة مرئية شاملة تحتوي على إنفوجرافيك ورسوم بيانية في مجال GMP والتحكم في الجودة">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--light);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: var(--teal);
+  color: var(--navy);
+  border-color: var(--teal);
+}
+
+.visual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.visual-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.visual-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal);
+  box-shadow: 0 12px 40px rgba(0,212,170,0.1);
+}
+
+.visual-preview {
+  height: 200px;
+  background: var(--navy2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+}
+
+.visual-preview::after {
+  content: '🔍';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.visual-card:hover .visual-preview::after {
+  opacity: 1;
+}
+
+.visual-content {
+  padding: 1.5rem;
+}
+
+.visual-category {
+  font-size: 0.8rem;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.visual-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.visual-description {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.visual-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.visual-tag {
+  padding: 4px 12px;
+  background: rgba(0,212,170,0.1);
+  color: var(--teal);
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 1000px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: var(--card-bg);
+  z-index: 10;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--white);
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.infographic-container {
+  background: var(--navy2);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.infographic-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.infographic-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.infographic-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.item-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.item-title {
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.item-description {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.download-section {
+  background: rgba(0,212,170,0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.download-btn {
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.download-btn:hover {
+  background: var(--teal2);
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .visual-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .infographic-content {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html">الرئيسية</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="visual-library.html" class="nav-cta">المكتبة المرئية</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">المكتبة المرئية</h1>
+      <p class="page-subtitle">إنفوجرافيك ورسوم بيانية تعليمية في مجال GMP والتحكم في الجودة الصيدلانية</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterVisuals('all')">الكل</button>
+      <button class="filter-btn" onclick="filterVisuals('gmp')">GMP</button>
+      <button class="filter-btn" onclick="filterVisuals('validation')">التحقق والتثبيت</button>
+      <button class="filter-btn" onclick="filterVisuals('capa')">CAPA</button>
+      <button class="filter-btn" onclick="filterVisuals('iso')">ISO 9001</button>
+      <button class="filter-btn" onclick="filterVisuals('qc')">التحكم في الجودة</button>
+    </div>
+
+    <div class="visual-grid" id="visualGrid">
+      <!-- Visual items will be loaded dynamically -->
+    </div>
+  </div>
+
+  <!-- Modal for visual details -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">تفاصيل</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Visual content will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Visual Library Data
+    const visualItems = [
+      {
+        id: 1,
+        title: "مبادئ GMP الأساسية",
+        category: "gmp",
+        icon: "📋",
+        description: "إنفوجرافيك يوضح المبادئ العشرة الأساسية لممارسات التصنيع الجيد",
+        type: "infographic",
+        tags: ["مبتدئ", "أساسي"],
+        content: {
+          items: [
+            { icon: "👥", title: "الشخص المؤهل", description: "يجب أن يكون الموظفون مؤهلين ومدربين بشكل مناسب" },
+            { icon: "🏢", title: "المباني", description: "المباني والمرافق يجب أن تكون مصممة ومحافظة عليها بشكل مناسب" },
+            { icon: "🧹", title: "النظافة", description: "يجب الحفاظ على النظافة والنظام في جميع الأوقات" },
+            { icon: "📝", title: "التوثيق", description: "يجب توثيق جميع الإجراءات والعمليات بدقة" },
+            { icon: "🔍", title: "التحقق", description: "يجب التحقق من جميع العمليات والمعدات بشكل دوري" },
+            { icon: "🚨", title: "الانحرافات", description: "يجب التحقيق في الانحرافات واتخاذ إجراءات تصحيحية" },
+            { icon: "📦", title: "التخزين", description: "يجب تخزين المواد والمنتجات بشكل صحيح" },
+            { icon: "🔬", title: "الفحص", description: "يجب فحص المواد والمنتجات بشكل دوري" },
+            { icon: "📊", title: "الجودة", description: "يجب تطبيق نظام إدارة الجودة الشامل" },
+            { icon: "🔄", title: "التحسين", description: "يجب التحسين المستمر للعمليات والإجراءات" }
+          ]
+        }
+      },
+      {
+        id: 2,
+        title: "دورة حياة التحقق والتثبيت",
+        category: "validation",
+        icon: "🔄",
+        description: "رسم بياني يوضح مراحل التحقق والتثبيت IQ/OQ/PQ",
+        type: "infographic",
+        tags: ["متقدم", "عملي"],
+        content: {
+          items: [
+            { icon: "📋", title: "خطة التحقق", description: "تطوير خطة شاملة للتحقق والتثبيت" },
+            { icon: "🔧", title: "IQ - التثبيت", description: "التأكد من التثبيت الصحيح للمعدات" },
+            { icon: "⚙️", title: "OQ - التشغيل", description: "التحقق من أن المعدات تعمل كما هو مصمم" },
+            { icon: "✅", title: "PQ - الأداء", description: "التحقق من أن المعدات تؤدي وظيفتها بشكل صحيح" },
+            { icon: "📝", title: "التوثيق", description: "توثيق جميع نتائج التحقق والتثبيت" },
+            { icon: "🔄", title: "المراجعة", description: "مراجعة وتحديث خطة التحقق بشكل دوري" }
+          ]
+        }
+      },
+      {
+        id: 3,
+        title: "عملية CAPA",
+        category: "capa",
+        icon: "📊",
+        description: "إنفوجرافيك يوضح خطوات إدارة الانحرافات والإجراءات التصحيحية",
+        type: "infographic",
+        tags: ["متوسط", "عملي"],
+        content: {
+          items: [
+            { icon: "🔍", title: "الاكتشاف", description: "اكتشاف وتوثيق الانحراف" },
+            { icon: "🎯", title: "التحقيق", description: "التحقيق لتحديد السبب الجذري" },
+            { icon: "📋", title: "التقييم", description: "تقييم تأثير الانحراف على الجودة" },
+            { icon: "✏️", title: "الخطة", description: "تطوير خطة إجراءات تصحيحية" },
+            { icon: "⚡", title: "التنفيذ", description: "تنفيذ الإجراءات التصحيحية" },
+            { icon: "✅", title: "التحقق", description: "التحقق من فعالية الإجراءات" }
+          ]
+        }
+      },
+      {
+        id: 4,
+        title: "هيكل ISO 9001",
+        category: "iso",
+        icon: "🏗️",
+        description: "رسم بياني يوضح هيكل معيار ISO 9001:2015",
+        type: "infographic",
+        tags: ["متقدم", "نظري"],
+        content: {
+          items: [
+            { icon: "🎯", title: "التركيز على العميل", description: "فهم وتلبية احتياجات العملاء" },
+            { icon: "👥", title: "القيادة", description: "القيادة والالتزام من الإدارة العليا" },
+            { icon: "👤", title: "الأشخاص", description: "إشراك الأشخاص وتطوير كفاءاتهم" },
+            { icon: "🔄", title: "العملية", description: "نهج قائم على العملية" },
+            { icon: "🤝", title: "العلاقات", description: "إدارة علاقات الموردين والشركاء" },
+            { icon: "📊", title: "التحسين", description: "التحسين المستمر" },
+            { icon: "🔍", title: "اتخاذ القرار", description: "اتخاذ القرار القائم على الأدلة" }
+          ]
+        }
+      },
+      {
+        id: 5,
+        title: "اختبارات المختبر",
+        category: "qc",
+        icon: "🧪",
+        description: "إنفوجرافيك يوضح أنواع اختبارات الجودة المختبرية",
+        type: "infographic",
+        tags: ["متوسط", "عملي"],
+        content: {
+          items: [
+            { icon: "⚖️", title: "الفحص الفيزيائي", description: "المظهر، اللون، الرائحة، الطعم" },
+            { icon: "🔬", title: "الفحص الكيميائي", description: "التحليل الكيميائي للمادة الفعالة" },
+            { icon: "🦠", title: "الفحص الميكروبيولوجي", description: "اختبار الملوثات الميكروبية" },
+            { icon: "💊", title: "فحص الذوبان", description: "اختبار معدل الذوبان" },
+            { icon: "📊", title: "فحص التجانس", description: "اختبار تجانس المحتوى" },
+            { icon: "🧪", title: "فحص الاستقرار", description: "اختبار استقرار المنتج" }
+          ]
+        }
+      },
+      {
+        id: 6,
+        title: "نظام التوثيق GMP",
+        category: "gmp",
+        icon: "📝",
+        description: "إنفوجرافيك يوضح أنواع الوثائق المطلوبة في GMP",
+        type: "infographic",
+        tags: ["متوسط", "نظري"],
+        content: {
+          items: [
+            { icon: "📋", title: "SOPs", description: "إجراءات التشغيل القياسية" },
+            { icon: "📊", title: "السجلات", description: "سجلات الإنتاج والجودة" },
+            { icon: "🔍", title: "التقارير", description: "تقارير الفحص والتحليل" },
+            { icon: "✅", title: "الشهادات", description: "شهادات التحليل" },
+            { icon: "📝", title: "النماذج", description: "نماذج التوثيق القياسية" },
+            { icon: "🔄", title: "المراجعة", description: "مراجعة وتحديث الوثائق" }
+          ]
+        }
+      },
+      {
+        id: 7,
+        title: "إدارة المخاطر",
+        category: "gmp",
+        icon: "⚠️",
+        description: "إنفوجرافيك يوضح مبادئ إدارة المخاطر في الصناعة الصيدلانية",
+        type: "infographic",
+        tags: ["متقدم", "عملي"],
+        content: {
+          items: [
+            { icon: "🔍", title: "تحديد المخاطر", description: "تحديد وتقييم المخاطر المحتملة" },
+            { icon: "📊", title: "تقييم المخاطر", description: "تقييم احتمالية وتأثير المخاطر" },
+            { icon: "🎯", title: "التحكم", description: "تطوير إجراءات التحكم في المخاطر" },
+            { icon: "📋", title: "المراجعة", description: "مراجعة وتحديث تقييم المخاطر" },
+            { icon: "🔄", title: "التحسين", description: "التحسين المستمر لإدارة المخاطر" }
+          ]
+        }
+      },
+      {
+        id: 8,
+        title: "التحكم في التلوث",
+        category: "qc",
+        icon: "🦠",
+        description: "إنفوجرافيك يوضح استراتيجيات التحكم في التلوث",
+        type: "infographic",
+        tags: ["متقدم", "عملي"],
+        content: {
+          items: [
+            { icon: "🧹", title: "التنظيف", description: "بروتوكولات التنظيف والتعقيم" },
+            { icon: "👥", title: "النظافة الشخصية", description: "ممارسات النظافة الشخصية للموظفين" },
+            { icon: "🏢", title: "البيئة", description: "التحكم في بيئة التصنيع" },
+            { icon: "🔬", title: "المراقبة", description: "المراقبة المستمرة للمستويات الميكروبية" },
+            { icon: "📊", title: "التحليل", description: "تحليل وتفسير نتائج الفحص" }
+          ]
+        }
+      }
+    ];
+
+    // Render visual items
+    function renderVisuals(filter = 'all') {
+      const grid = document.getElementById('visualGrid');
+      const filteredItems = filter === 'all' 
+        ? visualItems 
+        : visualItems.filter(item => item.category === filter);
+      
+      grid.innerHTML = filteredItems.map(item => `
+        <div class="visual-card" onclick="openVisual(${item.id})">
+          <div class="visual-preview">${item.icon}</div>
+          <div class="visual-content">
+            <div class="visual-category">${item.category.toUpperCase()}</div>
+            <h3 class="visual-title">${item.title}</h3>
+            <p class="visual-description">${item.description}</p>
+            <div class="visual-meta">
+              ${item.tags.map(tag => `<span class="visual-tag">${tag}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter visuals
+    function filterVisuals(category) {
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase() === category || (category === 'all' && btn.textContent === 'الكل')) {
+          btn.classList.add('active');
+        }
+      });
+      
+      renderVisuals(category);
+    }
+
+    // Open visual modal
+    function openVisual(id) {
+      const item = visualItems.find(v => v.id === id);
+      if (!item) return;
+
+      document.getElementById('modalTitle').textContent = item.title;
+      
+      const modalBody = document.getElementById('modalBody');
+      modalBody.innerHTML = `
+        <div class="infographic-container">
+          <div class="infographic-title">${item.title}</div>
+          <div class="infographic-content">
+            ${item.content.items.map((contentItem, index) => `
+              <div class="infographic-item">
+                <div class="item-icon">${contentItem.icon}</div>
+                <div class="item-title">${contentItem.title}</div>
+                <div class="item-description">${contentItem.description}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        
+        <div class="download-section">
+          <div>
+            <strong style="color: var(--white);">تحميل هذا الإنفوجرافيك</strong>
+            <p style="color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem;">صورة عالية الجودة للاستخدام التعليمي</p>
+          </div>
+          <button class="download-btn" onclick="downloadInfographic('${item.title}')">📥 تحميل</button>
+        </div>
+      `;
+      
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    // Download infographic
+    function downloadInfographic(title) {
+      alert(`سيتم تحميل: ${title}\n\nملاحظة: هذه ميزة تجريبية. في الإصدار الكامل، سيتم تحميل صورة عالية الجودة.`);
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    // Event listeners
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderVisuals();
+    });
+  </script>
+</body>
+</html>

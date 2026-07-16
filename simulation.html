@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المحاكاة الافتراضية | PharmaPro Academy</title>
+  <meta name="description" content="محاكاة افتراضية لعمليات GMP والتحكم في الجودة الصيدلانية">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.simulation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.simulation-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.simulation-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal);
+  box-shadow: 0 12px 40px rgba(0,212,170,0.1);
+}
+
+.simulation-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.simulation-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.simulation-description {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Simulation Container */
+.simulation-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  display: none;
+}
+
+.simulation-container.active {
+  display: block;
+}
+
+.simulation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.simulation-title-large {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.simulation-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s;
+}
+
+.simulation-close:hover {
+  color: var(--white);
+}
+
+.simulation-workspace {
+  background: var(--navy2);
+  border-radius: 12px;
+  padding: 2rem;
+  min-height: 400px;
+  position: relative;
+}
+
+/* Lab Simulation */
+.lab-bench {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.lab-equipment {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.equipment-title {
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.equipment-display {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-family: 'Inter', monospace;
+  color: var(--teal);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.equipment-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-btn {
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.control-btn:hover {
+  background: var(--teal2);
+}
+
+.control-btn:disabled {
+  background: var(--muted);
+  cursor: not-allowed;
+}
+
+/* Production Line Simulation */
+.production-line {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+.production-stage {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-width: 150px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.production-stage.active {
+  border-color: var(--teal);
+  box-shadow: 0 0 20px rgba(0,212,170,0.3);
+}
+
+.production-stage.completed {
+  border-color: #4CAF50;
+  background: rgba(76,175,80,0.1);
+}
+
+.stage-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stage-name {
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.stage-status {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.stage-controls {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Documentation Simulation */
+.document-workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.document-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--light);
+  font-weight: 600;
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 10px;
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.document-preview {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.preview-content {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 1.5rem;
+  min-height: 200px;
+}
+
+.simulation-score {
+  background: rgba(0,212,170,0.1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-label {
+  font-weight: 600;
+  color: var(--white);
+}
+
+.score-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .simulation-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .document-workspace {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html">الرئيسية</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="simulation.html" class="nav-cta">المحاكاة الافتراضية</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">المحاكاة الافتراضية</h1>
+      <p class="page-subtitle">ممارسة عمليات GMP والتحكم في الجودة في بيئة آمنة وتفاعلية</p>
+    </div>
+
+    <div class="simulation-grid" id="simulationGrid">
+      <div class="simulation-card" onclick="startSimulation('lab')">
+        <div class="simulation-icon">🧪</div>
+        <h3 class="simulation-title">محاكاة المختبر</h3>
+        <p class="simulation-description">ممارسة عمليات فحص الجودة المختبري وفق معايير GMP</p>
+      </div>
+      
+      <div class="simulation-card" onclick="startSimulation('production')">
+        <div class="simulation-icon">🏭</div>
+        <h3 class="simulation-title">محاكاة خط الإنتاج</h3>
+        <p class="simulation-description">إدارة عمليات التصنيع ومراقبة الجودة أثناء العملية</p>
+      </div>
+      
+      <div class="simulation-card" onclick="startSimulation('documentation')">
+        <div class="simulation-icon">📝</div>
+        <h3 class="simulation-title">محاكاة التوثيق</h3>
+        <p class="simulation-description">ممارسة التوثيق وفق معايير GMP و ISO 9001</p>
+      </div>
+    </div>
+
+    <!-- Lab Simulation -->
+    <div class="simulation-container" id="labSimulation">
+      <div class="simulation-header">
+        <h2 class="simulation-title-large">محاكاة المختبر</h2>
+        <button class="simulation-close" onclick="closeSimulation()">✕</button>
+      </div>
+      <div class="simulation-workspace">
+        <div class="lab-bench">
+          <div class="lab-equipment">
+            <div class="equipment-title">الميزان التحليلي</div>
+            <div class="equipment-display" id="balanceDisplay">0.0000 g</div>
+            <div class="equipment-controls">
+              <button class="control-btn" onclick="tareBalance()">صفر (Tare)</button>
+              <button class="control-btn" onclick="weighSample()">وزن العينة</button>
+            </div>
+          </div>
+          
+          <div class="lab-equipment">
+            <div class="equipment-title">مقياس الأس الهيدروجيني</div>
+            <div class="equipment-display" id="phDisplay">pH 7.00</div>
+            <div class="equipment-controls">
+              <button class="control-btn" onclick="calibratePH()">معايرة (Calibrate)</button>
+              <button class="control-btn" onclick="measurePH()">قياس (Measure)</button>
+            </div>
+          </div>
+          
+          <div class="lab-equipment">
+            <div class="equipment-title">مطياف UV-Vis</div>
+            <div class="equipment-display" id="uvDisplay">Abs: 0.000</div>
+            <div class="equipment-controls">
+              <button class="control-btn" onclick="blankUV()">فراغ (Blank)</button>
+              <button class="control-btn" onclick="measureUV()">قياس (Measure)</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="simulation-score">
+          <span class="score-label">النتيجة:</span>
+          <span class="score-value" id="labScore">0/100</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Production Line Simulation -->
+    <div class="simulation-container" id="productionSimulation">
+      <div class="simulation-header">
+        <h2 class="simulation-title-large">محاكاة خط الإنتاج</h2>
+        <button class="simulation-close" onclick="closeSimulation()">✕</button>
+      </div>
+      <div class="simulation-workspace">
+        <div class="production-line">
+          <div class="production-stage" id="stage1">
+            <div class="stage-icon">📦</div>
+            <div class="stage-name">استلام المواد</div>
+            <div class="stage-status">في الانتظار</div>
+            <div class="stage-controls">
+              <button class="control-btn" onclick="completeStage(1)">بدء</button>
+            </div>
+          </div>
+          
+          <div class="production-stage" id="stage2">
+            <div class="stage-icon">⚖️</div>
+            <div class="stage-name">الوزن والخلط</div>
+            <div class="stage-status">في الانتظار</div>
+            <div class="stage-controls">
+              <button class="control-btn" onclick="completeStage(2)" disabled>بدء</button>
+            </div>
+          </div>
+          
+          <div class="production-stage" id="stage3">
+            <div class="stage-icon">🔬</div>
+            <div class="stage-name">الفحص والتحليل</div>
+            <div class="stage-status">في الانتظار</div>
+            <div class="stage-controls">
+              <button class="control-btn" onclick="completeStage(3)" disabled>بدء</button>
+            </div>
+          </div>
+          
+          <div class="production-stage" id="stage4">
+            <div class="stage-icon">📋</div>
+            <div class="stage-name">التعبئة والتغليف</div>
+            <div class="stage-status">في الانتظار</div>
+            <div class="stage-controls">
+              <button class="control-btn" onclick="completeStage(4)" disabled>بدء</button>
+            </div>
+          </div>
+          
+          <div class="production-stage" id="stage5">
+            <div class="stage-icon">✅</div>
+            <div class="stage-name">الإفراج النهائي</div>
+            <div class="stage-status">في الانتظار</div>
+            <div class="stage-controls">
+              <button class="control-btn" onclick="completeStage(5)" disabled>بدء</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="simulation-score">
+          <span class="score-label">النتيجة:</span>
+          <span class="score-value" id="productionScore">0/100</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documentation Simulation -->
+    <div class="simulation-container" id="documentationSimulation">
+      <div class="simulation-header">
+        <h2 class="simulation-title-large">محاكاة التوثيق</h2>
+        <button class="simulation-close" onclick="closeSimulation()">✕</button>
+      </div>
+      <div class="simulation-workspace">
+        <div class="document-workspace">
+          <div class="document-form">
+            <h3 style="color: var(--teal); margin-bottom: 1rem;">نموذج توثيق الدفعة</h3>
+            
+            <div class="form-group">
+              <label class="form-label">رقم الدفعة</label>
+              <input type="text" class="form-input" id="batchNumber" placeholder="مثال: B-2024-001">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">اسم المنتج</label>
+              <input type="text" class="form-input" id="productName" placeholder="اسم المنتج">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">تاريخ الإنتاج</label>
+              <input type="date" class="form-input" id="productionDate">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">المشرف</label>
+              <input type="text" class="form-input" id="supervisor" placeholder="اسم المشرف">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">ملاحظات</label>
+              <textarea class="form-textarea" id="notes" placeholder="أي ملاحظات إضافية..."></textarea>
+            </div>
+            
+            <button class="control-btn" onclick="generateDocument()">توليد الوثيقة</button>
+          </div>
+          
+          <div class="document-preview">
+            <h3 style="color: var(--teal); margin-bottom: 1rem;">معاينة الوثيقة</h3>
+            <div class="preview-content" id="documentPreview">
+              <p style="color: var(--muted);">املأ النموذج لتوليد الوثيقة...</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="simulation-score">
+          <span class="score-label">النتيجة:</span>
+          <span class="score-value" id="documentationScore">0/100</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simulation State
+    let currentSimulation = null;
+    let labScore = 0;
+    let productionScore = 0;
+    let documentationScore = 0;
+    let currentStage = 0;
+
+    // Start Simulation
+    function startSimulation(type) {
+      currentSimulation = type;
+      document.getElementById('simulationGrid').style.display = 'none';
+      
+      // Hide all simulations
+      document.querySelectorAll('.simulation-container').forEach(container => {
+        container.classList.remove('active');
+      });
+      
+      // Show selected simulation
+      if (type === 'lab') {
+        document.getElementById('labSimulation').classList.add('active');
+      } else if (type === 'production') {
+        document.getElementById('productionSimulation').classList.add('active');
+      } else if (type === 'documentation') {
+        document.getElementById('documentationSimulation').classList.add('active');
+      }
+    }
+
+    // Close Simulation
+    function closeSimulation() {
+      currentSimulation = null;
+      document.getElementById('simulationGrid').style.display = 'grid';
+      
+      // Hide all simulations
+      document.querySelectorAll('.simulation-container').forEach(container => {
+        container.classList.remove('active');
+      });
+      
+      // Reset scores
+      labScore = 0;
+      productionScore = 0;
+      documentationScore = 0;
+      currentStage = 0;
+      updateScores();
+      resetProductionStages();
+    }
+
+    // Lab Simulation Functions
+    function tareBalance() {
+      document.getElementById('balanceDisplay').textContent = '0.0000 g';
+      labScore += 10;
+      updateScores();
+    }
+
+    function weighSample() {
+      const weight = (Math.random() * 10).toFixed(4);
+      document.getElementById('balanceDisplay').textContent = weight + ' g';
+      labScore += 15;
+      updateScores();
+    }
+
+    function calibratePH() {
+      document.getElementById('phDisplay').textContent = 'pH 7.00 (معاير)';
+      labScore += 10;
+      updateScores();
+    }
+
+    function measurePH() {
+      const ph = (6 + Math.random() * 2).toFixed(2);
+      document.getElementById('phDisplay').textContent = 'pH ' + ph;
+      labScore += 15;
+      updateScores();
+    }
+
+    function blankUV() {
+      document.getElementById('uvDisplay').textContent = 'Abs: 0.000 (فراغ)';
+      labScore += 10;
+      updateScores();
+    }
+
+    function measureUV() {
+      const abs = (Math.random() * 2).toFixed(3);
+      document.getElementById('uvDisplay').textContent = 'Abs: ' + abs;
+      labScore += 15;
+      updateScores();
+    }
+
+    // Production Line Simulation Functions
+    function completeStage(stageNum) {
+      const stage = document.getElementById('stage' + stageNum);
+      stage.classList.remove('active');
+      stage.classList.add('completed');
+      stage.querySelector('.stage-status').textContent = 'مكتمل';
+      stage.querySelector('.stage-controls').innerHTML = '<span style="color: #4CAF50;">✓</span>';
+      
+      productionScore += 20;
+      currentStage = stageNum;
+      updateScores();
+      
+      // Enable next stage
+      if (stageNum < 5) {
+        const nextStage = document.getElementById('stage' + (stageNum + 1));
+        nextStage.classList.add('active');
+        nextStage.querySelector('.stage-status').textContent = 'جاري العمل';
+        nextStage.querySelector('.stage-controls button').disabled = false;
+      }
+    }
+
+    function resetProductionStages() {
+      for (let i = 1; i <= 5; i++) {
+        const stage = document.getElementById('stage' + i);
+        stage.classList.remove('active', 'completed');
+        stage.querySelector('.stage-status').textContent = 'في الانتظار';
+        stage.querySelector('.stage-controls').innerHTML = '<button class="control-btn" onclick="completeStage(' + i + ')" disabled>بدء</button>';
+      }
+      document.getElementById('stage1').querySelector('.stage-controls button').disabled = false;
+    }
+
+    // Documentation Simulation Functions
+    function generateDocument() {
+      const batchNumber = document.getElementById('batchNumber').value;
+      const productName = document.getElementById('productName').value;
+      const productionDate = document.getElementById('productionDate').value;
+      const supervisor = document.getElementById('supervisor').value;
+      const notes = document.getElementById('notes').value;
+      
+      if (!batchNumber || !productName || !productionDate || !supervisor) {
+        alert('يرجى ملء جميع الحقول المطلوبة');
+        return;
+      }
+      
+      const preview = document.getElementById('documentPreview');
+      preview.innerHTML = `
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <h2 style="color: var(--teal); margin-bottom: 0.5rem;">وثيقة الدفعة</h2>
+          <p style="color: var(--muted);">PharmaPro Academy</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <strong style="color: var(--light);">رقم الدفعة:</strong>
+            <span style="color: var(--muted);">${batchNumber}</span>
+          </div>
+          <div>
+            <strong style="color: var(--light);">اسم المنتج:</strong>
+            <span style="color: var(--muted);">${productName}</span>
+          </div>
+          <div>
+            <strong style="color: var(--light);">تاريخ الإنتاج:</strong>
+            <span style="color: var(--muted);">${productionDate}</span>
+          </div>
+          <div>
+            <strong style="color: var(--light);">المشرف:</strong>
+            <span style="color: var(--muted);">${supervisor}</span>
+          </div>
+        </div>
+        
+        <div style="margin-top: 1rem;">
+          <strong style="color: var(--light);">ملاحظات:</strong>
+          <p style="color: var(--muted); margin-top: 0.5rem;">${notes || 'لا توجد ملاحظات'}</p>
+        </div>
+        
+        <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); text-align: center;">
+          <p style="color: var(--muted); font-size: 0.8rem;">تم إنشاء هذه الوثيقة وفق معايير GMP</p>
+        </div>
+      `;
+      
+      documentationScore = 100;
+      updateScores();
+    }
+
+    // Update Scores
+    function updateScores() {
+      document.getElementById('labScore').textContent = labScore + '/100';
+      document.getElementById('productionScore').textContent = productionScore + '/100';
+      document.getElementById('documentationScore').textContent = documentationScore + '/100';
+    }
+  </script>
+</body>
+</html>

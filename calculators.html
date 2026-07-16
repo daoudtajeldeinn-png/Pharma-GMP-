@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أدوات الحساب | PharmaPro Academy</title>
+  <meta name="description" content="أدوات حسابية متخصصة في GMP والتحكم في الجودة الصيدلانية">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0A1628;
+  --navy2:   #0F2040;
+  --navy3:   #1E3A5F;
+  --teal:    #00D4AA;
+  --teal2:   #00B892;
+  --gold:    #C9A84C;
+  --gold2:   #E8C96A;
+  --light:   #F0F4FF;
+  --muted:   #8BA3C4;
+  --white:   #FFFFFF;
+  --card-bg: #0D1F38;
+  --border:  rgba(0,212,170,0.15);
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--navy);
+  color: var(--light);
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 68px;
+  background: rgba(10,22,40,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  position: relative;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--teal);
+  border-radius: 2px 2px 0 0;
+}
+.logo-icon::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 22px solid var(--teal);
+  opacity: 0.85;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.logo-text span:first-child {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+.logo-text span:last-child {
+  font-size: 0.65rem;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--navy) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--teal2) !important; color: var(--navy) !important; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.calculators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.calculator-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.calculator-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal);
+  box-shadow: 0 12px 40px rgba(0,212,170,0.1);
+}
+
+.calculator-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.calculator-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.calculator-description {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Calculator Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: var(--card-bg);
+  z-index: 10;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--white);
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.calculator-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  color: var(--light);
+  font-weight: 600;
+}
+
+.form-input {
+  padding: 12px;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.calculate-btn {
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 1rem;
+}
+
+.calculate-btn:hover {
+  background: var(--teal2);
+}
+
+.result-box {
+  background: rgba(0,212,170,0.1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  display: none;
+}
+
+.result-box.show {
+  display: block;
+}
+
+.result-title {
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 1rem;
+}
+
+.result-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.result-description {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 2rem;
+  }
+  
+  .calculators-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  nav ul {
+    display: none;
+  }
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="pharma-landing.html" class="logo">
+      <div class="logo-icon"></div>
+      <div class="logo-text">
+        <span>PharmaPro Academy</span>
+        <span>GMP · ISO · QC</span>
+      </div>
+    </a>
+    <ul>
+      <li><a href="pharma-landing.html">الرئيسية</a></li>
+      <li><a href="dashboard.html">لوحة التحكم</a></li>
+      <li><a href="calculators.html" class="nav-cta">أدوات الحساب</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">أدوات الحساب</h1>
+      <p class="page-subtitle">أدوات حسابية متخصصة في GMP والتحكم في الجودة الصيدلانية</p>
+    </div>
+
+    <div class="calculators-grid" id="calculatorsGrid">
+      <!-- Calculators will be loaded dynamically -->
+    </div>
+  </div>
+
+  <!-- Calculator Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">حاسبة</h2>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Calculator form will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Calculators Data
+    const calculators = [
+      {
+        id: 1,
+        title: "حاسبة نسبة التلوث المتقاطع",
+        icon: "🧪",
+        description: "حساب نسبة التلوث المتقاطع المسموح بها بين المنتجات المختلفة",
+        fields: [
+          { name: "therapeuticDose", label: "الجرعة العلاجية للمنتج السابق (mg)", type: "number" },
+          { name: "batchSize", label: "حجم الدفعة (kg)", type: "number" },
+          { name: "equipmentSurface", label: "مساحة سطح المعدة (cm²)", type: "number" },
+          { name: "recoveryFactor", label: "عامل الاسترداد (0-1)", type: "number" }
+        ],
+        calculate: (values) => {
+          const therapeuticDose = parseFloat(values.therapeuticDose);
+          const batchSize = parseFloat(values.batchSize) * 1000000; // Convert kg to mg
+          const equipmentSurface = parseFloat(values.equipmentSurface);
+          const recoveryFactor = parseFloat(values.recoveryFactor);
+          
+          // Calculate MACO (Maximum Allowable Carryover)
+          const maco = (therapeuticDose * 0.001) / (batchSize / equipmentSurface * recoveryFactor);
+          
+          return {
+            value: maco.toFixed(4),
+            unit: "mg/cm²",
+            description: `الحد الأقصى المسموح به للتلوث المتقاطع هو ${maco.toFixed(4)} mg/cm². هذه القيمة يجب أن تكون أقل من 0.1% من الجرعة العلاجية.`
+          };
+        }
+      },
+      {
+        id: 2,
+        title: "حاسبة معيار القبول",
+        icon: "📊",
+        description: "حساب معيار القبول لنتائج الفحص وفق معايير GMP",
+        fields: [
+          { name: "specificationLimit", label: "حد المواصفة", type: "number" },
+          { name: "sampleSize", label: "حجم العينة", type: "number" },
+          { name: "confidenceLevel", label: "مستوى الثقة (%)", type: "number" }
+        ],
+        calculate: (values) => {
+          const specificationLimit = parseFloat(values.specificationLimit);
+          const sampleSize = parseFloat(values.sampleSize);
+          const confidenceLevel = parseFloat(values.confidenceLevel) / 100;
+          
+          // Calculate acceptance criterion using t-distribution approximation
+          const tValue = 1.96; // For 95% confidence
+          const standardError = specificationLimit / Math.sqrt(sampleSize);
+          const acceptanceLimit = specificationLimit - (tValue * standardError);
+          
+          return {
+            value: acceptanceLimit.toFixed(4),
+            unit: "",
+            description: `معيار القبول هو ${acceptanceLimit.toFixed(4)}. النتائج أعلى من هذه القيمة تعتبر مقبولة بمستوى ثقة ${confidenceLevel * 100}%.`
+          };
+        }
+      },
+      {
+        id: 3,
+        title: "حاسبة الاستقرار",
+        icon: "⏱️",
+        description: "حساب فترة الصلاحية بناءً على نتائج اختبار الاستقرار",
+        fields: [
+          { name: "initialAssay", label: "التركيز الأولي (%)", type: "number" },
+          { name: "currentAssay", label: "التركيز الحالي (%)", type: "number" },
+          { name: "timeElapsed", label: "الوقت المنقضي (أشهر)", type: "number" },
+          { name: "minimumAssay", label: "الحد الأدنى المقبول (%)", type: "number" }
+        ],
+        calculate: (values) => {
+          const initialAssay = parseFloat(values.initialAssay);
+          const currentAssay = parseFloat(values.currentAssay);
+          const timeElapsed = parseFloat(values.timeElapsed);
+          const minimumAssay = parseFloat(values.minimumAssay);
+          
+          // Calculate degradation rate
+          const degradationRate = (initialAssay - currentAssay) / timeElapsed;
+          
+          // Calculate time to reach minimum assay
+          const remainingTime = (currentAssay - minimumAssay) / degradationRate;
+          
+          return {
+            value: remainingTime.toFixed(1),
+            unit: "أشهر",
+            description: `معدل التدهور هو ${degradationRate.toFixed(3)}% شهرياً. المنتج سيصل للحد الأدنى المقبول بعد ${remainingTime.toFixed(1)} شهر.`
+          };
+        }
+      },
+      {
+        id: 4,
+        title: "حاسبة حجم العينة",
+        icon: "📋",
+        description: "حساب حجم العينة المطلوب للفحص وفق معايير GMP",
+        fields: [
+          { name: "batchSize", label: "حجم الدفعة", type: "number" },
+          { name: "confidenceLevel", label: "مستوى الثقة (%)", type: "number" },
+          { name: "acceptableQuality", label: "مستوى الجودة المقبول (%)", type: "number" }
+        ],
+        calculate: (values) => {
+          const batchSize = parseFloat(values.batchSize);
+          const confidenceLevel = parseFloat(values.confidenceLevel) / 100;
+          const acceptableQuality = parseFloat(values.acceptableQuality) / 100;
+          
+          // Calculate sample size using square root method
+          const sampleSize = Math.ceil(Math.sqrt(batchSize) * (1 / (1 - confidenceLevel)));
+          
+          // Ensure minimum sample size
+          const finalSampleSize = Math.max(sampleSize, 10);
+          
+          return {
+            value: finalSampleSize,
+            unit: "وحدات",
+            description: `حجم العينة المطلوب هو ${finalSampleSize} وحدة من دفعة حجمها ${batchSize} وحدة. هذا يضمن مستوى ثقة ${confidenceLevel * 100}%.`
+          };
+        }
+      },
+      {
+        id: 5,
+        title: "حاسبة التجانس",
+        icon: "📊",
+        description: "حساب معامل التجانس (RSD) لنتائج الفحص",
+        fields: [
+          { name: "values", label: "القيم (مفصولة بفواصل)", type: "text" }
+        ],
+        calculate: (values) => {
+          const valueArray = values.values.split(',').map(v => parseFloat(v.trim())).filter(v => !isNaN(v));
+          
+          if (valueArray.length < 2) {
+            return {
+              value: "N/A",
+              unit: "",
+              description: "يرجى إدخال قيمتين على الأقل"
+            };
+          }
+          
+          // Calculate mean
+          const mean = valueArray.reduce((a, b) => a + b, 0) / valueArray.length;
+          
+          // Calculate standard deviation
+          const variance = valueArray.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / (valueArray.length - 1);
+          const standardDeviation = Math.sqrt(variance);
+          
+          // Calculate RSD
+          const rsd = (standardDeviation / mean) * 100;
+          
+          return {
+            value: rsd.toFixed(2),
+            unit: "%",
+            description: `معامل التجانس هو ${rsd.toFixed(2)}%. القيم المقبولة عادة أقل من 5% لمعظم الاختبارات.`
+          };
+        }
+      },
+      {
+        id: 6,
+        title: "حاسبة التركيب",
+        icon: "⚗️",
+        description: "حساب كميات المكونات المطلوبة للتركيب",
+        fields: [
+          { name: "finalVolume", label: "الحجم النهائي (mL)", type: "number" },
+          { name: "desiredConcentration", label: "التركيز المطلوب (mg/mL)", type: "number" },
+          { name: "stockConcentration", label: "تركيز المحلول المخزن (mg/mL)", type: "number" }
+        ],
+        calculate: (values) => {
+          const finalVolume = parseFloat(values.finalVolume);
+          const desiredConcentration = parseFloat(values.desiredConcentration);
+          const stockConcentration = parseFloat(values.stockConcentration);
+          
+          // Calculate volume of stock solution needed
+          const stockVolume = (desiredConcentration * finalVolume) / stockConcentration;
+          
+          // Calculate diluent volume
+          const diluentVolume = finalVolume - stockVolume;
+          
+          return {
+            value: `${stockVolume.toFixed(2)} mL`,
+            unit: "من المحلول المخزن",
+            description: `أضف ${stockVolume.toFixed(2)} mL من المحلول المخزن (${stockConcentration} mg/mL) و ${diluentVolume.toFixed(2)} mL من المذيب للحصول على ${finalVolume} mL بتركيز ${desiredConcentration} mg/mL.`
+          };
+        }
+      }
+    ];
+
+    // Render calculators
+    function renderCalculators() {
+      const grid = document.getElementById('calculatorsGrid');
+      grid.innerHTML = calculators.map(calc => `
+        <div class="calculator-card" onclick="openCalculator(${calc.id})">
+          <div class="calculator-icon">${calc.icon}</div>
+          <h3 class="calculator-title">${calc.title}</h3>
+          <p class="calculator-description">${calc.description}</p>
+        </div>
+      `).join('');
+    }
+
+    // Open calculator
+    function openCalculator(id) {
+      const calculator = calculators.find(c => c.id === id);
+      if (!calculator) return;
+
+      document.getElementById('modalTitle').textContent = calculator.title;
+      
+      const modalBody = document.getElementById('modalBody');
+      modalBody.innerHTML = `
+        <form class="calculator-form" id="calculatorForm">
+          ${calculator.fields.map(field => `
+            <div class="form-group">
+              <label class="form-label">${field.label}</label>
+              <input type="${field.type}" class="form-input" name="${field.name}" required>
+            </div>
+          `).join('')}
+          <button type="button" class="calculate-btn" onclick="calculate(${id})">احسب</button>
+        </form>
+        
+        <div class="result-box" id="resultBox">
+          <div class="result-title">النتيجة</div>
+          <div class="result-value" id="resultValue"></div>
+          <div class="result-description" id="resultDescription"></div>
+        </div>
+      `;
+      
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    // Calculate
+    function calculate(id) {
+      const calculator = calculators.find(c => c.id === id);
+      if (!calculator) return;
+
+      const form = document.getElementById('calculatorForm');
+      const formData = new FormData(form);
+      
+      const values = {};
+      formData.forEach((value, key) => {
+        values[key] = value;
+      });
+      
+      // Validate inputs
+      for (let field of calculator.fields) {
+        if (!values[field.name]) {
+          alert(`يرجى إدخال ${field.label}`);
+          return;
+        }
+      }
+      
+      try {
+        const result = calculator.calculate(values);
+        
+        document.getElementById('resultValue').textContent = result.value + ' ' + result.unit;
+        document.getElementById('resultDescription').textContent = result.description;
+        document.getElementById('resultBox').classList.add('show');
+      } catch (error) {
+        alert('حدث خطأ في الحساب. يرجى التحقق من القيم المدخلة.');
+      }
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    // Event listeners
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCalculators();
+    });
+  </script>
+</body>
+</html>
