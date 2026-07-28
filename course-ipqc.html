@@ -163,18 +163,68 @@ section {
   <!-- Video Player Section -->
   <section style="padding: 60px 5%; max-width: 1000px; margin: 0 auto;">
     <div id="videoPlayerContainer">
-      <div style="position:relative;padding-bottom:56.25%;height:0;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.4);margin-bottom:1.5rem;">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=PLFxzzWgERlmk&rel=0&modestbranding=1"
+      <div style="position:relative;padding-bottom:56.25%;height:0;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.4);margin-bottom:1.5rem;background:var(--card-bg);">
+        <iframe id="youtubeIframe" src="" 
           style="position:absolute;top:0;left:0;width:100%;height:100%;"
           frameborder="0" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
       </div>
       <div style="text-align:center;margin-bottom:2rem;">
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" class="btn-outline" style="display:inline-flex;align-items:center;gap:8px;">
-          ▶ استعرض جميع المحاضرات على YouTube
-        </a>
+        <div id="currentVideoTitle" style="font-size:1.1rem;font-weight:600;color:var(--white);margin-bottom:0.5rem;">اختر درساً من القائمة أدناه</div>
       </div>
     </div>
   </section>
+
+  <script>
+    // Load video configuration from videos.json
+    const videoConfig = {
+      '1-1': 'dGKxQ2HQDbc',
+      '1-2': '_fyfk_F1LAI',
+      '1-3': 'M9vy8uK3n8o',
+      '2-1': 'NAmGgD2-gpU',
+      '2-2': 'ZFkUmNQKz2w',
+      '2-3': 'Y5qY2jrFen8',
+      '3-1': 'RX0GFX2ivsE',
+      '3-2': 'FQYIZnuKPxU',
+      '3-3': 'PEf1zcRzBec',
+      '4-1': '0WZu3akB3W8',
+      '4-2': '1jq69pzFEro',
+      '4-3': 'HKXVJQaT-Aw'
+    };
+
+    const videoTitles = {
+      '1-1': '1.1 تعريف وأهمية IPQC',
+      '1-2': '1.2 الفرق بين IPQC وQC',
+      '1-3': '1.3 متطلبات GMP وإجراءات IPQC',
+      '2-1': '2.1 تصنيع الأقراص',
+      '2-2': '2.2 اختبارات IPQC للأقراص',
+      '2-3': '2.3 المواصفات والإفراج',
+      '3-1': '3.1 تصنيع الكبسولات',
+      '3-2': '3.2 اختبارات IPQC للكبسولات',
+      '3-3': '3.3 المواصفات والإفراج',
+      '4-1': '4.1 تصنيع السوائل',
+      '4-2': '4.2 اختبارات IPQC للسوائل',
+      '4-3': '4.3 المواصفات والإفراج'
+    };
+
+    function playVideo(lessonId) {
+      const iframe = document.getElementById('youtubeIframe');
+      const titleEl = document.getElementById('currentVideoTitle');
+      
+      if (videoConfig[lessonId]) {
+        iframe.src = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
+        titleEl.textContent = videoTitles[lessonId];
+      }
+    }
+
+    // Auto-load first video on load (without autoplay)
+    document.addEventListener('DOMContentLoaded', () => {
+      const iframe = document.getElementById('youtubeIframe');
+      const titleEl = document.getElementById('currentVideoTitle');
+      iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
+      titleEl.textContent = videoTitles['1-1'];
+    });
+  </script>
+
   <section style="padding: 60px 5%; max-width: 1000px; margin: 0 auto;">
     <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 2rem;">منهج الكورس</h2>
     
@@ -184,28 +234,34 @@ section {
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">1.1 تعريف وأهمية IPQC</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+            <button onclick="playVideo('1-1')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">تعريف IPQC وأهميته في الصناعة الدوائية</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
       
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">1.2 الفرق بين IPQC وQC</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+            <button onclick="playVideo('1-2')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">الفرق بين مراقبة الجودة أثناء العملية ومراقبة الجودة</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
       
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">1.3 متطلبات GMP وإجراءات IPQC</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+            <button onclick="playVideo('1-3')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">متطلبات GMP وإجراءات IPQC والتوثيق</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
     </div>
 
@@ -215,28 +271,34 @@ section {
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">2.1 تصنيع الأقراص</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(20:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(20:00)</div>
+            <button onclick="playVideo('2-1')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">عملية تصنيع الأقراص ونقاط التحكم الحرجة</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
       
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">2.2 اختبارات IPQC للأقراص</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
+            <button onclick="playVideo('2-2')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">اختبارات الوزن والصلابة والتفتت</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
       
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">2.3 المواصفات والإفراج</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+            <button onclick="playVideo('2-3')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">التحقق من المواصفات والإفراج الصحيح</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
     </div>
 
@@ -246,28 +308,34 @@ section {
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">3.1 تصنيع الكبسولات</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(20:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(20:00)</div>
+            <button onclick="playVideo('3-1')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">عملية تصنيع الكبسولات ونقاط التحكم الحرجة</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
       
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">3.2 اختبارات IPQC للكبسولات</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
+            <button onclick="playVideo('3-2')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">اختبارات الوزن والتفكك والذوبان</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
       
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">3.3 المواصفات والإفراج</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+            <button onclick="playVideo('3-3')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">التحقق من المواصفات والإفراج الصحيح</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
     </div>
 
@@ -277,28 +345,34 @@ section {
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">4.1 تصنيع السوائل</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(20:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(20:00)</div>
+            <button onclick="playVideo('4-1')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">عملية تصنيع السوائل ونقاط التحكم الحرجة</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
       
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">4.2 اختبارات IPQC للسوائل</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(25:00)</div>
+            <button onclick="playVideo('4-2')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">اختبارات الحجم واللون والرائحة وpH</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
       
       <div style="border-right: 3px solid rgba(100,149,237,0.2); padding-right: 20px; margin-bottom: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <div style="font-size: 0.95rem; font-weight: 600; color: var(--white);">4.3 المواصفات والإفراج</div>
-          <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div style="font-size: 0.8rem; color: var(--muted);">(15:00)</div>
+            <button onclick="playVideo('4-3')" style="background:var(--teal);color:var(--navy);border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.75rem;font-weight:700;">▶ تشغيل</button>
+          </div>
         </div>
         <div style="font-size: 0.85rem; color: var(--light); line-height: 1.6;">التحقق من المواصفات والإفراج الصحيح</div>
-        <a href="https://www.youtube.com/playlist?list=PLFxzzWgERlmk" target="_blank" style="display:inline-block;margin-top:8px;padding:6px 12px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);border-radius:6px;color:var(--teal);text-decoration:none;font-size:0.8rem;font-weight:600;">▶ شاهد على YouTube</a>
       </div>
     </div>
     <div style="background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-top: 3rem; text-align: center;"><div style="font-size: 2rem; font-weight: 700; color: var(--teal); margin-bottom: 8px;">مجاني</div><div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 24px;">وصول مجاني</div><a href="#enroll" style="background: var(--teal); color: var(--navy); padding: 16px 32px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block;">سجّل الآن</a></div>
