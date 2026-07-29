@@ -1050,6 +1050,23 @@ main {
 
       // Make notification system globally accessible
       window.NotificationSystem = NotificationSystem;
+
+      // Load advanced systems
+      const affiliateScript = document.createElement('script');
+      affiliateScript.src = 'js/affiliate-program.js';
+      document.head.appendChild(affiliateScript);
+
+      const marketingScript = document.createElement('script');
+      marketingScript.src = 'js/marketing-automation.js';
+      document.head.appendChild(marketingScript);
+
+      const referralScript = document.createElement('script');
+      referralScript.src = 'js/referral-system.js';
+      document.head.appendChild(referralScript);
+
+      const socialScript = document.createElement('script');
+      socialScript.src = 'js/social-integration.js';
+      document.head.appendChild(socialScript);
     });
   </script>
 </body>
