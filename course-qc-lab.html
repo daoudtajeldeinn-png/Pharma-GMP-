@@ -503,12 +503,24 @@ section {
 
     // Make playVideo function globally accessible
     window.playVideo = function(lessonId) {
+      console.log('playVideo called with lessonId:', lessonId);
+      console.log('videoConfig:', videoConfig);
+      console.log('videoConfig[lessonId]:', videoConfig[lessonId]);
+      
       const iframe = document.getElementById('youtubeIframe');
       const titleEl = document.getElementById('currentVideoTitle');
       
+      console.log('iframe:', iframe);
+      console.log('titleEl:', titleEl);
+      
       if (videoConfig[lessonId]) {
-        iframe.src = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
+        const videoUrl = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
+        console.log('Setting iframe src to:', videoUrl);
+        iframe.src = videoUrl;
         titleEl.textContent = videoTitles[lessonId];
+        console.log('Video title set to:', videoTitles[lessonId]);
+      } else {
+        console.error('Video ID not found for lessonId:', lessonId);
       }
     };
 
