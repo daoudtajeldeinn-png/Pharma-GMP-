@@ -206,7 +206,8 @@ section {
       '4-3': '4.3 التحقق من الجودة والتوثيق'
     };
 
-    function playVideo(lessonId) {
+    // Make playVideo function globally accessible
+    window.playVideo = function(lessonId) {
       const iframe = document.getElementById('youtubeIframe');
       const titleEl = document.getElementById('currentVideoTitle');
       
@@ -214,7 +215,7 @@ section {
         iframe.src = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
         titleEl.textContent = videoTitles[lessonId];
       }
-    }
+    };
 
     // Auto-load first video on load (without autoplay)
     document.addEventListener('DOMContentLoaded', () => {
