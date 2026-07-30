@@ -174,58 +174,6 @@ section {
     </div>
   </section>
 
-  <script>
-    // Load video configuration from videos.json
-    const videoConfig = {
-      '1-1': 'TLM86N9Us6k',
-      '1-2': 'SnPXTPDd0Ao',
-      '1-3': '0iVlYQXzgn4',
-      '2-1': 'QIptGSMLOr4',
-      '2-2': 'fBlaoc9Ueqg',
-      '2-3': 'LtKnDEHjKRg',
-      '3-1': 'NZwVk8Zy9lY',
-      '3-2': 'xY7AWEOfL4E',
-      '3-3': 'CBBAwSfbB3w',
-      '4-1': 'FVMrKIjvwRE',
-      '4-2': 'uQGStrkIcRg',
-      '4-3': 'yn7aFJqQP6M'
-    };
-
-    const videoTitles = {
-      '1-1': '1.1 تنظيم المختبر وإدارة الموظفين',
-      '1-2': '1.2 الصيانة وإدارة المخزون',
-      '1-3': '1.3 السلامة والتوثيق',
-      '2-1': '2.1 ICH Q2(R2) وأنواع الاعتماد',
-      '2-2': '2.2 معايير الاعتماد',
-      '2-3': '2.3 التحقق من الخطية والحد',
-      '3-1': '3.1 تعريف OOT وOOS',
-      '3-2': '3.2 التحقيق في OOT/OOS',
-      '3-3': '3.3 إدارة OOT/OOS',
-      '4-1': '4.1 أنواع واختيار المواد المرجعية',
-      '4-2': '4.2 التخزين والاستقرار',
-      '4-3': '4.3 التحقق من الجودة والتوثيق'
-    };
-
-    // Make playVideo function globally accessible
-    window.playVideo = function(lessonId) {
-      const iframe = document.getElementById('youtubeIframe');
-      const titleEl = document.getElementById('currentVideoTitle');
-      
-      if (videoConfig[lessonId]) {
-        iframe.src = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
-        titleEl.textContent = videoTitles[lessonId];
-      }
-    };
-
-    // Auto-load first video on load (without autoplay)
-    document.addEventListener('DOMContentLoaded', () => {
-      const iframe = document.getElementById('youtubeIframe');
-      const titleEl = document.getElementById('currentVideoTitle');
-      iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
-      titleEl.textContent = videoTitles['1-1'];
-    });
-  </script>
-
   <section style="padding: 60px 5%; max-width: 1000px; margin: 0 auto;">
     <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 2rem;">منهج الكورس</h2>
     
@@ -522,6 +470,48 @@ section {
   </footer>
 
   <script>
+    // Load video configuration
+    const videoConfig = {
+      '1-1': 'TLM86N9Us6k',
+      '1-2': 'SnPXTPDd0Ao',
+      '1-3': '0iVlYQXzgn4',
+      '2-1': 'QIptGSMLOr4',
+      '2-2': 'fBlaoc9Ueqg',
+      '2-3': 'LtKnDEHjKRg',
+      '3-1': 'NZwVk8Zy9lY',
+      '3-2': 'xY7AWEOfL4E',
+      '3-3': 'CBBAwSfbB3w',
+      '4-1': 'FVMrKIjvwRE',
+      '4-2': 'uQGStrkIcRg',
+      '4-3': 'yn7aFJqQP6M'
+    };
+
+    const videoTitles = {
+      '1-1': '1.1 تنظيم المختبر وإدارة الموظفين',
+      '1-2': '1.2 الصيانة وإدارة المخزون',
+      '1-3': '1.3 السلامة والتوثيق',
+      '2-1': '2.1 ICH Q2(R2) وأنواع الاعتماد',
+      '2-2': '2.2 معايير الاعتماد',
+      '2-3': '2.3 التحقق من الخطية والحد',
+      '3-1': '3.1 تعريف OOT وOOS',
+      '3-2': '3.2 التحقيق في OOT/OOS',
+      '3-3': '3.3 إدارة OOT/OOS',
+      '4-1': '4.1 أنواع واختيار المواد المرجعية',
+      '4-2': '4.2 التخزين والاستقرار',
+      '4-3': '4.3 التحقق من الجودة والتوثيق'
+    };
+
+    // Make playVideo function globally accessible
+    window.playVideo = function(lessonId) {
+      const iframe = document.getElementById('youtubeIframe');
+      const titleEl = document.getElementById('currentVideoTitle');
+      
+      if (videoConfig[lessonId]) {
+        iframe.src = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
+        titleEl.textContent = videoTitles[lessonId];
+      }
+    };
+
     // Load advanced systems
     const affiliateScript = document.createElement('script');
     affiliateScript.src = './js/affiliate-program.js';
@@ -539,8 +529,15 @@ section {
     socialScript.src = './js/social-integration.js';
     document.head.appendChild(socialScript);
 
-    // Auto-convert YouTube links to embedded videos
+    // Auto-convert YouTube links to embedded videos and auto-load first video
     document.addEventListener('DOMContentLoaded', function() {
+      // Auto-load first video on load (without autoplay)
+      const iframe = document.getElementById('youtubeIframe');
+      const titleEl = document.getElementById('currentVideoTitle');
+      if (iframe && titleEl) {
+        iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
+        titleEl.textContent = videoTitles['1-1'];
+      }
       const videoLinks = document.querySelectorAll('.video-link');
       
       videoLinks.forEach(link => {
