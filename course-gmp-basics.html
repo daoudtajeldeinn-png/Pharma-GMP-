@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>أساسيات GMP | PharmaPro Academy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -184,69 +187,6 @@ section {
       </div>
     </div>
   </section>
-
-  <script>
-    // Load video configuration from videos.json
-    const videoConfig = {
-      '1-1': 'yBCikCTyjWc',
-      '1-2': 'SBMb8c0Bf6A',
-      '1-3': 'F2IGPuRSgO4',
-      '2-1': 'aea8BV-HcrU',
-      '2-2': 'T3y3evSkcaA',
-      '2-3': 'VYQjcZorYEY',
-      '3-1': '7bunJeUSEF4',
-      '3-2': 'aJx7x5VAaOY',
-      '3-3': 'NH21QrsbTqk',
-      '4-1': 'Yl_R6oiebTk',
-      '4-2': 'LFIXlrxi88Y',
-      '4-3': '1vtkfAddeDA',
-      '5-1': 'Sx8bQlYEccA',
-      '5-2': '5TDcSYA9NVw',
-      '5-3': '2YBClwaJ0Xk',
-      '6-1': '9rAzRynEJv8',
-      '6-2': 'KBR3mHkg1L8',
-      '6-3': 'dGKxQ2HQDbc'
-    };
-
-    const videoTitles = {
-      '1-1': '1.1 مقدمة في GMP',
-      '1-2': '1.2 الأنظمة التنظيمية الرئيسية',
-      '1-3': '1.3 الفرق بين GMP وGCP وGLP',
-      '2-1': '2.1 تصميم المرافق الصيدلانية',
-      '2-2': '2.2 مناطق التصنيف (A، B، C، D)',
-      '2-3': '2.3 HVAC والتحكم البيئي',
-      '3-1': '3.1 أنواع الوثائق والإجراءات',
-      '3-2': '3.2 إدارة الوثائق والاحتفاظ',
-      '3-3': '3.3 مبادئ ALCOA+',
-      '4-1': '4.1 BMR مقابل BPR',
-      '4-2': '4.2 إكمال وثائق الدفعات',
-      '4-3': '4.3 التعديلات والتصحيحات',
-      '5-1': '5.1 تعريف التغيير وأنواعه',
-      '5-2': '5.2 إجراءات ضبط التغيير',
-      '5-3': '5.3 التوثيق والتتبع',
-      '6-1': '6.1 التخطيط للتدقيق',
-      '6-2': '6.2 تنفيذ التدقيق',
-      '6-3': '6.3 تقارير التدقيق والمتابعة'
-    };
-
-    function playVideo(lessonId) {
-      const iframe = document.getElementById('youtubeIframe');
-      const titleEl = document.getElementById('currentVideoTitle');
-      
-      if (videoConfig[lessonId]) {
-        iframe.src = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
-        titleEl.textContent = videoTitles[lessonId];
-      }
-    }
-
-    // Auto-load first video on load (without autoplay)
-    document.addEventListener('DOMContentLoaded', () => {
-      const iframe = document.getElementById('youtubeIframe');
-      const titleEl = document.getElementById('currentVideoTitle');
-      iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
-      titleEl.textContent = videoTitles['1-1'];
-    });
-  </script>
 
   <section style="padding: 60px 5%; max-width: 1000px; margin: 0 auto;">
     <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 2rem;">منهج الكورس</h2>
@@ -673,6 +613,92 @@ section {
         const match = url.match(regExp);
         return (match && match[2].length === 11) ? match[2] : null;
       }
+
+      // Load video configuration
+      const videoConfig = {
+        '1-1': 'yBCikCTyjWc',
+        '1-2': 'SBMb8c0Bf6A',
+        '1-3': 'F2IGPuRSgO4',
+        '2-1': 'aea8BV-HcrU',
+        '2-2': 'T3y3evSkcaA',
+        '2-3': 'VYQjcZorYEY',
+        '3-1': '7bunJeUSEF4',
+        '3-2': 'aJx7x5VAaOY',
+        '3-3': 'NH21QrsbTqk',
+        '4-1': 'Yl_R6oiebTk',
+        '4-2': 'LFIXlrxi88Y',
+        '4-3': '1vtkfAddeDA',
+        '5-1': 'Sx8bQlYEccA',
+        '5-2': '5TDcSYA9NVw',
+        '5-3': '2YBClwaJ0Xk',
+        '6-1': '9rAzRynEJv8',
+        '6-2': 'KBR3mHkg1L8',
+        '6-3': 'dGKxQ2HQDbc'
+      };
+
+      const videoTitles = {
+        '1-1': '1.1 مقدمة في GMP',
+        '1-2': '1.2 الأنظمة التنظيمية الرئيسية',
+        '1-3': '1.3 الفرق بين GMP وGCP وGLP',
+        '2-1': '2.1 تصميم المرافق الصيدلانية',
+        '2-2': '2.2 مناطق التصنيف (A، B، C، D)',
+        '2-3': '2.3 HVAC والتحكم البيئي',
+        '3-1': '3.1 أنواع الوثائق والإجراءات',
+        '3-2': '3.2 إدارة الوثائق والاحتفاظ',
+        '3-3': '3.3 مبادئ ALCOA+',
+        '4-1': '4.1 BMR مقابل BPR',
+        '4-2': '4.2 إكمال وثائق الدفعات',
+        '4-3': '4.3 التعديلات والتصحيحات',
+        '5-1': '5.1 تعريف التغيير وأنواعه',
+        '5-2': '5.2 إجراءات ضبط التغيير',
+        '5-3': '5.3 التوثيق والتتبع',
+        '6-1': '6.1 التخطيط للتدقيق',
+        '6-2': '6.2 تنفيذ التدقيق',
+        '6-3': '6.3 تقارير التدقيق والمتابعة'
+      };
+
+      // Make playVideo function globally accessible
+      window.playVideo = function(lessonId) {
+        const iframe = document.getElementById('youtubeIframe');
+        const titleEl = document.getElementById('currentVideoTitle');
+        
+        if (videoConfig[lessonId]) {
+          // Force reload by recreating the iframe
+          const videoUrl = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
+          
+          // Clone and replace to force reload
+          const newIframe = iframe.cloneNode(true);
+          newIframe.src = videoUrl;
+          iframe.parentNode.replaceChild(newIframe, iframe);
+          
+          titleEl.textContent = videoTitles[lessonId];
+        }
+      };
+
+      // Auto-load first video on load (without autoplay)
+      const iframe = document.getElementById('youtubeIframe');
+      const titleEl = document.getElementById('currentVideoTitle');
+      if (iframe && titleEl) {
+        iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
+        titleEl.textContent = videoTitles['1-1'];
+      }
+
+      // Load advanced systems
+      const affiliateScript = document.createElement('script');
+      affiliateScript.src = './js/affiliate-program.js';
+      document.head.appendChild(affiliateScript);
+
+      const marketingScript = document.createElement('script');
+      marketingScript.src = './js/marketing-automation.js';
+      document.head.appendChild(marketingScript);
+
+      const referralScript = document.createElement('script');
+      referralScript.src = './js/referral-system.js';
+      document.head.appendChild(referralScript);
+
+      const socialScript = document.createElement('script');
+      socialScript.src = './js/social-integration.js';
+      document.head.appendChild(socialScript);
     });
   </script>
 </body>

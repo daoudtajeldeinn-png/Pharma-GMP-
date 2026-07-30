@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>ISO 9001 الدوائي | PharmaPro Academy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -184,63 +187,6 @@ section {
       </div>
     </div>
   </section>
-
-  <script>
-    // Load video configuration from videos.json
-    const videoConfig = {
-      '1-1': '_fyfk_F1LAI',
-      '1-2': 'M9vy8uK3n8o',
-      '1-3': 'NAmGgD2-gpU',
-      '2-1': 'ZFkUmNQKz2w',
-      '2-2': 'Y5qY2jrFen8',
-      '2-3': 'RX0GFX2ivsE',
-      '3-1': 'FQYIZnuKPxU',
-      '3-2': 'PEf1zcRzBec',
-      '3-3': '0WZu3akB3W8',
-      '4-1': '1jq69pzFEro',
-      '4-2': 'HKXVJQaT-Aw',
-      '4-3': 'Dbvik_xoL_s',
-      '5-1': 'j0RD9OailBM',
-      '5-2': 'I6MzOvkFkbE',
-      '5-3': 'BCWfzGK3Pps'
-    };
-
-    const videoTitles = {
-      '1-1': '1.1 تاريخ ISO 9001',
-      '1-2': '1.2 مبادئ إدارة الجودة',
-      '1-3': '1.3 هيكل ISO 9001:2015',
-      '2-1': '2.1 سياق المنظمة والأطراف المعنية',
-      '2-2': '2.2 سياسة وأهداف الجودة',
-      '2-3': '2.3 التخطيط والموارد',
-      '3-1': '3.1 الدعم والموارد',
-      '3-2': '3.2 الوعي والكفاءة',
-      '3-3': '3.3 التوثيق والمعلومات',
-      '4-1': '4.1 التشغيل والتخطيط',
-      '4-2': '4.2 التحكم في العمليات',
-      '4-3': '4.3 تصميم وتطوير المنتج',
-      '5-1': '5.1 تقييم الأداء',
-      '5-2': '5.2 المراقبة والقياس',
-      '5-3': '5.3 التحسين المستمر'
-    };
-
-    function playVideo(lessonId) {
-      const iframe = document.getElementById('youtubeIframe');
-      const titleEl = document.getElementById('currentVideoTitle');
-      
-      if (videoConfig[lessonId]) {
-        iframe.src = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
-        titleEl.textContent = videoTitles[lessonId];
-      }
-    }
-
-    // Auto-load first video on load (without autoplay)
-    document.addEventListener('DOMContentLoaded', () => {
-      const iframe = document.getElementById('youtubeIframe');
-      const titleEl = document.getElementById('currentVideoTitle');
-      iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
-      titleEl.textContent = videoTitles['1-1'];
-    });
-  </script>
 
   <section style="padding: 60px 5%; max-width: 1000px; margin: 0 auto;">
     <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 2rem;">منهج الكورس</h2>
@@ -634,6 +580,86 @@ section {
         const match = url.match(regExp);
         return (match && match[2].length === 11) ? match[2] : null;
       }
+
+      // Load video configuration
+      const videoConfig = {
+        '1-1': '_fyfk_F1LAI',
+        '1-2': 'M9vy8uK3n8o',
+        '1-3': 'NAmGgD2-gpU',
+        '2-1': 'ZFkUmNQKz2w',
+        '2-2': 'Y5qY2jrFen8',
+        '2-3': 'RX0GFX2ivsE',
+        '3-1': 'FQYIZnuKPxU',
+        '3-2': 'PEf1zcRzBec',
+        '3-3': '0WZu3akB3W8',
+        '4-1': '1jq69pzFEro',
+        '4-2': 'HKXVJQaT-Aw',
+        '4-3': 'Dbvik_xoL_s',
+        '5-1': 'j0RD9OailBM',
+        '5-2': 'I6MzOvkFkbE',
+        '5-3': 'BCWfzGK3Pps'
+      };
+
+      const videoTitles = {
+        '1-1': '1.1 تاريخ ISO 9001',
+        '1-2': '1.2 مبادئ إدارة الجودة',
+        '1-3': '1.3 هيكل ISO 9001:2015',
+        '2-1': '2.1 سياق المنظمة والأطراف المعنية',
+        '2-2': '2.2 سياسة وأهداف الجودة',
+        '2-3': '2.3 التخطيط والموارد',
+        '3-1': '3.1 الدعم والموارد',
+        '3-2': '3.2 الوعي والكفاءة',
+        '3-3': '3.3 التوثيق والمعلومات',
+        '4-1': '4.1 التشغيل والتخطيط',
+        '4-2': '4.2 التحكم في العمليات',
+        '4-3': '4.3 تصميم وتطوير المنتج',
+        '5-1': '5.1 تقييم الأداء',
+        '5-2': '5.2 المراقبة والقياس',
+        '5-3': '5.3 التحسين المستمر'
+      };
+
+      // Make playVideo function globally accessible
+      window.playVideo = function(lessonId) {
+        const iframe = document.getElementById('youtubeIframe');
+        const titleEl = document.getElementById('currentVideoTitle');
+        
+        if (videoConfig[lessonId]) {
+          // Force reload by recreating the iframe
+          const videoUrl = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
+          
+          // Clone and replace to force reload
+          const newIframe = iframe.cloneNode(true);
+          newIframe.src = videoUrl;
+          iframe.parentNode.replaceChild(newIframe, iframe);
+          
+          titleEl.textContent = videoTitles[lessonId];
+        }
+      };
+
+      // Auto-load first video on load (without autoplay)
+      const iframe = document.getElementById('youtubeIframe');
+      const titleEl = document.getElementById('currentVideoTitle');
+      if (iframe && titleEl) {
+        iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
+        titleEl.textContent = videoTitles['1-1'];
+      }
+
+      // Load advanced systems
+      const affiliateScript = document.createElement('script');
+      affiliateScript.src = './js/affiliate-program.js';
+      document.head.appendChild(affiliateScript);
+
+      const marketingScript = document.createElement('script');
+      marketingScript.src = './js/marketing-automation.js';
+      document.head.appendChild(marketingScript);
+
+      const referralScript = document.createElement('script');
+      referralScript.src = './js/referral-system.js';
+      document.head.appendChild(referralScript);
+
+      const socialScript = document.createElement('script');
+      socialScript.src = './js/social-integration.js';
+      document.head.appendChild(socialScript);
     });
   </script>
 </body>

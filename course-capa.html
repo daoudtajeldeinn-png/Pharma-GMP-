@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>إدارة CAPA | PharmaPro Academy</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -184,63 +187,6 @@ section {
       </div>
     </div>
   </section>
-
-  <script>
-    // Load video configuration from videos.json
-    const videoConfig = {
-      '1-1': 'Hx8xYpaIDd8',
-      '1-2': 'TLm8jySqYTo',
-      '1-3': 'AVwZOQwy5S0',
-      '2-1': 'XQK4KfcqA4c',
-      '2-2': 'C24lnKR9i7k',
-      '2-3': 'SNLKkFdRDO8',
-      '3-1': '73nzpHadbq8',
-      '3-2': '3-dwDJ_3TLc',
-      '3-3': 'FQxeljZzFnI',
-      '4-1': 'TF25ZFwYmyQ',
-      '4-2': 'aSsF2pDiB9M',
-      '4-3': 'hHZ_okeYXDw',
-      '5-1': 'mmgcuSdstLA',
-      '5-2': 'RouJojJfcXk',
-      '5-3': 'fOriZ7PKPc0'
-    };
-
-    const videoTitles = {
-      '1-1': '1.1 تعريف وتصنيف الانحرافات',
-      '1-2': '1.2 إبلاغ والتحقيق الأولي',
-      '1-3': '1.3 التوثيق والإبلاغ التنظيمي',
-      '2-1': '2.1 5 Whys و Fishbone Diagram',
-      '2-2': '2.2 FMEA و Pareto Analysis',
-      '2-3': '2.3 التحقق من السبب الجذري',
-      '3-1': '3.1 تطوير الإجراءات التصحيحية',
-      '3-2': '3.2 تقييم الفعالية والتنفيذ',
-      '3-3': '3.3 التوثيق وإغلاق الانحراف',
-      '4-1': '4.1 تحديد المخاطر المحتملة',
-      '4-2': '4.2 تطوير الإجراءات الوقائية',
-      '4-3': '4.3 تقييم الفعالية والمراقبة',
-      '5-1': '5.1 إدارة دورة CAPA',
-      '5-2': '5.2 التوثيق والتقارير',
-      '5-3': '5.3 التدقيق والتحسين المستمر'
-    };
-
-    function playVideo(lessonId) {
-      const iframe = document.getElementById('youtubeIframe');
-      const titleEl = document.getElementById('currentVideoTitle');
-      
-      if (videoConfig[lessonId]) {
-        iframe.src = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
-        titleEl.textContent = videoTitles[lessonId];
-      }
-    }
-
-    // Auto-load first video on load (without autoplay)
-    document.addEventListener('DOMContentLoaded', () => {
-      const iframe = document.getElementById('youtubeIframe');
-      const titleEl = document.getElementById('currentVideoTitle');
-      iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
-      titleEl.textContent = videoTitles['1-1'];
-    });
-  </script>
 
   <section style="padding: 60px 5%; max-width: 1000px; margin: 0 auto;">
     <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 2rem;">منهج الكورس</h2>
@@ -634,6 +580,86 @@ section {
         const match = url.match(regExp);
         return (match && match[2].length === 11) ? match[2] : null;
       }
+
+      // Load video configuration
+      const videoConfig = {
+        '1-1': 'Hx8xYpaIDd8',
+        '1-2': 'TLm8jySqYTo',
+        '1-3': 'AVwZOQwy5S0',
+        '2-1': 'XQK4KfcqA4c',
+        '2-2': 'C24lnKR9i7k',
+        '2-3': 'SNLKkFdRDO8',
+        '3-1': '73nzpHadbq8',
+        '3-2': '3-dwDJ_3TLc',
+        '3-3': 'FQxeljZzFnI',
+        '4-1': 'TF25ZFwYmyQ',
+        '4-2': 'aSsF2pDiB9M',
+        '4-3': 'hHZ_okeYXDw',
+        '5-1': 'mmgcuSdstLA',
+        '5-2': 'RouJojJfcXk',
+        '5-3': 'fOriZ7PKPc0'
+      };
+
+      const videoTitles = {
+        '1-1': '1.1 تعريف وتصنيف الانحرافات',
+        '1-2': '1.2 إبلاغ والتحقيق الأولي',
+        '1-3': '1.3 التوثيق والإبلاغ التنظيمي',
+        '2-1': '2.1 5 Whys و Fishbone Diagram',
+        '2-2': '2.2 FMEA و Pareto Analysis',
+        '2-3': '2.3 التحقق من السبب الجذري',
+        '3-1': '3.1 تطوير الإجراءات التصحيحية',
+        '3-2': '3.2 تقييم الفعالية والتنفيذ',
+        '3-3': '3.3 التوثيق وإغلاق الانحراف',
+        '4-1': '4.1 تحديد المخاطر المحتملة',
+        '4-2': '4.2 تطوير الإجراءات الوقائية',
+        '4-3': '4.3 تقييم الفعالية والمراقبة',
+        '5-1': '5.1 إدارة دورة CAPA',
+        '5-2': '5.2 التوثيق والتقارير',
+        '5-3': '5.3 التدقيق والتحسين المستمر'
+      };
+
+      // Make playVideo function globally accessible
+      window.playVideo = function(lessonId) {
+        const iframe = document.getElementById('youtubeIframe');
+        const titleEl = document.getElementById('currentVideoTitle');
+        
+        if (videoConfig[lessonId]) {
+          // Force reload by recreating the iframe
+          const videoUrl = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
+          
+          // Clone and replace to force reload
+          const newIframe = iframe.cloneNode(true);
+          newIframe.src = videoUrl;
+          iframe.parentNode.replaceChild(newIframe, iframe);
+          
+          titleEl.textContent = videoTitles[lessonId];
+        }
+      };
+
+      // Auto-load first video on load (without autoplay)
+      const iframe = document.getElementById('youtubeIframe');
+      const titleEl = document.getElementById('currentVideoTitle');
+      if (iframe && titleEl) {
+        iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
+        titleEl.textContent = videoTitles['1-1'];
+      }
+
+      // Load advanced systems
+      const affiliateScript = document.createElement('script');
+      affiliateScript.src = './js/affiliate-program.js';
+      document.head.appendChild(affiliateScript);
+
+      const marketingScript = document.createElement('script');
+      marketingScript.src = './js/marketing-automation.js';
+      document.head.appendChild(marketingScript);
+
+      const referralScript = document.createElement('script');
+      referralScript.src = './js/referral-system.js';
+      document.head.appendChild(referralScript);
+
+      const socialScript = document.createElement('script');
+      socialScript.src = './js/social-integration.js';
+      document.head.appendChild(socialScript);
     });
   </script>
 </body>
