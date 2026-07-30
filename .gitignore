@@ -39,3 +39,6 @@ yarn-error.log*
 
 # Videos (large files - use YouTube instead)
 videos/
+
+# Allow .nojekyll for GitHub Pages
+!.nojekyll
