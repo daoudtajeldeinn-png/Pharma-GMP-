@@ -1,6 +1,0 @@
-# GitHub Pages Configuration
-theme: jekyll-theme-minimal
-markdown: kramdown
-plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
