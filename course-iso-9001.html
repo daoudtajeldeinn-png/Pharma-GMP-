@@ -587,17 +587,22 @@ section {
         '1-2': 'M9vy8uK3n8o',
         '1-3': 'NAmGgD2-gpU',
         '2-1': 'ZFkUmNQKz2w',
-        '2-2': 'Y5qY2jrFen8',
-        '2-3': 'RX0GFX2ivsE',
-        '3-1': 'FQYIZnuKPxU',
-        '3-2': 'PEf1zcRzBec',
-        '3-3': '0WZu3akB3W8',
-        '4-1': '1jq69pzFEro',
-        '4-2': 'HKXVJQaT-Aw',
-        '4-3': 'Dbvik_xoL_s',
-        '5-1': 'j0RD9OailBM',
-        '5-2': 'I6MzOvkFkbE',
-        '5-3': 'BCWfzGK3Pps'
+      let videoConfig = {
+        '1-1': '1f2lFOIiDlY4ywjhEvGBQUVe3XOLaMyyB',
+        '1-2': '1nLwlCETspzFtDqykPsze6U967KR2GWTq',
+        '1-3': '1a0M_QO_wQVp0eaBeCGF84eUNFhQB1w58',
+        '2-1': '1PaKMlX4VyD2w2Nm0o6kfdEawy4E1nitb',
+        '2-2': '10-hfO8jzjTgj8lMnkaawkz-AxGW8jgxV',
+        '2-3': '1-QGqXPcprghWgfMm99SgF0aRBHHHthwa',
+        '3-1': '1GGfkVgLihK4M46hsr_IuG8daNCjv-OoO',
+        '3-2': '1snQPoaEPokTXA_DqfpTSrkB6376TGFLb',
+        '3-3': '1AujBdkfq-LC6nnrJSGi6z_xbbgaPfd3Z',
+        '4-1': '1b-sfdlSkBrGcMgTBd-mSQ4vf1ZwF9lMc',
+        '4-2': '1oTJgOGwvk_1HHHOb4wJpGh8w8B-m_IuN',
+        '4-3': '1PZQW-XcERaGUvguEGQH1Vn2tgjGy4Oud',
+        '5-1': '1ooVTRxZZE5h0e-GiswxYRqOzGA0XxJ3A',
+        '5-2': '1mGghmSCnKFxo4BJvaSZOIqB3MySuXkTT',
+        '5-3': '1i4SVnEqK2USI4lv_hhwnDS5CK6xO0e1h'
       };
 
       const videoTitles = {
@@ -618,29 +623,49 @@ section {
         '5-3': '5.3 التحسين المستمر'
       };
 
+      function getEmbedUrl(id, autoplay = false) {
+        if (!id) return '';
+        if (id.length > 20) {
+          return `https://drive.google.com/file/d/${id}/preview`;
+        }
+        return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1${autoplay ? '&autoplay=1' : ''}`;
+      }
+
+      // Fetch dynamic videos.json
+      fetch('videos.json')
+        .then(res => res.json())
+        .then(data => {
+          Object.keys(videoConfig).forEach(k => {
+            const key = 'iso-9001-' + k;
+            if (data[key]) {
+              videoConfig[k] = data[key];
+            }
+          });
+          const iframe = document.getElementById('youtubeIframe');
+          if (iframe && videoConfig['1-1']) {
+            iframe.src = getEmbedUrl(videoConfig['1-1'], false);
+          }
+        }).catch(err => console.log('Loaded default config', err));
+
       // Make playVideo function globally accessible
       window.playVideo = function(lessonId) {
         const iframe = document.getElementById('youtubeIframe');
         const titleEl = document.getElementById('currentVideoTitle');
         
         if (videoConfig[lessonId]) {
-          // Force reload by recreating the iframe
-          const videoUrl = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
-          
-          // Clone and replace to force reload
-          const newIframe = iframe.cloneNode(true);
-          newIframe.src = videoUrl;
-          iframe.parentNode.replaceChild(newIframe, iframe);
-          
-          titleEl.textContent = videoTitles[lessonId];
+          const videoUrl = getEmbedUrl(videoConfig[lessonId], true);
+          iframe.src = videoUrl;
+          if (titleEl) {
+            titleEl.textContent = videoTitles[lessonId];
+          }
         }
       };
 
-      // Auto-load first video on load (without autoplay)
+      // Auto-load first video on load
       const iframe = document.getElementById('youtubeIframe');
       const titleEl = document.getElementById('currentVideoTitle');
       if (iframe && titleEl) {
-        iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
+        iframe.src = getEmbedUrl(videoConfig['1-1'], false);
         titleEl.textContent = videoTitles['1-1'];
       }
 

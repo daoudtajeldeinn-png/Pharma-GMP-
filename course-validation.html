@@ -415,13 +415,39 @@ section {
       '6-3': '6.3 التدقيق والامتثال'
     };
 
+    function getEmbedUrl(id, autoplay = false) {
+      if (!id) return '';
+      if (id.length > 20) {
+        return `https://drive.google.com/file/d/${id}/preview`;
+      }
+      return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1${autoplay ? '&autoplay=1' : ''}`;
+    }
+
+    // Fetch dynamic videos.json
+    fetch('videos.json')
+      .then(res => res.json())
+      .then(data => {
+        Object.keys(videoConfig).forEach(k => {
+          const key = 'validation-' + k;
+          if (data[key]) {
+            videoConfig[k] = data[key];
+          }
+        });
+        const iframe = document.getElementById('youtubeIframe');
+        if (iframe && videoConfig['1-1']) {
+          iframe.src = getEmbedUrl(videoConfig['1-1'], false);
+        }
+      }).catch(err => console.log('Loaded default config', err));
+
     function playVideo(lessonId) {
       const iframe = document.getElementById('youtubeIframe');
       const titleEl = document.getElementById('currentVideoTitle');
       
       if (videoConfig[lessonId]) {
-        iframe.src = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
-        titleEl.textContent = videoTitles[lessonId];
+        iframe.src = getEmbedUrl(videoConfig[lessonId], true);
+        if (titleEl) {
+          titleEl.textContent = videoTitles[lessonId];
+        }
       }
     }
 
@@ -429,8 +455,10 @@ section {
     document.addEventListener('DOMContentLoaded', () => {
       const iframe = document.getElementById('youtubeIframe');
       const titleEl = document.getElementById('currentVideoTitle');
-      iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
-      titleEl.textContent = videoTitles['1-1'];
+      if (iframe && titleEl) {
+        iframe.src = getEmbedUrl(videoConfig['1-1'], false);
+        titleEl.textContent = videoTitles['1-1'];
+      }
     });
   </script>
 

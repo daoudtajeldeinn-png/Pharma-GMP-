@@ -617,23 +617,25 @@ section {
       // Load video configuration
       const videoConfig = {
         '1-1': 'yBCikCTyjWc',
-        '1-2': 'SBMb8c0Bf6A',
-        '1-3': 'F2IGPuRSgO4',
-        '2-1': 'aea8BV-HcrU',
-        '2-2': 'T3y3evSkcaA',
-        '2-3': 'VYQjcZorYEY',
-        '3-1': '7bunJeUSEF4',
-        '3-2': 'aJx7x5VAaOY',
-        '3-3': 'NH21QrsbTqk',
-        '4-1': 'Yl_R6oiebTk',
-        '4-2': 'LFIXlrxi88Y',
-        '4-3': '1vtkfAddeDA',
-        '5-1': 'Sx8bQlYEccA',
-        '5-2': '5TDcSYA9NVw',
-        '5-3': '2YBClwaJ0Xk',
-        '6-1': '9rAzRynEJv8',
-        '6-2': 'KBR3mHkg1L8',
-        '6-3': 'dGKxQ2HQDbc'
+      let videoConfig = {
+        '1-1': '1MXWzyQvq4JvHacoDOGGRmf21pKqX-6eQ',
+        '1-2': '1NezrdIcd1lOiC6B9bAQjC7gDPHNIHfBE',
+        '1-3': '1N6U9wEmwBCuVwTI3bg4_lR9MrCrQwiOV',
+        '2-1': '1HzoZxq-VaUZ3gVrhy0zoQRO216GjQa3e',
+        '2-2': '18Tz2DrwO3PO40gJXwHh_Qmz_Ye8FAxwW',
+        '2-3': '1oPA5QIYtbr1o6irl9RZqLjKSEBcsTG-d',
+        '3-1': '1isLwx4GrqA-VJjXNxYtQIYR2Oe3F0rxn',
+        '3-2': '1SL8QB_kE25X0s-YYh--iLJLK39cXEda-',
+        '3-3': '1xXVHymH2Lf9CWnDg51bEBiEvip3CnWkk',
+        '4-1': '1K1tRbkTL80zgsFRSBwaA4WplC4bWsobE',
+        '4-2': '1_LVOOS8mJXAFYxzTxQfqiW4hFZVl62Pd',
+        '4-3': '1dQqnG3cGWhwyZGnyi8mqx-WQ5s4MVV0I',
+        '5-1': '1n5OLLH0BIo4vljAi4Nz5NP0pE8cmBpaf',
+        '5-2': '1TrA62c6m-HGKS1wMTCvUFC7Lz4GqDVpr',
+        '5-3': '1t1OPpVUNCdeMoSMbSws9MOwuQP7AKs1H',
+        '6-1': '1kYyDI8bLtCuKuPS7dYY4TdCTVah0DtB2',
+        '6-2': '1c7GSDjf0m-XWA9IWKDyhBfjVrZ_Tvfo-',
+        '6-3': '1tzpek63NmuPaE8UoGgajwyz3SdRJCQQ0'
       };
 
       const videoTitles = {
@@ -657,29 +659,49 @@ section {
         '6-3': '6.3 تقارير التدقيق والمتابعة'
       };
 
+      function getEmbedUrl(id, autoplay = false) {
+        if (!id) return '';
+        if (id.length > 20) {
+          return `https://drive.google.com/file/d/${id}/preview`;
+        }
+        return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1${autoplay ? '&autoplay=1' : ''}`;
+      }
+
+      // Fetch dynamic videos.json
+      fetch('videos.json')
+        .then(res => res.json())
+        .then(data => {
+          Object.keys(videoConfig).forEach(k => {
+            const key = 'gmp-basics-' + k;
+            if (data[key]) {
+              videoConfig[k] = data[key];
+            }
+          });
+          const iframe = document.getElementById('youtubeIframe');
+          if (iframe && videoConfig['1-1']) {
+            iframe.src = getEmbedUrl(videoConfig['1-1'], false);
+          }
+        }).catch(err => console.log('Loaded default config', err));
+
       // Make playVideo function globally accessible
       window.playVideo = function(lessonId) {
         const iframe = document.getElementById('youtubeIframe');
         const titleEl = document.getElementById('currentVideoTitle');
         
         if (videoConfig[lessonId]) {
-          // Force reload by recreating the iframe
-          const videoUrl = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
-          
-          // Clone and replace to force reload
-          const newIframe = iframe.cloneNode(true);
-          newIframe.src = videoUrl;
-          iframe.parentNode.replaceChild(newIframe, iframe);
-          
-          titleEl.textContent = videoTitles[lessonId];
+          const videoUrl = getEmbedUrl(videoConfig[lessonId], true);
+          iframe.src = videoUrl;
+          if (titleEl) {
+            titleEl.textContent = videoTitles[lessonId];
+          }
         }
       };
 
-      // Auto-load first video on load (without autoplay)
+      // Auto-load first video on load
       const iframe = document.getElementById('youtubeIframe');
       const titleEl = document.getElementById('currentVideoTitle');
       if (iframe && titleEl) {
-        iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
+        iframe.src = getEmbedUrl(videoConfig['1-1'], false);
         titleEl.textContent = videoTitles['1-1'];
       }
 
