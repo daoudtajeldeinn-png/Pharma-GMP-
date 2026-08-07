@@ -1126,66 +1126,6 @@ section {
         return (match && match[2].length === 11) ? match[2] : null;
       }
 
-      // Load video configuration
-      const videoConfig = {
-        '1-1': 'abc123', // Replace with actual video IDs
-        '1-2': 'def456',
-        '1-3': 'ghi789',
-        '2-1': 'jkl012',
-        '2-2': 'mno345',
-        '2-3': 'pqr678',
-        '3-1': 'stu901',
-        '3-2': 'vwx234',
-        '3-3': 'yza567',
-        '4-1': 'bcd890',
-        '4-2': 'efg123',
-        '4-3': 'hij456',
-        '5-1': 'klm789',
-        '5-2': 'nop012',
-        '5-3': 'qrs345',
-        '6-1': 'tuv678',
-        '6-2': 'wxy901',
-        '6-3': 'zab234'
-      };
-
-      const videoTitles = {
-        '1-1': '1.1 مقدمة في التحقق والتثبيت',
-        '1-2': '1.2 أنواع التحقق',
-        '1-3': '1.3 متطلبات GMP',
-        '2-1': '2.1 IQ - تثبيت التثبيت',
-        '2-2': '2.2 OQ - التثبيت التشغيلي',
-        '2-3': '2.3 PQ - تثبيت الأداء',
-        '3-1': '3.1 خطة التحقق',
-        '3-2': '3.2 تنفيذ التحقق',
-        '3-3': '3.3 التوثيق',
-        '4-1': '4.1 تنظيف المعدات',
-        '4-2': '4.2 طرق التنظيف',
-        '4-3': '4.3 التحقق من التنظيف',
-        '5-1': '5.1 صيانة وقائية',
-        '5-2': '5.2 صيانة تصحيحية',
-        '5-3': '5.3 إدارة الصيانة',
-        '6-1': '6.1 توثيق التحقق',
-        '6-2': '6.2 إعادة التحقق',
-        '6-3': '6.3 التوثيق وإعادة التحقق'
-      };
-
-      // Make playVideo function globally accessible
-      window.playVideo = function(lessonId) {
-        const iframe = document.getElementById('youtubeIframe');
-        const titleEl = document.getElementById('currentVideoTitle');
-        
-        if (videoConfig[lessonId] && iframe && titleEl) {
-          // Force reload by recreating the iframe
-          const videoUrl = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
-          
-          // Clone and replace to force reload
-          const newIframe = iframe.cloneNode(true);
-          newIframe.src = videoUrl;
-          iframe.parentNode.replaceChild(newIframe, iframe);
-          
-          titleEl.textContent = videoTitles[lessonId];
-        }
-      };
     });
   </script>
 </body>
