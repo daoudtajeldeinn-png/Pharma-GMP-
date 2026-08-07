@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-Pharma Video Generator - ENGLISH VERSION
-Fixed: English only audio, no language mixing, professional output
+Pharma Video Generator - Complete Batch HD Version
+- Processes all 78 optimized scripts in G:/GMP Pharma/video-scripts-optimized/
+- Multi-Slide HD Rendering: 1920x1080 resolution, card containers, section badges, dark navy/teal aesthetic.
+- Generates synced audio and outputs final MP4 videos in G:/GMP Pharma/videos/final/
 """
 
 import os
@@ -10,461 +12,309 @@ import re
 import subprocess
 import shutil
 import time
+import textwrap
 from pathlib import Path
 from datetime import datetime
 
 # ========== CONFIGURATION ==========
 FOLDER = Path("G:/GMP Pharma")
-
-if not FOLDER.exists():
-    print("ERROR: Folder not found:", FOLDER)
-    sys.exit(1)
-
-SCRIPTS = FOLDER / "video-scripts"
+SCRIPTS = FOLDER / "video-scripts-optimized"
 OUTPUT = FOLDER / "videos" / "final"
+TEMP_DIR = FOLDER / "videos" / "temp"
+
 OUTPUT.mkdir(parents=True, exist_ok=True)
+TEMP_DIR.mkdir(parents=True, exist_ok=True)
 
 LOGS = FOLDER / "logs"
 LOGS.mkdir(parents=True, exist_ok=True)
 
-print("=" * 70)
-print("PHARMA VIDEO GENERATOR - ENGLISH VERSION")
-print("=" * 70)
-print(f"Scripts: {SCRIPTS}")
-print(f"Output:  {OUTPUT}")
-print(f"Logs:    {LOGS}")
+W, H = 1920, 1080
+BG_COLOR = (11, 19, 43)        # #0B132B Deep Navy
+CARD_BG = (28, 42, 72)         # #1C2A48 Card Container
+TEAL = (0, 230, 195)          # #00E6C3 Mint Teal Accent
+GOLD = (244, 196, 48)         # #F4C430 Gold Accent
+WHITE = (255, 255, 255)
+LIGHT_BLUE = (210, 225, 245)
+FOOTER_TEXT = "GMP Pharma Pro Academy • Professional Training Module"
 
-# ========== FIND FFMPEG ==========
+# ========== DEPENDENCIES ==========
+try:
+    from gtts import gTTS
+except ImportError:
+    print("❌ gTTS missing: pip install gTTS")
+    sys.exit(1)
+
+try:
+    from PIL import Image, ImageDraw, ImageFont
+except ImportError:
+    print("❌ Pillow missing: pip install pillow")
+    sys.exit(1)
+
 def find_ffmpeg():
-    """Find FFmpeg executable"""
-    possible_paths = [
+    which = shutil.which("ffmpeg")
+    if which:
+        return which
+    possible = [
         "ffmpeg",
         "ffmpeg.exe",
         "C:/ffmpeg/bin/ffmpeg.exe",
         "C:/Program Files/ffmpeg/bin/ffmpeg.exe",
-        "C:/Program Files (x86)/ffmpeg/bin/ffmpeg.exe",
-        "C:/ProgramData/chocolatey/bin/ffmpeg.exe",
         str(Path.home() / "AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe"),
-        str(Path.home() / "scoop/shims/ffmpeg.exe"),
     ]
-    
-    which_ffmpeg = shutil.which("ffmpeg")
-    if which_ffmpeg:
-        possible_paths.insert(0, which_ffmpeg)
-    
-    for p in possible_paths:
+    for p in possible:
         if p and Path(p).exists():
             return p
-    
-    try:
-        result = subprocess.run(["where", "ffmpeg"], capture_output=True, text=True)
-        if result.returncode == 0:
-            paths = result.stdout.strip().split('\n')
-            if paths:
-                return paths[0]
-    except:
-        pass
-    
     return None
 
 FFMPEG = find_ffmpeg()
 
-if FFMPEG:
-    print(f"✅ FFmpeg found at: {FFMPEG}")
-else:
-    print("⚠️ FFmpeg not found, will use MoviePy only")
+def parse_markdown_sections(script_path):
+    """Parse Markdown file into multi-slide section blocks"""
+    content = script_path.read_text(encoding='utf-8')
+    lines = content.split('\n')
 
-# ========== CHECK DEPENDENCIES ==========
-deps_ok = True
-
-try:
-    from gtts import gTTS
-    print("✅ gTTS")
-except ImportError:
-    print("❌ gTTS missing: pip install gTTS")
-    deps_ok = False
-
-try:
-    from moviepy import ImageClip, AudioFileClip
-    from PIL import Image, ImageDraw, ImageFont
-    print("✅ MoviePy + Pillow")
-except ImportError as e:
-    print(f"❌ MoviePy/Pillow missing: pip install moviepy pillow")
-    deps_ok = False
-
-if not deps_ok:
-    print("\n❌ Missing dependencies. Please install them and try again.")
-    sys.exit(1)
-
-import textwrap
-
-# ========== VIDEO SETTINGS ==========
-W, H = 1920, 1080
-BG = "#0A1628"
-TEAL = "#00D4AA"
-GOLD = "#C9A84C"
-
-# ========== SCRIPT PROCESSING ==========
-def get_scripts():
-    """Get all scripts - English only"""
-    scripts = sorted(SCRIPTS.glob("*-en-pro.md"))
-    return scripts
-
-def extract_content(text):
-    """Extract clean content from script - ENGLISH ONLY"""
-    lines = text.split('\n')
+    title = "Pharmaceutical Training Module"
+    sections = []
     
-    title = ""
-    for line in lines[:5]:
-        if line.startswith('#') and line.strip():
-            title = line.lstrip('#').strip()
-            break
-    if not title:
-        title = "Pharma Training Video"
-    
-    body_lines = []
-    skip_patterns = ['Speaker Notes:', 'ملاحظات للمتحدث:', '---']
-    
+    current_sec_title = "Overview"
+    current_sec_lines = []
+
     for line in lines:
-        line = line.strip()
-        if not line:
+        line_str = line.strip()
+        if not line_str:
             continue
-        if any(pattern in line for pattern in skip_patterns):
-            continue
-        if line.startswith('#'):
-            continue
-        # Remove markdown formatting
-        line = re.sub(r'[#*_`]', '', line)
-        body_lines.append(line)
-    
-    body = ' '.join(body_lines)
-    
-    # ENGLISH ONLY - no Arabic text
-    if len(body) < 50:
-        body = f"Welcome to {title}. This video covers an important topic in pharmaceutical quality and compliance."
-    
-    return title, body
-
-def create_audio(text, audio_path, lang="en"):
-    """Create audio with error handling - ENGLISH ONLY"""
-    try:
-        # Ensure directory exists
-        audio_path.parent.mkdir(parents=True, exist_ok=True)
         
-        # Clean up any existing file
-        if audio_path.exists():
-            try:
-                audio_path.unlink()
-            except:
-                pass
-        
-        # Split long text
-        if len(text) > 5000:
-            chunks = [text[i:i+5000] for i in range(0, len(text), 5000)]
-            temp_files = []
-            
-            for i, chunk in enumerate(chunks):
-                temp_path = audio_path.parent / f"{audio_path.stem}_part{i}.mp3"
-                gTTS(text=chunk, lang=lang, slow=False).save(str(temp_path))
-                temp_files.append(temp_path)
-            
-            if len(temp_files) > 1:
-                try:
-                    from pydub import AudioSegment
-                    combined = AudioSegment.empty()
-                    for f in temp_files:
-                        combined += AudioSegment.from_mp3(str(f))
-                    combined.export(str(audio_path), format="mp3")
-                    for f in temp_files:
-                        try:
-                            f.unlink()
-                        except:
-                            pass
-                except:
-                    if temp_files:
-                        shutil.move(str(temp_files[0]), str(audio_path))
-            else:
-                if temp_files:
-                    shutil.move(str(temp_files[0]), str(audio_path))
+        if line_str.startswith("# "):
+            title = line_str.lstrip('# ').strip()
+        elif line_str.startswith("## "):
+            if current_sec_lines:
+                sections.append((current_sec_title, current_sec_lines))
+                current_sec_lines = []
+            current_sec_title = line_str.lstrip('## ').strip()
+        elif line_str.startswith("> "):
+            continue
         else:
-            gTTS(text=text, lang=lang, slow=False).save(str(audio_path))
-        
-        # Verify file was created
-        if audio_path.exists() and audio_path.stat().st_size > 0:
-            return True
-        else:
-            return False
-            
-    except Exception as e:
-        print(f"  ⚠️ Audio error: {e}")
-        return False
+            current_sec_lines.append(line_str)
 
-def create_slide(title, body, slide_path):
-    """Create a professional slide - ENGLISH ONLY"""
+    if current_sec_lines:
+        sections.append((current_sec_title, current_sec_lines))
+
+    if not sections:
+        sections = [("Overview", ["Welcome to this training module."])]
+
+    return title, sections
+
+def create_slide_image(main_title, sec_title, sec_lines, slide_idx, total_slides, output_path):
+    """Render high quality 1920x1080 slide graphic using Pillow"""
+    img = Image.new("RGB", (W, H), BG_COLOR)
+    draw = ImageDraw.Draw(img)
+
     font_paths = [
-        "C:/Windows/Fonts/arial.ttf",
         "C:/Windows/Fonts/segoeui.ttf",
+        "C:/Windows/Fonts/arial.ttf",
         "C:/Windows/Fonts/tahoma.ttf",
     ]
     
-    img = Image.new("RGB", (W, H), BG)
-    draw = ImageDraw.Draw(img)
-    
-    font_large = None
-    font_normal = None
-    font_small = None
-    
+    f_title = f_sec = f_body = f_small = None
+
     for fp in font_paths:
         if Path(fp).exists():
             try:
-                font_large = ImageFont.truetype(fp, 55)
-                font_normal = ImageFont.truetype(fp, 40)
-                font_small = ImageFont.truetype(fp, 30)
+                f_title = ImageFont.truetype(fp, 36)
+                f_sec = ImageFont.truetype(fp, 52)
+                f_body = ImageFont.truetype(fp, 34)
+                f_small = ImageFont.truetype(fp, 24)
                 break
             except:
-                continue
-    
-    if not font_large:
-        font_large = ImageFont.load_default()
-        font_normal = ImageFont.load_default()
-        font_small = ImageFont.load_default()
-    
-    # Title bar
-    draw.rectangle([0, 0, W, 8], fill=TEAL)
-    
+                pass
+
+    if not f_title:
+        f_title = f_sec = f_body = f_small = ImageFont.load_default()
+
+    # Header Bar
+    draw.rectangle([0, 0, W, 90], fill=(16, 26, 54))
+    draw.rectangle([0, 86, W, 90], fill=TEAL)
+
     # Title
-    title_text = title[:80] + "..." if len(title) > 80 else title
-    draw.text((80, 60), title_text, fill=TEAL, font=font_large)
-    draw.rectangle([80, 130, 400, 134], fill=GOLD)
+    t_text = main_title if len(main_title) < 70 else main_title[:67] + "..."
+    draw.text((60, 24), t_text, fill=WHITE, font=f_title)
+
+    # Slide Badge
+    badge_str = f"Slide {slide_idx} of {total_slides}"
+    draw.rounded_rectangle([W - 240, 20, W - 60, 68], radius=10, fill=CARD_BG, outline=TEAL, width=2)
+    draw.text((W - 220, 32), badge_str, fill=TEAL, font=f_small)
+
+    # Section Title
+    draw.text((80, 130), sec_title, fill=TEAL, font=f_sec)
+    draw.rectangle([80, 200, 350, 204], fill=GOLD)
+
+    # Content Container
+    draw.rounded_rectangle([80, 230, W - 80, H - 100], radius=20, fill=CARD_BG, outline=(40, 60, 100), width=2)
+
+    # Text Body Rendering
+    y = 270
+    max_y = H - 140
     
-    # Body text - English only
-    body_clean = re.sub(r'[#*_`]', '', body)
-    if len(body_clean) > 3000:
-        body_clean = body_clean[:3000] + "..."
-    
-    wrapped_lines = textwrap.wrap(body_clean, width=55)
-    max_lines = 20
-    if len(wrapped_lines) > max_lines:
-        wrapped_lines = wrapped_lines[:max_lines-1] + ["..."]
-    
-    y = 180
-    line_height = 45
-    
-    for line in wrapped_lines:
-        draw.text((80, y), line, fill="white", font=font_normal)
-        y += line_height
-    
+    for item in sec_lines:
+        if y >= max_y:
+            break
+
+        is_bullet = item.startswith("-")
+        clean_item = re.sub(r'^[\-\*\•]\s*', '', item)
+        clean_item = clean_item.replace('**', '')
+
+        wrap_w = 68 if is_bullet else 75
+        wrapped = textwrap.wrap(clean_item, width=wrap_w)
+
+        for line_idx, w_line in enumerate(wrapped):
+            if y >= max_y:
+                break
+
+            if is_bullet and line_idx == 0:
+                draw.ellipse([120, y + 10, 134, y + 24], fill=GOLD)
+                draw.text((150, y), w_line, fill=WHITE, font=f_body)
+            elif is_bullet:
+                draw.text((150, y), w_line, fill=LIGHT_BLUE, font=f_body)
+            else:
+                draw.text((120, y), w_line, fill=WHITE, font=f_body)
+
+            y += 48
+            
+        y += 10
+
     # Footer
-    draw.text((80, H - 60), "PharmaPro Academy", fill="#2a3a4a", font=font_small)
-    img.save(slide_path)
+    draw.rectangle([0, H - 60, W, H], fill=(16, 26, 54))
+    draw.text((80, H - 42), FOOTER_TEXT, fill=(120, 145, 175), font=f_small)
+
+    img.save(output_path)
     return True
 
-def create_video(slide_path, audio_path, output_path):
-    """Create video with fallback methods"""
+def generate_section_audio(text, audio_path):
     try:
-        # Verify files exist
-        if not slide_path.exists():
-            print(f"  Slide not found: {slide_path}")
-            return False
-        if not audio_path.exists():
-            print(f"  Audio not found: {audio_path}")
-            return False
+        if audio_path.exists():
+            audio_path.unlink()
         
-        # Try MoviePy first
-        try:
-            audio = AudioFileClip(str(audio_path))
-            slide_clip = ImageClip(str(slide_path)).with_duration(audio.duration)
-            video = slide_clip.with_audio(audio)
-            
-            # Write video file
-            video.write_videofile(
-                str(output_path),
-                fps=24,
-                codec='libx264',
-                audio_codec='aac'
-            )
-            audio.close()
-            video.close()
-            return True
-        except Exception as e:
-            print(f"  MoviePy error: {e}")
-            
-            # Try FFmpeg directly if MoviePy fails
-            if FFMPEG:
-                try:
-                    cmd = [
-                        FFMPEG,
-                        "-y",
-                        "-loop", "1",
-                        "-i", str(slide_path),
-                        "-i", str(audio_path),
-                        "-c:v", "libx264",
-                        "-tune", "stillimage",
-                        "-c:a", "aac",
-                        "-b:a", "192k",
-                        "-pix_fmt", "yuv420p",
-                        "-shortest",
-                        str(output_path)
-                    ]
-                    result = subprocess.run(cmd, capture_output=True, text=True)
-                    if result.returncode == 0:
-                        return True
-                    else:
-                        print(f"  FFmpeg error: {result.stderr}")
-                        return False
-                except Exception as e2:
-                    print(f"  FFmpeg error: {e2}")
-                    return False
-            else:
-                return False
-            
+        clean_txt = re.sub(r'[#\*\_`\-\>]', ' ', text)
+        clean_txt = re.sub(r'\s+', ' ', clean_txt).strip()
+
+        if len(clean_txt) < 5:
+            clean_txt = "Overview of section."
+
+        gTTS(text=clean_txt, lang='en', slow=False).save(str(audio_path))
+        return audio_path.exists() and audio_path.stat().st_size > 0
     except Exception as e:
-        print(f"  Video creation error: {e}")
+        print(f"  ⚠️ Audio TTS error: {e}")
         return False
 
-def process_script(script_path, output_dir, logs_dir):
-    """Process a single script"""
-    output_path = output_dir / f"{script_path.stem}.mp4"
-    log_file = logs_dir / f"{script_path.stem}.log"
-    
-    # Skip if output exists
-    if output_path.exists():
-        print(f"  ⏭️ SKIP: {output_path.name} (already exists)")
+def render_section_video_ffmpeg(slide_img, audio_mp3, output_mp4):
+    if not FFMPEG:
+        return False
+    cmd = [
+        FFMPEG, "-y",
+        "-loop", "1",
+        "-i", str(slide_img),
+        "-i", str(audio_mp3),
+        "-c:v", "libx264",
+        "-tune", "stillimage",
+        "-c:a", "aac",
+        "-b:a", "192k",
+        "-pix_fmt", "yuv420p",
+        "-shortest",
+        str(output_mp4)
+    ]
+    res = subprocess.run(cmd, capture_output=True, text=True)
+    return res.returncode == 0 and output_mp4.exists()
+
+def concatenate_clips_ffmpeg(clip_paths, final_output_path):
+    if not FFMPEG:
+        return False
+
+    list_file = TEMP_DIR / f"concat_{final_output_path.stem}.txt"
+    with open(list_file, 'w', encoding='utf-8') as f:
+        for c in clip_paths:
+            f.write(f"file '{c.resolve().as_posix()}'\n")
+
+    cmd = [
+        FFMPEG, "-y",
+        "-f", "concat",
+        "-safe", "0",
+        "-i", str(list_file),
+        "-c", "copy",
+        str(final_output_path)
+    ]
+    res = subprocess.run(cmd, capture_output=True, text=True)
+    if list_file.exists():
+        list_file.unlink()
+    return res.returncode == 0 and final_output_path.exists()
+
+def process_single_script(script_path):
+    out_video = OUTPUT / f"{script_path.stem}.mp4"
+    if out_video.exists():
+        print(f"  ⏭️ SKIP: {out_video.name} (already rendered)")
         return True
-    
-    print(f"  🎬 PROCESSING: {script_path.name}")
-    start_time = time.time()
-    
-    # Create temp paths
-    audio_path = output_dir / f"{script_path.stem}.mp3"
-    slide_path = output_dir / f"{script_path.stem}.png"
-    
-    # Clean up any old temp files
-    for temp_file in [audio_path, slide_path]:
-        if temp_file.exists():
-            try:
-                temp_file.unlink()
-            except:
-                pass
-    
-    try:
-        # Read and parse script
-        text = script_path.read_text(encoding="utf-8")
-        title, body = extract_content(text)
-        
-        # Create audio - ENGLISH ONLY
-        if not create_audio(body, audio_path, lang="en"):
-            print(f"  ❌ Audio creation failed")
+
+    print(f"  🎬 RENDERING: {script_path.name}")
+    start_t = time.time()
+
+    main_title, sections = parse_markdown_sections(script_path)
+    total_slides = len(sections)
+
+    section_clips = []
+
+    for i, (sec_title, sec_lines) in enumerate(sections, 1):
+        slide_img = TEMP_DIR / f"{script_path.stem}_slide_{i}.png"
+        audio_mp3 = TEMP_DIR / f"{script_path.stem}_audio_{i}.mp3"
+        sec_mp4 = TEMP_DIR / f"{script_path.stem}_sec_{i}.mp4"
+
+        create_slide_image(main_title, sec_title, sec_lines, i, total_slides, slide_img)
+
+        sec_narration = f"{sec_title}. " + " ".join(sec_lines)
+        if not generate_section_audio(sec_narration, audio_mp3):
+            print(f"  ❌ Failed TTS audio for slide {i}")
             return False
-        
-        # Create slide
-        if not create_slide(title, body, slide_path):
-            print(f"  ❌ Slide creation failed")
-            if audio_path.exists():
-                try:
-                    audio_path.unlink()
-                except:
-                    pass
+
+        if not render_section_video_ffmpeg(slide_img, audio_mp3, sec_mp4):
+            print(f"  ❌ Failed FFmpeg render for slide {i}")
             return False
-        
-        # Create video
-        success = create_video(slide_path, audio_path, output_path)
-        
-        # Cleanup temp files
-        for temp_file in [audio_path, slide_path]:
-            if temp_file.exists():
-                try:
-                    temp_file.unlink()
-                except:
-                    pass
-        
-        if success:
-            elapsed = time.time() - start_time
-            print(f"  ✅ DONE: {output_path.name} ({elapsed:.1f}s)")
-            with open(log_file, 'w', encoding='utf-8') as f:
-                f.write(f"Success: {datetime.now()}\n")
-                f.write(f"Title: {title}\n")
-                f.write(f"Script: {script_path}\n")
-            return True
-        else:
-            print(f"  ❌ FAILED: {script_path.name}")
-            with open(log_file, 'w', encoding='utf-8') as f:
-                f.write(f"Failed: {datetime.now()}\n")
-                f.write(f"Script: {script_path}\n")
-            return False
-            
-    except Exception as e:
-        print(f"  ❌ ERROR: {e}")
-        # Cleanup temp files
-        for temp_file in [audio_path, slide_path]:
-            if temp_file.exists():
-                try:
-                    temp_file.unlink()
-                except:
-                    pass
-        with open(log_file, 'w', encoding='utf-8') as f:
-            f.write(f"Error: {datetime.now()}\n")
-            f.write(f"Script: {script_path}\n")
-            f.write(f"Exception: {e}\n")
+
+        section_clips.append(sec_mp4)
+
+    success = concatenate_clips_ffmpeg(section_clips, out_video)
+
+    for clip in section_clips:
+        if clip.exists():
+            clip.unlink()
+
+    if success:
+        dur = time.time() - start_t
+        print(f"  ✅ SUCCESS: {out_video.name} ({dur:.1f}s, {total_slides} slides)")
+        return True
+    else:
+        print(f"  ❌ Concatenation failed for {script_path.name}")
         return False
 
 def main():
-    """Main execution"""
-    print("\n" + "=" * 70)
-    print(f"Processing started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("=" * 70 + "\n")
-    
-    scripts = get_scripts()
-    
+    print("=" * 70)
+    print("PHARMA FULL BATCH MULTI-SLIDE HD VIDEO GENERATOR")
+    print("=" * 70)
+
+    scripts = sorted(SCRIPTS.glob("*.md"))
     if not scripts:
-        print("❌ No scripts found in:", SCRIPTS)
-        print("   Make sure your .md files are in the 'video-scripts' folder")
+        print("❌ No scripts found in", SCRIPTS)
         return
-    
-    print(f"Found {len(scripts)} scripts to process\n")
-    
-    successful = []
-    failed = []
-    
-    for i, script_path in enumerate(scripts, 1):
+
+    print(f"Processing all {len(scripts)} scripts...\n")
+
+    success_count = 0
+    for i, s in enumerate(scripts, 1):
         print(f"[{i}/{len(scripts)}]")
-        success = process_script(script_path, OUTPUT, LOGS)
-        if success:
-            successful.append(script_path.name)
-        else:
-            failed.append(script_path.name)
+        if process_single_script(s):
+            success_count += 1
         print()
-    
-    # Summary
+
     print("=" * 70)
-    print("PROCESSING SUMMARY")
-    print("=" * 70)
-    print(f"Total scripts:  {len(scripts)}")
-    print(f"Successful:     {len(successful)}")
-    print(f"Failed:         {len(failed)}")
-    
-    if failed:
-        print("\n❌ Failed scripts:")
-        for f in failed:
-            print(f"  - {f}")
-    
-    # Create report
-    report_path = LOGS / f"summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-    with open(report_path, 'w', encoding='utf-8') as f:
-        f.write("VIDEO GENERATION SUMMARY\n")
-        f.write("=" * 50 + "\n")
-        f.write(f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-        f.write(f"Total: {len(scripts)}\n")
-        f.write(f"Success: {len(successful)}\n")
-        f.write(f"Failed: {len(failed)}\n\n")
-        if failed:
-            f.write("Failed scripts:\n")
-            for name in failed:
-                f.write(f"  - {name}\n")
-    
-    print(f"\n📄 Report saved to: {report_path}")
-    print("\n" + "=" * 70)
-    print("DONE!")
+    print(f"Full Batch Complete: {success_count}/{len(scripts)} successful!")
+    print(f"Generated videos saved in: {OUTPUT}")
     print("=" * 70)
 
 if __name__ == "__main__":
