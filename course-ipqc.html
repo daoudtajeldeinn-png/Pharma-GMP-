@@ -528,8 +528,7 @@ section {
         return (match && match[2].length === 11) ? match[2] : null;
       }
 
-      // Load video configuration
-      const videoConfig = {
+      let videoConfig = {
         '1-1': 'dGKxQ2HQDbc',
         '1-2': '_fyfk_F1LAI',
         '1-3': 'M9vy8uK3n8o',
@@ -559,29 +558,49 @@ section {
         '4-3': '4.3 المواصفات والإفراج'
       };
 
+      function getEmbedUrl(id, autoplay = false) {
+        if (!id) return '';
+        if (id.length > 20) {
+          return `https://drive.google.com/file/d/${id}/preview`;
+        }
+        return `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1${autoplay ? '&autoplay=1' : ''}`;
+      }
+
+      // Fetch dynamic videos.json
+      fetch('videos.json')
+        .then(res => res.json())
+        .then(data => {
+          Object.keys(videoConfig).forEach(k => {
+            const key = 'ipqc-' + k;
+            if (data[key]) {
+              videoConfig[k] = data[key];
+            }
+          });
+          const iframe = document.getElementById('youtubeIframe');
+          if (iframe && videoConfig['1-1']) {
+            iframe.src = getEmbedUrl(videoConfig['1-1'], false);
+          }
+        }).catch(err => console.log('Loaded default config', err));
+
       // Make playVideo function globally accessible
       window.playVideo = function(lessonId) {
         const iframe = document.getElementById('youtubeIframe');
         const titleEl = document.getElementById('currentVideoTitle');
         
         if (videoConfig[lessonId]) {
-          // Force reload by recreating the iframe
-          const videoUrl = `https://www.youtube.com/embed/${videoConfig[lessonId]}?rel=0&modestbranding=1&autoplay=1`;
-          
-          // Clone and replace to force reload
-          const newIframe = iframe.cloneNode(true);
-          newIframe.src = videoUrl;
-          iframe.parentNode.replaceChild(newIframe, iframe);
-          
-          titleEl.textContent = videoTitles[lessonId];
+          const videoUrl = getEmbedUrl(videoConfig[lessonId], true);
+          iframe.src = videoUrl;
+          if (titleEl) {
+            titleEl.textContent = videoTitles[lessonId];
+          }
         }
       };
 
-      // Auto-load first video on load (without autoplay)
+      // Auto-load first video on load
       const iframe = document.getElementById('youtubeIframe');
       const titleEl = document.getElementById('currentVideoTitle');
       if (iframe && titleEl) {
-        iframe.src = `https://www.youtube.com/embed/${videoConfig['1-1']}?rel=0&modestbranding=1`;
+        iframe.src = getEmbedUrl(videoConfig['1-1'], false);
         titleEl.textContent = videoTitles['1-1'];
       }
 
