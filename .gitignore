@@ -42,3 +42,13 @@ videos/
 
 # Allow .nojekyll for GitHub Pages
 !.nojekyll
+check_file_id.py
+debug_drive_html.py
+embed_css.py
+fetch_all_drive_files.py
+find_all_drive_ids.py
+fix_videos_json.py
+inspect_drive_json.py
+parse_embedded_drive.py
+reorder_sections.py
+update_footer.py

@@ -17,16 +17,18 @@ try:
     # Extract all mp4 files and their 33-char Drive IDs
     matches = re.findall(r'([\w\-]+\.mp4).*?([a-zA-Z0-9_-]{33})', html)
 
+    print(f"Found {len(matches)} total matches in Drive HTML:")
     drive_mapping = {}
 
     for filename, file_id in matches:
-        # Normalize key: remove .mp4 and any suffix like -en-pro, -ar-pro, -pro, -clean-en
+        print(f"  {filename} -> {file_id}")
         clean_name = filename.replace(".mp4", "")
-        key = re.sub(r'-(en-pro|ar-pro|clean-en|pro)$', '', clean_name)
+        # Remove any suffix like -en-pro, -ar-pro, -clean-en, -pro, -en, -ar
+        key = re.sub(r'-(en-pro|ar-pro|clean-en|pro|en|ar)$', '', clean_name)
         drive_mapping[key] = file_id
         drive_mapping[clean_name] = file_id
 
-    print(f"Extracted {len(matches)} video files ({len(drive_mapping)} keys) from Google Drive.")
+    print(f"\nTotal mapped keys: {len(drive_mapping)}")
 
     if drive_mapping:
         with open(VIDEOS_JSON, 'r', encoding='utf-8') as f:
@@ -43,6 +45,8 @@ try:
                     v_data[k] = new_val
                     updated_count += 1
                     changed_keys.append(f"  {k}: {old_val} -> {new_val}")
+            else:
+                print(f"Key missing from Drive mapping: {k}")
 
         if updated_count > 0:
             with open(VIDEOS_JSON, 'w', encoding='utf-8') as f:
@@ -52,8 +56,7 @@ try:
             for item in changed_keys:
                 print(item)
         else:
-            print("\nℹ️ All 50 existing Google Drive IDs in videos.json are already up to date!")
-            print("Remaining keys in videos.json (like YouTube IDs) were not found in this Drive folder.")
+            print("\nℹ️ All existing keys in videos.json are already up to date!")
 
 except Exception as e:
     print(f"Error fetching or parsing Drive URL: {e}")
