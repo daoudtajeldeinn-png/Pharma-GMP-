@@ -21,7 +21,7 @@
       "name": "الكورسات",
       "short_name": "الكورسات",
       "description": "تصفح جميع الكورسات المتاحة",
-      "url": "/courses.html",
+      "url": "/Pharma-GMP-/courses.html",
       "icons": [
         {
           "src": "/assets/icon-96x96.png",
@@ -33,7 +33,7 @@
       "name": "لوحة التحكم",
       "short_name": "التحكم",
       "description": "لوحة التحكم الشخصية",
-      "url": "/dashboard.html",
+      "url": "/Pharma-GMP-/dashboard.html",
       "icons": [
         {
           "src": "/assets/icon-96x96.png",
@@ -45,7 +45,7 @@
       "name": "الاختبارات",
       "short_name": "الاختبارات",
       "description": "اختبارات التقييم",
-      "url": "/quiz-page.html",
+      "url": "/Pharma-GMP-/quiz-page.html",
       "icons": [
         {
           "src": "/assets/icon-96x96.png",
