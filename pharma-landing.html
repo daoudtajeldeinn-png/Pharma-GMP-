@@ -2368,35 +2368,60 @@ footer {
   </footer>
 
 
+
+
   <script>
-    // Fade-up animation
+    // ── Fade-up animation ──
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) e.target.classList.add('visible');
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // Make hero visible immediately
-    document.querySelectorAll('.hero .fade-up, .hero-content, .hero-visual').forEach(el => {
-      el.classList.add('visible');
+    // Hero visible immediately
+    document.querySelectorAll('.hero-content, .hero-visual').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
     });
-  </script>
 
+    // ── Sidebar ──
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const closeBtn = document.getElementById('sidebarClose');
 
-  <script>
-    // Fade-up animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (toggleBtn) toggleBtn.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+
+    // إغلاق Sidebar عند النقر على أي رابط
+    document.querySelectorAll('.sidebar-nav-link').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+
+    // ── Search ──
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        const q = this.value.trim().toLowerCase();
+        if (!q) { searchResults.style.display = 'none'; return; }
+        searchResults.style.display = 'block';
       });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // Make hero visible immediately
-    document.querySelectorAll('.hero .fade-up, .hero-content, .hero-visual').forEach(el => {
-      el.classList.add('visible');
-    });
+    }
   </script>
 
 </body>
